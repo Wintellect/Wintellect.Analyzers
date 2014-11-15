@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Wintellect.Analyzers</id>
+    <version>1.0.0.0</version>
+    <title>Wintellect Roslyn Analyzers and Fixers</title>
+    <authors>Wintellect</authors>
+    <owners>Wintellect</owners>
+    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>-->
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Wintellect Roslyn code analyzers for producing better code.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright (c) 2014 by Wintellect</copyright>
+    <tags>Roslyn Code Analysis</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="" />
+    </frameworkAssemblies>
+  </metadata>
+  <files>
+    <file src="*.dll" target="tools\analyzers\" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*" />
+    <file src="tools\*.ps1" target="tools\" />
+  </files>
+</package>
