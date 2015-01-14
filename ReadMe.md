@@ -8,7 +8,7 @@ If you contribute code make sure to include unit tests as well as add code to th
 This informational level gives you a hint that you are calling a method using param arrays. Because calls to these methods cause memory allocations you should know where these are happening.
 
 ### AvoidPredefinedTypes ###
-The predefined types, such as int, should not be used. When defining a type the built in types can be different sizes on different versions of .NET (e.g., desktop and Internet of Things) so you want to be as explicit about types as possible. 
+The predefined types, such as int, should not be used. You want to be as explicit about types as possible to avoid confusion. 
 
 ### CallAssertMethodsWithMessageParameter ###
 Calling the one parameter overload of Debug.Assert is a bad idea because they will not show you the expression you are asserting on. This analyzer will find those calls and the code fix will take the asserting expression and convert it into a string as the second parameter to the two parameter overload of Debug.Assert.
