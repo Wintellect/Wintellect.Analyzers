@@ -32,15 +32,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AvoidCallingMethodsWithParamArgs\AvoidCallingMethodsWithParamArgsAnalyzer.cs" />
-    <Compile Include="AvoidPredefinedTypes\AvoidPreDefinedTypesAnalyzer.cs" />
-    <Compile Include="AvoidPredefinedTypes\AvoidPredefinedTypesCodeFixProvider.cs" />
-    <Compile Include="CallAssertMethodsWithMessageParameter\CallAssertMethodsWithMessageParameterAnalyzer.cs" />
-    <Compile Include="CallAssertMethodsWithMessageParameter\CallAssertMethodsWithMessageParameterCodeFixProvide.cs" />
-    <Compile Include="IfAndElseMustHaveBraces\IfAndElseMustHaveBracesAnalyzer.cs" />
-    <Compile Include="IfAndElseMustHaveBraces\IfAndElseMustHaveBracesCodeFixProvider.cs" />
-    <Compile Include="ReturningTaskRequiresAsync\ReturningTaskRequiresAsyncCodeFixProvider.cs" />
-    <Compile Include="ReturningTaskRequiresAsync\ReturningTaskRequiresAsyncAnalyzer.cs" />
+    <Compile Include="Performance\AvoidCallingMethodsWithParamArgsAnalyzer.cs" />
+    <Compile Include="Usage\AvoidPreDefinedTypesAnalyzer.cs" />
+    <Compile Include="Usage\CodeFixes\AvoidPredefinedTypesCodeFixProvider.cs" />
+    <Compile Include="Usage\CallAssertMethodsWithMessageParameterAnalyzer.cs" />
+    <Compile Include="Usage\CodeFixes\CallAssertMethodsWithMessageParameterCodeFixProvide.cs" />
+    <Compile Include="Formatting\IfAndElseMustHaveBracesAnalyzer.cs" />
+    <Compile Include="Formatting\CodeFixes\IfAndElseMustHaveBracesCodeFixProvider.cs" />
+    <Compile Include="Usage\CodeFixes\ReturningTaskRequiresAsyncCodeFixProvider.cs" />
+    <Compile Include="Usage\ReturningTaskRequiresAsyncAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -104,6 +104,7 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if exist Diagnostic.nuspec if exist "$(SolutionDir)\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe" "$(SolutionDir)\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe" pack Diagnostic.nuspec -OutputDirectory .</PostBuildEvent>
