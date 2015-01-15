@@ -218,4 +218,4 @@ pip-log.txt
 #############
 ## Added by @JohnWintellect
 #############
-.sln.ide
+*.sln.ide
