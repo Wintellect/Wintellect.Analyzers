@@ -20,7 +20,7 @@ namespace Wintellect.Analyzers
     public class ReturningTaskRequiresAsyncAnalyzer : DiagnosticAnalyzer
     {
         // This is the ID shown in the Error window.
-        public const String DiagnosticId = "Wintellect001";
+        public const String DiagnosticId = DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer;
         // TODO: Needs to be internationalized.
         public const String Title = "All Task or Task<T> returning method names must end with Async";
         // TODO: Needs to be internationalized.

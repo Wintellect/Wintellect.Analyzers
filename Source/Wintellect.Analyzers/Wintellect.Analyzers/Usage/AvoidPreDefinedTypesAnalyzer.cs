@@ -21,7 +21,7 @@ namespace Wintellect.Analyzers
     public class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
     {
         // The ID shown in the Error window
-        public const String DiagnosticId = "Wintellect004";
+        public const String DiagnosticId = DiagnosticIds.AvoidPreDefinedTypesAnalyzer;
         // TODO: Needs to be internationalized.
         public const String Title = "Use explicit types instead of predefined for better portability";
         // TODO: Needs to be internationalized.

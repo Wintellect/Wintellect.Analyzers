@@ -18,7 +18,7 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AvoidCallingMethodsWithParamArgsAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = "Wintellect005";
+        public const string DiagnosticId = DiagnosticIds.AvoidCallingMethodsWithParamArgsAnalyzer;
         // TODO: Needs to be internationalized.
         public const string Title = "Avoid calling methods with param array arguments";
         // TODO: Needs to be internationalized.

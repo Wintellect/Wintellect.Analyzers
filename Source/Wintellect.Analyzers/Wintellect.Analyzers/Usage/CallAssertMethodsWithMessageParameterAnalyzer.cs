@@ -19,7 +19,7 @@ namespace Wintellect.Analyzers
     public class CallAssertMethodsWithMessageParameterAnalyzer : DiagnosticAnalyzer
     {
         // The ID shown in the Error window
-        public const String DiagnosticId = "Wintellect002";
+        public const String DiagnosticId = DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer;
         // TODO: Needs to be internationalized.
         public const String Title = "Always use Debug.Assert methods that have a message parameter";
         // TODO: Needs to be internationalized.

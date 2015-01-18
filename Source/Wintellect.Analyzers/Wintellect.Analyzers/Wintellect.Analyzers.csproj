@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DiagnosticIds.cs" />
     <Compile Include="Performance\AvoidCallingMethodsWithParamArgsAnalyzer.cs" />
     <Compile Include="Usage\AvoidPreDefinedTypesAnalyzer.cs" />
     <Compile Include="Usage\CodeFixes\AvoidPredefinedTypesCodeFixProvider.cs" />

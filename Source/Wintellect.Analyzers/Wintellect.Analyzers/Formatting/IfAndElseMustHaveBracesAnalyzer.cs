@@ -20,7 +20,7 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class IfAndElseMustHaveBracesAnalyzer : DiagnosticAnalyzer
     {
-        public const String DiagnosticId = "Wintellect003";
+        public const String DiagnosticId = DiagnosticIds.IfAndElseMustHaveBracesAnalyzer;
         // TODO: Needs to be internationalized.
         public const String Title = "If and else statements must use braces";
         // TODO: Needs to be internationalized.
