@@ -109,6 +109,15 @@ namespace SomeTests
 
         [TestMethod]
         [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestFixedSinglePredefinedType()
+        {
+            DiagnosticResult[] expected = new DiagnosticResult[0] ;
+
+            VerifyCSharpDiagnostic(singlePredefinedTypeFixed, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
         public void TestSinglePredefindedFixed()
         {
             VerifyCSharpFix(singlePredefinedType, singlePredefinedTypeFixed);
@@ -118,7 +127,13 @@ namespace SomeTests
         [TestCategory("AvoidPreDefinedTypesUnitTests")]
         public void TestMultiplePredefinedType()
         {
-            var expected = new DiagnosticResult
+            // Because this rule uses the RegisterSyntaxNodeAction to be called each time
+            // a predefined type is found, it fires multiple times. Hence, I need to 
+            // account for that in this test.
+
+            DiagnosticResult[] results = new DiagnosticResult[5];
+
+            results[0] = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
                 Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "object", "Object"),
@@ -130,7 +145,9 @@ namespace SomeTests
                     }
             };
 
-            var expected2 = new DiagnosticResult
+            results[1] = results[0];
+
+            results[2] = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
                 Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "int", "Int32"),
@@ -142,7 +159,9 @@ namespace SomeTests
                     }
             };
 
-            var expected3 = new DiagnosticResult
+            results[3] = results[2];
+
+            results[4] = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
                 Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "string", "String"),
@@ -154,7 +173,7 @@ namespace SomeTests
                     }
             };
 
-            VerifyCSharpDiagnostic(multiplePredefinedType, expected, expected2, expected3);
+            VerifyCSharpDiagnostic(multiplePredefinedType, results);
         }
 
         [TestMethod]
