@@ -18,19 +18,10 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class CallAssertMethodsWithMessageParameterAnalyzer : DiagnosticAnalyzer
     {
-        // The ID shown in the Error window
-        public const String DiagnosticId = DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer;
-        // TODO: Needs to be internationalized.
-        public const String Title = "Always use Debug.Assert methods that have a message parameter";
-        // TODO: Needs to be internationalized.
-        public const String MessageFormat = "Never use the single parameter Debug.Assert";
-        // TODO: Needs to be internationalized.
-        public const String Category = "Usage";
-
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId,
-                                                                             Title,
-                                                                             MessageFormat,
-                                                                             Category,
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer,
+                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerTitle,
+                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerMessageFormat,
+                                                                             Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
                                                                              true);
 

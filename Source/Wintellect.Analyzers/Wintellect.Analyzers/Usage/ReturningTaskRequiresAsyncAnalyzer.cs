@@ -19,22 +19,13 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ReturningTaskRequiresAsyncAnalyzer : DiagnosticAnalyzer
     {
-        // This is the ID shown in the Error window.
-        public const String DiagnosticId = DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer;
-        // TODO: Needs to be internationalized.
-        public const String Title = "All Task or Task<T> returning method names must end with Async";
-        // TODO: Needs to be internationalized.
-        public const String MessageFormat = "Method name {0} should be renamed {0}Async";
-        // TODO: Needs to be internationalized.
-        public const String Category = "Naming";
-
         /// <summary>
         /// The error returned by this rule.
         /// </summary>
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId,
-                                                                             Title,
-                                                                             MessageFormat,
-                                                                             Category,
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer,
+                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerTitle,
+                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerMessageFormat,
+                                                                             Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
                                                                              isEnabledByDefault: true);
 

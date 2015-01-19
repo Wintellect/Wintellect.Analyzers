@@ -29,6 +29,8 @@ namespace SomeTests
     }
 }
 ";
+        const String AvoidCallingMethodsWithParamArgsAnalyzerId = "Wintellect005";
+        const String AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat = "Call to a method using a param aray as arguments '{0}'";
 
         [TestMethod]
         [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
@@ -36,8 +38,8 @@ namespace SomeTests
         {
             var expected = new DiagnosticResult
             {
-                Id = AvoidCallingMethodsWithParamArgsAnalyzer.DiagnosticId,
-                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzer.MessageFormat, "String.Format"),
+                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {

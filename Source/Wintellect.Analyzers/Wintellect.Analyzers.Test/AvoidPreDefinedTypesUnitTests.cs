@@ -88,6 +88,8 @@ namespace SomeTests
     }
 }
 ";
+        const String AvoidPreDefinedTypesAnalyzeId = "Wintellect004";
+        const String AvoidPreDefinedTypesAnalyzerMessageFormat = "Convert '{0}' to the explicit type '{1}'";
 
         [TestMethod]
         [TestCategory("AvoidPreDefinedTypesUnitTests")]
@@ -95,8 +97,8 @@ namespace SomeTests
         {
             var expected = new DiagnosticResult
             {
-                Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
-                Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "string", "String"),
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "string", "String"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
@@ -135,8 +137,8 @@ namespace SomeTests
 
             results[0] = new DiagnosticResult
             {
-                Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
-                Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "object", "Object"),
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "object", "Object"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]
@@ -149,8 +151,8 @@ namespace SomeTests
 
             results[2] = new DiagnosticResult
             {
-                Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
-                Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "int", "Int32"),
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "int", "Int32"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]
@@ -163,8 +165,8 @@ namespace SomeTests
 
             results[4] = new DiagnosticResult
             {
-                Id = AvoidPreDefinedTypesAnalyzer.DiagnosticId,
-                Message = String.Format(AvoidPreDefinedTypesAnalyzer.MessageFormat, "string", "String"),
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "string", "String"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]

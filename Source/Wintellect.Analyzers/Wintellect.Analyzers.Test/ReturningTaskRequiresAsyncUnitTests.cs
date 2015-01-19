@@ -91,14 +91,17 @@ namespace NonGenericTask
 }
 ";
 
+        private const String ReturningTaskRequiresAsyncAnalyzerId = "Wintellect001";
+        private const String ReturningTaskRequiresAsyncAnalyzerMessageFormat = "Method name {0} should be renamed {0}Async";
+
         [TestMethod]
         [TestCategory("ReturningTaskRequiresAsyncTests")]
         public void TestNonGenericMethod()
         {
             var expected = new DiagnosticResult
             {
-                Id = ReturningTaskRequiresAsyncAnalyzer.DiagnosticId,
-                Message = String.Format(ReturningTaskRequiresAsyncAnalyzer.MessageFormat, "GenericOperation"),
+                Id = ReturningTaskRequiresAsyncAnalyzerId,
+                Message = String.Format(ReturningTaskRequiresAsyncAnalyzerMessageFormat, "GenericOperation"),
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -115,8 +118,8 @@ namespace NonGenericTask
         {
             var expected = new DiagnosticResult
             {
-                Id = ReturningTaskRequiresAsyncAnalyzer.DiagnosticId,
-                Message = String.Format(ReturningTaskRequiresAsyncAnalyzer.MessageFormat, "GenericOperation"),
+                Id = ReturningTaskRequiresAsyncAnalyzerId,
+                Message = String.Format(ReturningTaskRequiresAsyncAnalyzerMessageFormat, "GenericOperation"),
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {

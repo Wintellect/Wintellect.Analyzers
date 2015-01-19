@@ -29,7 +29,7 @@ namespace Wintellect.Analyzers
 
         public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
         {
-            return ImmutableArray.Create(ReturningTaskRequiresAsyncAnalyzer.DiagnosticId);
+            return ImmutableArray.Create(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer);
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

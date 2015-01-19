@@ -20,19 +20,10 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
     {
-        // The ID shown in the Error window
-        public const String DiagnosticId = DiagnosticIds.AvoidPreDefinedTypesAnalyzer;
-        // TODO: Needs to be internationalized.
-        public const String Title = "Use explicit types instead of predefined for better portability";
-        // TODO: Needs to be internationalized.
-        public const String MessageFormat = "Convert '{0}' to the explicit type '{1}'";
-        // TODO: Needs to be internationalized.
-        public const String Category = "Usage";
-
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId,
-                                                                             Title,
-                                                                             MessageFormat,
-                                                                             Category,
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidPreDefinedTypesAnalyzer,
+                                                                             Resources.AvoidPreDefinedTypesAnalyzerTitle,
+                                                                             Resources.AvoidPreDefinedTypesAnalyzerMessageFormat,
+                                                                             Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Warning,
                                                                              true);
 

@@ -27,7 +27,7 @@ namespace Wintellect.Analyzers
 
         public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
         {
-            return ImmutableArray.Create(AvoidPreDefinedTypesAnalyzer.DiagnosticId);
+            return ImmutableArray.Create(DiagnosticIds.AvoidPreDefinedTypesAnalyzer);
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

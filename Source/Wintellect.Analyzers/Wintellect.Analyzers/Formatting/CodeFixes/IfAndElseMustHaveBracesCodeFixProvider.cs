@@ -26,11 +26,9 @@ namespace Wintellect.Analyzers
     [ExportCodeFixProvider("IfAndElseMustHaveBracesCodeFixProvider", LanguageNames.CSharp)]
     public class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
     {
-        private const String actionMessage = "Enclose statement in braces";
-
         public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
         {
-            return ImmutableArray.Create(IfAndElseMustHaveBracesAnalyzer.DiagnosticId);
+            return ImmutableArray.Create(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer);
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -50,7 +48,7 @@ namespace Wintellect.Analyzers
             var token = root.FindToken(diagnosticSpan.Start);
             SyntaxNode errorToken = token.Parent;
 
-            CodeAction codeAction = CodeAction.Create(actionMessage,
+            CodeAction codeAction = CodeAction.Create(Resources.IfAndElseMustHaveBracesCodeFixProviderActionMessage,
                                                       c => AddMissingBracesAsync(context.Document, errorToken, c));
             context.RegisterFix(codeAction, diagnostic);
         }

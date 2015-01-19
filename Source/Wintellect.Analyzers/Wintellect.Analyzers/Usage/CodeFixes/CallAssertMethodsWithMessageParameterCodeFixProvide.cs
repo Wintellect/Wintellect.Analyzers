@@ -30,7 +30,7 @@ namespace Wintellect.Analyzers
 
         public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
         {
-            return ImmutableArray.Create(CallAssertMethodsWithMessageParameterAnalyzer.DiagnosticId);
+            return ImmutableArray.Create(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer);
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

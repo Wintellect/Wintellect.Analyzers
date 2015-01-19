@@ -77,6 +77,8 @@ namespace ConsoleApplication1
     }
 }
 ";
+        private const String CallAssertMethodsWithMessageParameterAnalyzerId = "Wintellect002";
+        private const String CallAssertMethodsWithMessageParameterAnalyzerMessageFormat = "Never use the single parameter Debug.Assert"; 
 
         [TestMethod]
         [TestCategory("CallAssertMethodsWithMessageTests")]
@@ -84,8 +86,8 @@ namespace ConsoleApplication1
         {
             var expected = new DiagnosticResult
             {
-                Id = CallAssertMethodsWithMessageParameterAnalyzer.DiagnosticId,
-                Message = CallAssertMethodsWithMessageParameterAnalyzer.MessageFormat,
+                Id = CallAssertMethodsWithMessageParameterAnalyzerId,
+                Message = CallAssertMethodsWithMessageParameterAnalyzerMessageFormat,
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -102,8 +104,8 @@ namespace ConsoleApplication1
         {
             var expected = new DiagnosticResult
             {
-                Id = CallAssertMethodsWithMessageParameterAnalyzer.DiagnosticId,
-                Message = CallAssertMethodsWithMessageParameterAnalyzer.MessageFormat,
+                Id = CallAssertMethodsWithMessageParameterAnalyzerId,
+                Message = CallAssertMethodsWithMessageParameterAnalyzerMessageFormat,
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {

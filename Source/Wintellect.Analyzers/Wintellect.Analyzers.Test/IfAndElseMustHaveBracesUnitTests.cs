@@ -105,6 +105,8 @@ namespace SomeTests
     }
 }
 ";
+        private const String IfAndElseMustHaveBracesId = "Wintellect003";
+        private const String IfAndElseMustHaveBracesMessageFormat = "'{0}' statements must have braces";
 
         [TestMethod]
         [TestCategory("IfAndElseMustHaveBracesUnitTests")]
@@ -112,8 +114,8 @@ namespace SomeTests
         {
             var expected = new DiagnosticResult
             {
-                Id = IfAndElseMustHaveBracesAnalyzer.DiagnosticId,
-                Message = String.Format(IfAndElseMustHaveBracesAnalyzer.MessageFormat, "if"),
+                Id = IfAndElseMustHaveBracesId,
+                Message = String.Format(IfAndElseMustHaveBracesMessageFormat, "if"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {
@@ -130,8 +132,8 @@ namespace SomeTests
         {
             var expected = new DiagnosticResult
             {
-                Id = IfAndElseMustHaveBracesAnalyzer.DiagnosticId,
-                Message = String.Format(IfAndElseMustHaveBracesAnalyzer.MessageFormat, "else"),
+                Id = IfAndElseMustHaveBracesId,
+                Message = String.Format(IfAndElseMustHaveBracesMessageFormat, "else"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {

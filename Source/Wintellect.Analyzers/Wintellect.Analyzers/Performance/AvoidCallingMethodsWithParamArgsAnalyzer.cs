@@ -18,20 +18,12 @@ namespace Wintellect.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class AvoidCallingMethodsWithParamArgsAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticId = DiagnosticIds.AvoidCallingMethodsWithParamArgsAnalyzer;
-        // TODO: Needs to be internationalized.
-        public const string Title = "Avoid calling methods with param array arguments";
-        // TODO: Needs to be internationalized.
-        public const string MessageFormat = "Call to a method using a param aray as arguments '{0}'";
-        // TODO: Needs to be internationalized.
-        public const string Category = "Usage";
-
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId,
-                                                                            Title,
-                                                                            MessageFormat,
-                                                                            Category,
-                                                                            DiagnosticSeverity.Info,
-                                                                            true);
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsAnalyzer,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerTitle,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat,
+                                                                             Resources.CategoryPerformance,
+                                                                             DiagnosticSeverity.Info,
+                                                                             true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
