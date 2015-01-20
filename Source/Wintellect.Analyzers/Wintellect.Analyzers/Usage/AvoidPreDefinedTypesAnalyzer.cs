@@ -28,7 +28,7 @@ namespace Wintellect.Analyzers
                                                                              DiagnosticSeverity.Warning,
                                                                              true);
 
-        public static readonly Dictionary<String, String> TypeMap = new Dictionary<String, String>
+        private readonly static ImmutableDictionary<String, String> typeMap = new Dictionary<String, String>()
         {
             // This is the fancy, new C# 6.0 initialization.
             ["bool"] = "Boolean",
@@ -39,13 +39,21 @@ namespace Wintellect.Analyzers
             ["float"] = "Single",
             ["int"] = "Int32",
             ["long"] = "Int64",
-            ["object"]  = "Object",
+            ["object"] = "Object",
             ["sbyte"] = "SByte",
             ["short"] = "Int16",
-            ["string"]  = "String",
+            ["string"] = "String",
             ["ulong"] = "Uint64",
-            ["ushort"]  = "UInt16",
-        };
+            ["ushort"] = "UInt16",
+        }.ToImmutableDictionary();
+
+        public static ImmutableDictionary<String, String> TypeMap
+        {
+            get
+            {
+                return typeMap;
+            }
+        }
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
