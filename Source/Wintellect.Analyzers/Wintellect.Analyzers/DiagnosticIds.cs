@@ -22,5 +22,9 @@ namespace Wintellect.Analyzers
         public const String IfAndElseMustHaveBracesAnalyzer = "Wintellect003";
         public const String AvoidPreDefinedTypesAnalyzer = "Wintellect004";
         public const String AvoidCallingMethodsWithParamArgsAnalyzer = "Wintellect005";
+        public const String AssembliesHaveCompanyAttributeAnalyzer = "Wintellect006";
+        public const String AssembliesHaveCopyrightAttributeAnalyzer = "Wintellect007";
+        public const String AssembliesHaveDescriptionAttributeAnalyzer = "Wintellect008";
+        public const String AssembliesHaveTitleAttributeAnalyzer = "Wintellect009";
     }
 }

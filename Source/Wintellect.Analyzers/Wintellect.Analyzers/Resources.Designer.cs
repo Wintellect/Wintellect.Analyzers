@@ -62,6 +62,78 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a filled out AssemblyCompanyAttribute to the assembly properties.
+        /// </summary>
+        internal static string AssembliesHaveCompanyAttributeAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCompanyAttributeAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assemblies need the AssemblyCompanyAttribute.
+        /// </summary>
+        internal static string AssembliesHaveCompanyAttributeAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCompanyAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a filled out AssemblyCopyrightAttribute to the assembly properties.
+        /// </summary>
+        internal static string AssembliesHaveCopyrightAttributeAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCopyrightAttributeAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assemblies need the AssemblyCopyrightAttribute.
+        /// </summary>
+        internal static string AssembliesHaveCopyrightAttributeAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCopyrightAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a filled out AssemblyDescriptionAttribute to the assembly properties.
+        /// </summary>
+        internal static string AssembliesHaveDescriptionAttributeAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("AssembliesHaveDescriptionAttributeAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assemblies need the AssemblyDescriptionAttribute.
+        /// </summary>
+        internal static string AssembliesHaveDescriptionAttributeAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("AssembliesHaveDescriptionAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a filled out AssemblyTitleAttribute to the assembly properties.
+        /// </summary>
+        internal static string AssembliesHaveTitleAttributeAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("AssembliesHaveTitleAttributeAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assemblies need the AssemblyTitleDescriptionAttribute.
+        /// </summary>
+        internal static string AssembliesHaveTitleAttributeAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("AssembliesHaveTitleAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Call to a method using a param aray as arguments &apos;{0}&apos;.
         /// </summary>
         internal static string AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat {
@@ -112,6 +184,15 @@ namespace Wintellect.Analyzers {
         internal static string CallAssertMethodsWithMessageParameterAnalyzerTitle {
             get {
                 return ResourceManager.GetString("CallAssertMethodsWithMessageParameterAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Design.
+        /// </summary>
+        internal static string CategoryDesign {
+            get {
+                return ResourceManager.GetString("CategoryDesign", resourceCulture);
             }
         }
         

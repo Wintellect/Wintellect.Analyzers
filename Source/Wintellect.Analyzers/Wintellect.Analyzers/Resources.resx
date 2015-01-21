@@ -117,6 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AssembliesHaveCompanyAttributeAnalyzerMessageFormat" xml:space="preserve">
+    <value>Add a filled out AssemblyCompanyAttribute to the assembly properties</value>
+  </data>
+  <data name="AssembliesHaveCompanyAttributeAnalyzerTitle" xml:space="preserve">
+    <value>Assemblies need the AssemblyCompanyAttribute</value>
+  </data>
+  <data name="AssembliesHaveCopyrightAttributeAnalyzerMessageFormat" xml:space="preserve">
+    <value>Add a filled out AssemblyCopyrightAttribute to the assembly properties</value>
+  </data>
+  <data name="AssembliesHaveCopyrightAttributeAnalyzerTitle" xml:space="preserve">
+    <value>Assemblies need the AssemblyCopyrightAttribute</value>
+  </data>
+  <data name="AssembliesHaveDescriptionAttributeAnalyzerMessageFormat" xml:space="preserve">
+    <value>Add a filled out AssemblyDescriptionAttribute to the assembly properties</value>
+  </data>
+  <data name="AssembliesHaveDescriptionAttributeAnalyzerTitle" xml:space="preserve">
+    <value>Assemblies need the AssemblyDescriptionAttribute</value>
+  </data>
+  <data name="AssembliesHaveTitleAttributeAnalyzerMessageFormat" xml:space="preserve">
+    <value>Add a filled out AssemblyTitleAttribute to the assembly properties</value>
+  </data>
+  <data name="AssembliesHaveTitleAttributeAnalyzerTitle" xml:space="preserve">
+    <value>Assemblies need the AssemblyTitleDescriptionAttribute</value>
+  </data>
   <data name="AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat" xml:space="preserve">
     <value>Call to a method using a param aray as arguments '{0}'</value>
   </data>
@@ -134,6 +158,9 @@
   </data>
   <data name="CallAssertMethodsWithMessageParameterAnalyzerTitle" xml:space="preserve">
     <value>Always use Debug.Assert methods that have a message parameter</value>
+  </data>
+  <data name="CategoryDesign" xml:space="preserve">
+    <value>Design</value>
   </data>
   <data name="CategoryFormatting" xml:space="preserve">
     <value>Formatting</value>
