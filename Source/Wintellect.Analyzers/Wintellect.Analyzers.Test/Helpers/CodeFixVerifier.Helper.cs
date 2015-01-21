@@ -30,7 +30,7 @@ namespace TestHelper
 
         /// <summary>
         /// Compare two collections of Diagnostics,and return a list of any new diagnostics that appear only in the second collection.
-        /// Note: Considers Diagnostics to be the same if they have the same Ids.  In teh case of mulitple diagnostics with the smae Id in a row,
+        /// Note: Considers Diagnostics to be the same if they have the same Ids.  In the case of multiple diagnostics with the same Id in a row,
         /// this method may not necessarily return the new one.
         /// </summary>
         /// <param name="diagnostics">The Diagnostics that existed in the code before the CodeFix was applied</param>
@@ -72,7 +72,7 @@ namespace TestHelper
         /// Given a document, turn it into a string based on the syntax root
         /// </summary>
         /// <param name="document">The Document to be converted to a string</param>
-        /// <returns>A string contianing the syntax of the Document after formatting</returns>
+        /// <returns>A string containing the syntax of the Document after formatting</returns>
         private static string GetStringFromDocument(Document document)
         {
             var simplifiedDoc = Simplifier.ReduceAsync(document, Simplifier.Annotation).Result;

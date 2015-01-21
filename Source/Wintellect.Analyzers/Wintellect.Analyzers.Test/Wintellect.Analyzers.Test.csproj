@@ -90,6 +90,7 @@
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyAttributesUnitTests.cs" />
     <Compile Include="AvoidCallingMethodsWithParamArgsUnitTests.cs" />
     <Compile Include="AvoidPreDefinedTypesUnitTests.cs" />
     <Compile Include="CallAssertMethodsWithMessageUnitTests.cs" />
