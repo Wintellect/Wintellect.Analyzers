@@ -94,6 +94,16 @@ namespace Wintellect.Analyzers
                                     // is not empty.
                                     XmlCrefAttributeSyntax cref = crefList.FirstOrDefault();
 
+                                    String cRefString = cref.Cref.ToString();
+                                    if (cRefString.Contains("."))
+                                    {
+                                        // The documentation lists a whole name like System.ArgumentException. The best I can do here is
+                                        // get the identifier symbol and do a compare on that.
+                                        ISymbol sym = context.SemanticModel.GetSymbolInfo(ident).Symbol;
+
+                                        thrownType = String.Format("{0}.{1}", sym.ContainingNamespace.ToString(), sym.Name.ToString());
+                                    }
+
                                     if (cref.Cref.ToString().Equals(thrownType))
                                     {
                                         var whyThrownText = documentedException.Content.ToString();

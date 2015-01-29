@@ -35,7 +35,6 @@ namespace SomeTests
         /// asdasdasd
         /// </summary>
         /// <param name=""message""></param>
-        /// <exception cref=""ArgumentException"">WHY~!</exception>
         public void SomeWork(string message)
         {
             if (String.IsNullOrEmpty(message))
@@ -831,6 +830,78 @@ namespace SomeTests
 
             VerifyCSharpDiagnostic(test, expected);
         }
+
+        [TestMethod]
+        [TestCategory("ExceptionDocumentationMissingUnitTests")]
+        public void MethodCorrectFullName()
+        {
+            var test = @"
+using System;
+
+namespace SomeTests
+{
+	public class BasicClass
+	{
+        /// <summary>
+        /// asdasdasd
+        /// </summary>
+        /// <param name=""message""></param>
+        /// <exception cref=""System.ArgumentException"">WHY~!</exception>
+        public void SomeWork(string message)
+        {
+            if (String.IsNullOrEmpty(message))
+            {
+                throw new ArgumentException(""message"");
+            }
+            Console.WriteLine(message);
+        }
+    }
+}
+";
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        [TestCategory("ExceptionDocumentationMissingUnitTests")]
+        public void MethodHasExceptionButNoText()
+        {
+            var test = @"
+using System;
+
+namespace SomeTests
+{
+	public class BasicClass
+	{
+        /// <summary>
+        /// asdasdasd
+        /// </summary>
+        /// <param name=""message""></param>
+        /// <exception cref=""ArgumentException""></exception>        
+        public void SomeWork(string message)
+        {
+            if (String.IsNullOrEmpty(message))
+            {
+                throw new ArgumentException(""message"");
+            }
+            Console.WriteLine(message);
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = ExceptionDocumentationMissingId,
+                Message = String.Format(ExceptionDocumentationMissingMessageFormat, "ArgumentException"),
+                Severity = DiagnosticSeverity.Error,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 17, 17)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new ExceptionDocumentationMissingAnalyzer();
