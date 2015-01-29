@@ -197,6 +197,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Documentation.
+        /// </summary>
+        internal static string CategoryDocumentation {
+            get {
+                return ResourceManager.GetString("CategoryDocumentation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Formatting.
         /// </summary>
         internal static string CategoryFormatting {
@@ -220,6 +229,33 @@ namespace Wintellect.Analyzers {
         internal static string CategoryUsage {
             get {
                 return ResourceManager.GetString("CategoryUsage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document this direct throw.
+        /// </summary>
+        internal static string ExceptionDocumentationMissingAnalyzerActionMessage {
+            get {
+                return ResourceManager.GetString("ExceptionDocumentationMissingAnalyzerActionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document the direct throw of type &apos;{0}&apos; with an &lt;exception&gt; tag.
+        /// </summary>
+        internal static string ExceptionDocumentationMissingAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("ExceptionDocumentationMissingAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Al direct throws must be documented with &lt;exception&gt; tags.
+        /// </summary>
+        internal static string ExceptionDocumentationMissingAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("ExceptionDocumentationMissingAnalyzerTitle", resourceCulture);
             }
         }
         

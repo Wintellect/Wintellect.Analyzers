@@ -26,5 +26,6 @@ namespace Wintellect.Analyzers
         public const String AssembliesHaveCopyrightAttributeAnalyzer = "Wintellect007";
         public const String AssembliesHaveDescriptionAttributeAnalyzer = "Wintellect008";
         public const String AssembliesHaveTitleAttributeAnalyzer = "Wintellect009";
+        public const String ExceptionDocumentationMissingAnalyzer = "Wintellect010";
     }
 }

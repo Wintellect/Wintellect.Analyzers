@@ -162,6 +162,9 @@
   <data name="CategoryDesign" xml:space="preserve">
     <value>Design</value>
   </data>
+  <data name="CategoryDocumentation" xml:space="preserve">
+    <value>Documentation</value>
+  </data>
   <data name="CategoryFormatting" xml:space="preserve">
     <value>Formatting</value>
   </data>
@@ -170,6 +173,15 @@
   </data>
   <data name="CategoryUsage" xml:space="preserve">
     <value>Usage</value>
+  </data>
+  <data name="ExceptionDocumentationMissingAnalyzerActionMessage" xml:space="preserve">
+    <value>Document this direct throw</value>
+  </data>
+  <data name="ExceptionDocumentationMissingAnalyzerMessageFormat" xml:space="preserve">
+    <value>Document the direct throw of type '{0}' with an &lt;exception&gt; tag</value>
+  </data>
+  <data name="ExceptionDocumentationMissingAnalyzerTitle" xml:space="preserve">
+    <value>Al direct throws must be documented with &lt;exception&gt; tags</value>
   </data>
   <data name="IfAndElseMustHaveBracesAnalyzerMessageFormat" xml:space="preserve">
     <value>'{0}' statements must have braces</value>

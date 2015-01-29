@@ -94,6 +94,7 @@
     <Compile Include="AvoidCallingMethodsWithParamArgsUnitTests.cs" />
     <Compile Include="AvoidPreDefinedTypesUnitTests.cs" />
     <Compile Include="CallAssertMethodsWithMessageUnitTests.cs" />
+    <Compile Include="ExceptionDocumentationMissingUnitTests.cs" />
     <Compile Include="IfAndElseMustHaveBracesUnitTests.cs" />
     <Compile Include="Verifiers\CodeFixVerifier.cs" />
     <Compile Include="Verifiers\DiagnosticVerifier.cs" />
