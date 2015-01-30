@@ -17,6 +17,10 @@ This warning ensures you have the AssemblyDescriptionAttribute present and a fil
 #### AssembliesHaveTitleAtrribute ####
 This warning ensures you have the AssemblyTitleAttribute present and a filled out value in the parameter.
 
+## Documentation Analyzers ##
+#### ExceptionDocumentationMissing ####
+If you have a direct throw in your code, you need to document it with an <exception> tag in the XML documentation comments. A direct throw is one where you specifically use the throw statement in your code. This analyzer does not apply to private methods, only accessibility levels where calls outside the defining method can take place.
+
 ## Formatting Analyzers ##
 
 #### IfAndElseMustHaveBraces ####
