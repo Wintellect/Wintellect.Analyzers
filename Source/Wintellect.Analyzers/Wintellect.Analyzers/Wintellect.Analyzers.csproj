@@ -39,7 +39,6 @@
     <Compile Include="Design\AssemblyAttributeAnalyzer.cs" />
     <Compile Include="DiagnosticIds.cs" />
     <Compile Include="Documentation\ExceptionDocumentationMissingAnalyzer.cs" />
-    <Compile Include="Extensions.cs" />
     <Compile Include="Performance\AvoidCallingMethodsWithParamArgsAnalyzer.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

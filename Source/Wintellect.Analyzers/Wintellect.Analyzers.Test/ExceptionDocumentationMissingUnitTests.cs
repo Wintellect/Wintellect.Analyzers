@@ -35,6 +35,7 @@ namespace SomeTests
         /// asdasdasd
         /// </summary>
         /// <param name=""message""></param>
+        /// <exception cref=""ArgumentException"">WHY~!</exception>
         public void SomeWork(string message)
         {
             if (String.IsNullOrEmpty(message))

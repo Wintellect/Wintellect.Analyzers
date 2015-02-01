@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Wintellect.Analyzers
 {
@@ -31,99 +32,103 @@ namespace Wintellect.Analyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            // I need the SyntaxKind.ThrowStatement so I get the complete line.
+            // I need the SyntaxKind.ThrowStatement so I get the type being thrown.
             context.RegisterSyntaxNodeAction(AnalyzeThrowDocumentation, SyntaxKind.ThrowStatement);
         }
 
         private void AnalyzeThrowDocumentation(SyntaxNodeAnalysisContext context)
         {
+            // Get the method that contains this throw statement. I'm asking for the symbol table because
+            // it's got all the XML data and doesn't require me walking the SyntaxNode trees.
+            var methodSymbol = context.SemanticModel.GetEnclosingSymbol(context.Node.SpanStart) as IMethodSymbol;
+
+            // I skip private methods because the <exception> tag is for methods called by derived classes or 
+            // external classes.
+            if (methodSymbol.DeclaredAccessibility == Accessibility.Private)
+            {
+                return;
+            }
+
             // Get the type being thrown by searching for the IdentifierNameSyntax. This works for both "throw new BlahException" and 
             // "throw ex" (in case someone's crazy enough to do that).
             ThrowStatementSyntax throwSyntax = context.Node as ThrowStatementSyntax;
-            IdentifierNameSyntax ident = throwSyntax.DescendantNodes().FirstOrDefault(node => node is IdentifierNameSyntax) as IdentifierNameSyntax;
+            IdentifierNameSyntax ident = throwSyntax.DescendantNodes().First(node => node is IdentifierNameSyntax) as IdentifierNameSyntax;
 
             if (ident != null)
             {
-                // Here's the type being thrown by this statement.
-                String thrownType = ident.ToString();
+                // The type being thrown. I'm getting the fully qualified name because that's the form they
+                // are in the ISymbol.GetDocumentationCommentXml.
+                ISymbol thrownTypeSymbol = context.SemanticModel.GetSymbolInfo(ident).Symbol;
+                String thrownType = thrownTypeSymbol.ToDisplayString();
 
-                // Look for the parent declaration nodes which will give me the method, operator, constructor, conversionoperator, destructor, indexer, or 
-                // property where this throw is happening. 
-                var decl = throwSyntax.Ancestors().First(node => ((node is BaseMethodDeclarationSyntax) || (node is BasePropertyDeclarationSyntax)));
+                String rawDocComment = methodSymbol.GetDocumentationCommentXml(expandIncludes: true);
 
-                // If this is in a true private method or property, don't touch it.
-                Boolean isPrivate = false;
-                if (decl is BaseMethodDeclarationSyntax)
+                // If this method is a property, GetEnclosingSymbol returns the set or get method, which 
+                // does not have the XML comments on it only the actual property declaration has those.
+                // To go from the setter or getter to the property, use the AssociatedSymbol.
+                if (methodSymbol.AssociatedSymbol != null)
                 {
-                    isPrivate = ((BaseMethodDeclarationSyntax)decl).IsPrivate();
-                }
-                else
-                {
-                    isPrivate = ((BasePropertyDeclarationSyntax)decl).IsPrivate();
+                    var propertySymbol = methodSymbol.AssociatedSymbol as IPropertySymbol;
+                    rawDocComment = propertySymbol?.GetDocumentationCommentXml();
                 }
 
-                if (isPrivate == false)
+                // Get all the documented exceptions and the reasons why that exception is thrown.
+                Dictionary<String, String> exceptions = this.DocumentedExceptionInformation(rawDocComment);
+
+                // Assume the exception is not documented.
+                Boolean properlyDocumented = false;
+
+                foreach (var exception in exceptions)
                 {
-                    // Assume the exception is not documented.
-                    Boolean properlyDocumented = false;
-
-                    // Go find the XML documentation for this declaration.
-                    var comments = decl.GetLeadingTrivia().Where(t => t.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia));
-
-                    // There is only one SingleLingDocumentationCommentTrivia, but just in case something changes in the future.
-                    if (comments.Count() == 1)
+                    // If the exception type is documented and the reason why is not null, we are 
+                    // good to go.
+                    if ((thrownType.Equals(exception.Key)) && (!String.IsNullOrEmpty(exception.Value)))
                     {
-                        SyntaxTrivia comment = comments.First();
-
-                        // Get the comments in a tree form. The SingleLineDocumentationCommentTrivia is just a single blob.
-                        DocumentationCommentTriviaSyntax commentStructure = comment.GetStructure() as DocumentationCommentTriviaSyntax;
-
-                        // If it's not null, look for the exception elements
-                        if (commentStructure != null)
-                        {
-                            var exceptionElements = commentStructure.Content.OfType<XmlElementSyntax>().Where(node => node.EndTag.Name.ToString().Contains("exception"));
-
-                            // Loop through the <exception>... tags.
-                            foreach (var documentedException in exceptionElements)
-                            {
-                                // Get the 'cref="..."' element.
-                                var crefList = documentedException.DescendantNodes().OfType<XmlCrefAttributeSyntax>();
-                                if (crefList.Count() > 0)
-                                {
-                                    // It's properly documented if the type of the throw is documented and the inner text of that <exception> tag
-                                    // is not empty.
-                                    XmlCrefAttributeSyntax cref = crefList.FirstOrDefault();
-
-                                    String cRefString = cref.Cref.ToString();
-                                    if (cRefString.Contains("."))
-                                    {
-                                        // The documentation lists a whole name like System.ArgumentException. The best I can do here is
-                                        // get the identifier symbol and do a compare on that.
-                                        ISymbol sym = context.SemanticModel.GetSymbolInfo(ident).Symbol;
-
-                                        thrownType = String.Format("{0}.{1}", sym.ContainingNamespace.ToString(), sym.Name.ToString());
-                                    }
-
-                                    if (cref.Cref.ToString().Equals(thrownType))
-                                    {
-                                        var whyThrownText = documentedException.Content.ToString();
-                                        if (String.IsNullOrWhiteSpace(whyThrownText) == false)
-                                        {
-                                            properlyDocumented = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        properlyDocumented = true;
+                        break;
                     }
+                }
 
-                    if (properlyDocumented == false)
-                    {
-                        var diagnostic = Diagnostic.Create(Rule, throwSyntax.GetLocation(), thrownType);
-                        context.ReportDiagnostic(diagnostic);
-                    }
+                if (properlyDocumented == false)
+                {
+                    // I report only the exception type name, not the fully qualified name, because that's
+                    // how they should be documented.
+                    var diagnostic = Diagnostic.Create(Rule, throwSyntax.GetLocation(), thrownTypeSymbol.Name);
+                    context.ReportDiagnostic(diagnostic);
                 }
             }
         }
+
+        /// <summary>
+        /// Takes an ISymbol XML documentation comment string and returns the exception types and  
+        /// values from any exception tags found.
+        /// </summary>
+        /// <param name="methodXml">
+        /// The method XML itself.
+        /// </param>
+        /// <returns>
+        /// A dictionary where the key is the type and the value is the description.
+        /// </returns>
+        private Dictionary<String, String> DocumentedExceptionInformation(String methodXml)
+        {
+            Dictionary<String, String> exceptList = new Dictionary<String, String>();
+
+            if (false == String.IsNullOrEmpty(methodXml))
+            {
+                XElement data = XElement.Parse(methodXml);
+                var exceptTypes = from elem in data.Elements("exception") select elem;
+
+                // The strings all have the "T:" modifier on them so yank them off.
+                //"T:System.ArgumentOutOfRangeException"
+                foreach (var item in exceptTypes)
+                {
+                    String type = item.Attribute("cref").Value.Substring(2);
+                    exceptList[type] = item.Value;
+                }
+            }
+
+            return exceptList;
+        }
+
     }
 }
