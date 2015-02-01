@@ -15,6 +15,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Diagnostics;
 using System.Xml.Linq;
+using System.Xml;
 
 namespace Wintellect.Analyzers
 {
@@ -115,15 +116,22 @@ namespace Wintellect.Analyzers
 
             if (false == String.IsNullOrEmpty(methodXml))
             {
-                XElement data = XElement.Parse(methodXml);
-                var exceptTypes = from elem in data.Elements("exception") select elem;
-
-                // The strings all have the "T:" modifier on them so yank them off.
-                //"T:System.ArgumentOutOfRangeException"
-                foreach (var item in exceptTypes)
+                try
                 {
-                    String type = item.Attribute("cref").Value.Substring(2);
-                    exceptList[type] = item.Value;
+                    XElement data = XElement.Parse(methodXml);
+                    var exceptTypes = from elem in data.Elements("exception") select elem;
+
+                    // The strings all have the "T:" modifier on them so yank them off.
+                    //"T:System.ArgumentOutOfRangeException"
+                    foreach (var item in exceptTypes)
+                    {
+                        String type = item.Attribute("cref").Value.Substring(2);
+                        exceptList[type] = item.Value;
+                    }
+                }
+                catch (XmlException)
+                {
+                    // It's possible to have crap XML in a doc comment.
                 }
             }
 

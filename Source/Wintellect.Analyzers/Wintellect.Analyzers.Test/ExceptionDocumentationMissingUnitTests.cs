@@ -903,6 +903,50 @@ namespace SomeTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        [TestMethod]
+        [TestCategory("ExceptionDocumentationMissingUnitTests")]
+        public void PropertyHasInvalidXml()
+        {
+            var test = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        /// <summary>
+        /// MyProp
+        /// </summary>
+        /// <exception cref=""""ArgumentOutOfRangeException"""">why</exception>
+        public Int32 MyProp
+        {
+            set
+            {
+                if (value < 5)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value));
+                }
+                i = value;
+            }
+        }
+
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = ExceptionDocumentationMissingId,
+                Message = String.Format(ExceptionDocumentationMissingMessageFormat, "ArgumentOutOfRangeException"),
+                Severity = DiagnosticSeverity.Error,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 18, 21)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new ExceptionDocumentationMissingAnalyzer();
