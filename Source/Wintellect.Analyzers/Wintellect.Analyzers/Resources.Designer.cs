@@ -303,5 +303,23 @@ namespace Wintellect.Analyzers {
                 return ResourceManager.GetString("ReturningTaskRequiresAsyncAnalyzerTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The SuppressionMessage on &apos;{0}&apos; needs the Justification parameter filled out.
+        /// </summary>
+        internal static string SuppressionMessageMissingJustificationAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("SuppressionMessageMissingJustificationAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SuppressionMessageAttribute needs to specify the Justification parameter.
+        /// </summary>
+        internal static string SuppressionMessageMissingJustificationAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("SuppressionMessageMissingJustificationAnalyzerTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -27,5 +27,6 @@ namespace Wintellect.Analyzers
         public const String AssembliesHaveDescriptionAttributeAnalyzer = "Wintellect008";
         public const String AssembliesHaveTitleAttributeAnalyzer = "Wintellect009";
         public const String ExceptionDocumentationMissingAnalyzer = "Wintellect010";
+        public const String SuppressionMessageMissingJustificationAnalyzer = "Wintellect011";
     }
 }

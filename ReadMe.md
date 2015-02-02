@@ -21,6 +21,10 @@ This warning ensures you have the AssemblyTitleAttribute present and a filled ou
 #### ExceptionDocumentationMissing ####
 If you have a direct throw in your code, you need to document it with an <exception> tag in the XML documentation comments. A direct throw is one where you specifically use the throw statement in your code. This analyzer does not apply to private methods, only accessibility levels where calls outside the defining method can take place.
 
+### SuppressionMessageMissingJustification ###
+If you are using the SuppressionMessage attribute to suppress Code Analysis items, you need to fill out the
+Justification property to explicitly state why you are suppressing the report instead of fixing the code.
+
 ## Formatting Analyzers ##
 
 #### IfAndElseMustHaveBraces ####

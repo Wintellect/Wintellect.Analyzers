@@ -198,4 +198,10 @@
   <data name="ReturningTaskRequiresAsyncAnalyzerTitle" xml:space="preserve">
     <value>All Task or Task&lt;T&gt; returning method names must end with Async</value>
   </data>
+  <data name="SuppressionMessageMissingJustificationAnalyzerMessageFormat" xml:space="preserve">
+    <value>The SuppressionMessage on '{0}' needs the Justification parameter filled out</value>
+  </data>
+  <data name="SuppressionMessageMissingJustificationAnalyzerTitle" xml:space="preserve">
+    <value>SuppressionMessageAttribute needs to specify the Justification parameter</value>
+  </data>
 </root>
