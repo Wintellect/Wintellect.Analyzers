@@ -37,6 +37,7 @@ namespace Wintellect.Analyzers
                                          SymbolKind.Method, 
                                          SymbolKind.Field, 
                                          SymbolKind.Property,
+                                         SymbolKind.NamedType,
                                          SymbolKind.NetModule);
         }
 

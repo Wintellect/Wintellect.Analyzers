@@ -458,6 +458,78 @@ namespace SomeTests
             VerifyCSharpDiagnostic(test);
         }
 
+        [TestMethod]
+        [TestCategory("SuppressionMessageJustificationUnitTests")]
+        public void ClassGoodJustification()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [SuppressMessage(""Microsoft.Usage"",
+                        ""CA1801:ReviewUnusedParameters"",
+                        MessageId = ""value"",
+                        Justification = ""Good reason why!"")]
+	public class BasicClass
+	{
+        /// <summary>
+        /// Found....
+        /// </summary>
+        public String PropertyMissingJustification
+        {
+            get { return fieldMissingJustifixxY; }
+            set { value = fieldMissingJustifixxY; }
+        }
+    }
+}
+";
+
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        [TestCategory("SuppressionMessageJustificationUnitTests")]
+        public void ClassyMissingJustification()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [SuppressMessage(""Microsoft.Usage"",
+                        ""CA1801:ReviewUnusedParameters"",
+                        MessageId = ""value"")]
+	public class BasicClass
+	{
+        /// <summary>
+        /// Found....
+        /// </summary>
+        public String PropertyMissingJustification
+        {
+            get { return fieldMissingJustifixxY; }
+            set { value = fieldMissingJustifixxY; }
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = SuppressionMessageJustificationId,
+                Message = String.Format(SuppressionMessageJustificationMessageFormat, "BasicClass"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 11, 15)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {

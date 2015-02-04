@@ -32,15 +32,18 @@ namespace Wintellect.Analyzers
             var attributes = symbol.GetAttributes();
             if (!HasIgnorableAttributes(attributes))
             {
-                attributes = symbol.ContainingType.GetAttributes();
-                if (!HasIgnorableAttributes(attributes))
+                if (symbol.Kind != SymbolKind.NamedType && HasIgnorableAttributes(symbol.ContainingType.GetAttributes()))
                 {
-                    attributes = symbol.ContainingAssembly.GetAttributes();
-                    if (!HasIgnorableAttributes(attributes))
-                    {
-                        return false;
-                    }
+                    return true;
                 }
+
+                attributes = symbol.ContainingAssembly.GetAttributes();
+                if (HasIgnorableAttributes(attributes))
+                {
+                    return true;
+                }
+
+                return false;
             }
 
             return true;
