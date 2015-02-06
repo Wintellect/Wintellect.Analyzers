@@ -7,8 +7,9 @@
     <meta content="en-us" name="ms.locale" />
     <meta content="ms182275" name="Search.ShortId" />
     <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
-    <title>WINTELLECT007: Assemblies have CopyrightAttribute</title>
+    <title>WINTELLECT002: Call Debug.Assert with message parameters</title>
 </head>
+
 <body>
     <div id="ctl00_BannerControl1_MTPS_PrinterFriendlyBanner" class="PrinterFriendlyBanner">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -28,7 +29,7 @@
         <!--starting processing-->
         <div class="topic">
             <div class="title">
-                WINTELLECT007: Assemblies have CopyrightAttribute Analyzer
+                WINTELLECT002: Call Debug.Assert with message parameters
             </div>
             <div id="mainSection">
                 <div id="mainBody">
@@ -39,14 +40,16 @@
                                     <td>
                                         <p>TypeName</p>
                                     </td>
-                                    <td>AssembliesHaveCopyrightAttributeAnalyzer</td>
+                                    <td>
+                                        <p>CallAssertMethodsWithMessageParametersAnalyzer</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <p>CheckId</p>
                                     </td>
                                     <td>
-                                        <p>WINTELLECT007</p>
+                                        <p>WINTELLECT002</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,7 +57,7 @@
                                         <p>Category</p>
                                     </td>
                                     <td>
-                                        <p>Design</p>
+                                        <p>Usage</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,11 +77,8 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                The assembly being analyzed does not have a CopyrightAttribute
-                                set at the assembly level.
-                                <span>
-                                    Either it is missing or the string is empty.
-                                </span>
+                                A call was made to the <span class="code">Debug.Assert</span> overload that
+                                only takes one parameter, the condition.
                             </p>
                         </div>
                     </div>
@@ -88,10 +88,15 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                Copyrights, even in open source software, are very important
-                                to protect your intellectual property and rights. All assemblies
-                                you build need to have the CopyrightAttribute set at the
-                                assembly level.
+                                Specifying the assertion condition as a message will
+                                show up in the assertion output and make debugging
+                                easier.
+                            </p>
+                            <p>
+                                Best practices dictate that for the message parameter
+                                you should use the text in the condition parameter as
+                                the message parameter. That way you see what is
+                                triggering the assertion.
                             </p>
                         </div>
                         <div class="MTPS_CollapsibleRegion">
@@ -100,9 +105,8 @@
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
                                 <p>
-                                    Somewhere in the assembly code, generally in a AssemblyInfo.cs
-                                    file, ensure you have the AssemblyCopyrightAttribute
-                                    set to a valid string.
+                                    To fix a reported error, add the message
+                                    parameter to the call to <span class="code">Debug.Assert</span> or use the Code Fix provider to automatically fix.
                                 </p>
                             </div>
                         </div>
@@ -119,8 +123,13 @@
                                 </div>
                                 <div class="MTPS_CollapsibleSection" style="display: block;">
                                     <p>
-                                        The following example how to set the
-                                        <span class="code">AssemblyCopyrightAttribute</span>.
+                                        The following example shows a method,
+                                        <span class="code">BadExample</span>, that violates
+                                        the rule because it uses only the single
+                                        parameter overload of <span class="code">Debug.Assert</span>. In <span class="code">
+                                            GoodExample
+                                        </span> the
+                                        message parameter is properly used.
                                     </p>
                                     <div id="snippetGroup">
                                         <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
@@ -131,36 +140,45 @@
                                             </div>
                                             <div dir="ltr" style="background-color: #ddd">
                                                 <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
-<span style="color: blue">using</span> System.Reflection;
-
-[assembly: AssemblyCopyright(<span style="color: maroon">&quot;Copyright © 2015 Wintellect</span>&quot;)]
-</pre>
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Diagnostics;
+<span style="color: blue">class</span> ExampleLibrary
+{
+   <span style="color: blue">public void</span> BadExample(<span style="color: blue">Int32</span> level)
+   {
+      Debug.Assert(i &gt 0);
+   }
+   
+   <span style="color: blue">public void</span> GoodExample(<span style="color: blue">Int32</span> level)
+   {
+      Debug.Assert(i &gt 0,<span style="color:maroon">"i &gt 0"</span>);
+   }
+}</pre>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="MTPS_CollapsibleRegion">
-                                    <div class="CollapseRegionLink">
-                                        Related Links
-                                    </div>
-                                    <div class="MTPS_CollapsibleSection" style="display: block;">
-                                        <a id="sectionToggle4">
-                                            <!---->
-                                        </a>
+                                        <div class="MTPS_CollapsibleRegion">
+                                            <div class="CollapseRegionLink">
+                                                Related Links
+                                            </div>
+                                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                                <a id="sectionToggle4">
+                                                    <!---->
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <p>
-                        <a href="http://msdn.microsoft.com/en-us/library/system.reflection.assemblycopyrightattribute%28VS.100,loband%29.aspx">
-                            AssemblyCopyrightAttribute
+                        <a href="http://msdn.microsoft.com/en-us/library/system.diagnostics.debug.assert.aspx">
+                            Debug.Assert method
                         </a>
                     </p>
                     <p>
                         <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
                     </p>
-                    <span></span>
                 </div>
             </div>
         </div>

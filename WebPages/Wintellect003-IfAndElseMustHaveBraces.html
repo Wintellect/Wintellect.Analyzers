@@ -7,8 +7,9 @@
     <meta content="en-us" name="ms.locale" />
     <meta content="ms182275" name="Search.ShortId" />
     <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
-    <title>WINTELLECT007: Assemblies have CopyrightAttribute</title>
+    <title>WINTELLECT003: Call Debug.Assert with message parameters</title>
 </head>
+
 <body>
     <div id="ctl00_BannerControl1_MTPS_PrinterFriendlyBanner" class="PrinterFriendlyBanner">
         <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -28,7 +29,7 @@
         <!--starting processing-->
         <div class="topic">
             <div class="title">
-                WINTELLECT007: Assemblies have CopyrightAttribute Analyzer
+                WINTELLECT003: if and else statements must have braces
             </div>
             <div id="mainSection">
                 <div id="mainBody">
@@ -39,14 +40,16 @@
                                     <td>
                                         <p>TypeName</p>
                                     </td>
-                                    <td>AssembliesHaveCopyrightAttributeAnalyzer</td>
+                                    <td>
+                                        <p>IfAndElseMustHaveBracesAnalyzer</p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <p>CheckId</p>
                                     </td>
                                     <td>
-                                        <p>WINTELLECT007</p>
+                                        <p>WINTELLECT003</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,7 +57,7 @@
                                         <p>Category</p>
                                     </td>
                                     <td>
-                                        <p>Design</p>
+                                        <p>Formatting</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,11 +77,7 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                The assembly being analyzed does not have a CopyrightAttribute
-                                set at the assembly level.
-                                <span>
-                                    Either it is missing or the string is empty.
-                                </span>
+                                A C# if or else statement was found that does not use braces to deliniate the expression.
                             </p>
                         </div>
                     </div>
@@ -88,10 +87,10 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                Copyrights, even in open source software, are very important
-                                to protect your intellectual property and rights. All assemblies
-                                you build need to have the CopyrightAttribute set at the
-                                assembly level.
+                                Code readability is one of the keys to high maintenance and when the statement after an if or else condition are not surrounded by braces, the code is harder to read. Additionally, dangling expressions can also lead to bugs because adding a second statement to the expression is not part of the expression unless surrounded by curly braces.
+                            </p>
+                            <p>
+                                This beginnings of this rule was presented by Kevin Pilch-Bisson at <a href="http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345">Europe 2014</a>. We just finished it off and made it work for else clauses as well.
                             </p>
                         </div>
                         <div class="MTPS_CollapsibleRegion">
@@ -100,9 +99,7 @@
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
                                 <p>
-                                    Somewhere in the assembly code, generally in a AssemblyInfo.cs
-                                    file, ensure you have the AssemblyCopyrightAttribute
-                                    set to a valid string.
+                                    Insert the braces around the expression or use the Code Fix provider to automatically fix.
                                 </p>
                             </div>
                         </div>
@@ -119,8 +116,7 @@
                                 </div>
                                 <div class="MTPS_CollapsibleSection" style="display: block;">
                                     <p>
-                                        The following example how to set the
-                                        <span class="code">AssemblyCopyrightAttribute</span>.
+                                        The following example shows two if statements. The first incorrectly uses braces. The second shows how the code should be formatted.
                                     </p>
                                     <div id="snippetGroup">
                                         <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
@@ -131,36 +127,50 @@
                                             </div>
                                             <div dir="ltr" style="background-color: #ddd">
                                                 <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
-<span style="color: blue">using</span> System.Reflection;
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Diagnostics;
 
-[assembly: AssemblyCopyright(<span style="color: maroon">&quot;Copyright © 2015 Wintellect</span>&quot;)]
-</pre>
+<span style="color: blue">class</span> ExampleLibrary
+{
+
+   <span style="color: blue">public Boolean</span> BadExample(<span style="color: blue">Int32</span> level)
+   {
+      if (i &gt 0) <span style="color: blue">return true;</span>
+      <span style="color: blue">else return false;</span>
+   }
+   
+   <span style="color: blue">public Boolean</span> GoodExample(<span style="color: blue">Int32</span> level)
+   {
+      if (i &gt 0)
+      {
+         <span style="color: blue">return true;</span>
+      }
+      <span style="color: blue">else</span>
+      {
+          <span style="color: blue">return false;</span>
+      }
+   }
+}</pre>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="MTPS_CollapsibleRegion">
-                                    <div class="CollapseRegionLink">
-                                        Related Links
-                                    </div>
-                                    <div class="MTPS_CollapsibleSection" style="display: block;">
-                                        <a id="sectionToggle4">
-                                            <!---->
-                                        </a>
+                                        <div class="MTPS_CollapsibleRegion">
+                                            <div class="CollapseRegionLink">
+                                                Related Links
+                                            </div>
+                                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                                <a id="sectionToggle4">
+                                                    <!---->
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <p>
-                        <a href="http://msdn.microsoft.com/en-us/library/system.reflection.assemblycopyrightattribute%28VS.100,loband%29.aspx">
-                            AssemblyCopyrightAttribute
-                        </a>
-                    </p>
-                    <p>
                         <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
                     </p>
-                    <span></span>
                 </div>
             </div>
         </div>

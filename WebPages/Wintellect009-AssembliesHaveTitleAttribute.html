@@ -1,13 +1,12 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-
 <head id="ctl00_Head1">
     <link id="ctl00_HeaderLink2" href="PrintFriendly.css" rel="stylesheet" type="text/css" />
     <meta content="en-us" name="ms.locale" />
     <meta content="ms182275" name="Search.ShortId" />
     <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
-    <title>WINTELLECT007: Assemblies have CopyrightAttribute</title>
+    <title>WINTELLECT009: Assemblies have TitleAttribute</title>
 </head>
 <body>
     <div id="ctl00_BannerControl1_MTPS_PrinterFriendlyBanner" class="PrinterFriendlyBanner">
@@ -28,7 +27,7 @@
         <!--starting processing-->
         <div class="topic">
             <div class="title">
-                WINTELLECT007: Assemblies have CopyrightAttribute Analyzer
+                WINTELLECT009: Assemblies have TitleAttribute
             </div>
             <div id="mainSection">
                 <div id="mainBody">
@@ -39,14 +38,14 @@
                                     <td>
                                         <p>TypeName</p>
                                     </td>
-                                    <td>AssembliesHaveCopyrightAttributeAnalyzer</td>
+                                    <td>AssembliesHaveTitleAttribute</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <p>CheckId</p>
                                     </td>
                                     <td>
-                                        <p>WINTELLECT007</p>
+                                        <p>WINTELLECT009</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -74,11 +73,10 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                The assembly being analyzed does not have a CopyrightAttribute
-                                set at the assembly level.
-                                <span>
-                                    Either it is missing or the string is empty.
-                                </span>
+                                The assembly being analyzed does not have a
+                                TitleAttribute
+                                set at the assembly level. Either it is missing or the
+                                string is empty.
                             </p>
                         </div>
                     </div>
@@ -88,9 +86,9 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                Copyrights, even in open source software, are very important
-                                to protect your intellectual property and rights. All assemblies
-                                you build need to have the CopyrightAttribute set at the
+                                The description on an assembly can help identify an
+                                assembly&#39;s purpose. All assemblies
+                                you build need to have the TitleAttribute set at the
                                 assembly level.
                             </p>
                         </div>
@@ -101,7 +99,7 @@
                             <div class="MTPS_CollapsibleSection" style="display: block;">
                                 <p>
                                     Somewhere in the assembly code, generally in a AssemblyInfo.cs
-                                    file, ensure you have the AssemblyCopyrightAttribute
+                                    file, ensure you have the AssemblyTitleAttribute
                                     set to a valid string.
                                 </p>
                             </div>
@@ -120,7 +118,7 @@
                                 <div class="MTPS_CollapsibleSection" style="display: block;">
                                     <p>
                                         The following example how to set the
-                                        <span class="code">AssemblyCopyrightAttribute</span>.
+                                        <span class="code">AssemblyTitleAttribute</span>.
                                     </p>
                                     <div id="snippetGroup">
                                         <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
@@ -132,8 +130,7 @@
                                             <div dir="ltr" style="background-color: #ddd">
                                                 <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
 <span style="color: blue">using</span> System.Reflection;
-
-[assembly: AssemblyCopyright(<span style="color: maroon">&quot;Copyright © 2015 Wintellect</span>&quot;)]
+[assembly: AssemblyTitle(<span style="color: maroon">&quot;Wintellect.Analysis Roslyn Analyzers and Code Fixes</span>&quot;)]
 </pre>
                                             </div>
                                         </div>
@@ -153,14 +150,13 @@
                         </div>
                     </div>
                     <p>
-                        <a href="http://msdn.microsoft.com/en-us/library/system.reflection.assemblycopyrightattribute%28VS.100,loband%29.aspx">
-                            AssemblyCopyrightAttribute
+                        <a href="http://msdn.microsoft.com/en-us/library/system.reflection.assemblytitleattribute%28loband%29.aspx">
+                            AssemblyTitleAttribute
                         </a>
                     </p>
                     <p>
                         <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
                     </p>
-                    <span></span>
                 </div>
             </div>
         </div>

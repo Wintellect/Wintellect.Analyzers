@@ -1,13 +1,12 @@
 ﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
-
 <head id="ctl00_Head1">
     <link id="ctl00_HeaderLink2" href="PrintFriendly.css" rel="stylesheet" type="text/css" />
     <meta content="en-us" name="ms.locale" />
     <meta content="ms182275" name="Search.ShortId" />
     <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
-    <title>WINTELLECT007: Assemblies have CopyrightAttribute</title>
+    <title>WINTELLECT001: Returning Task Requires Async</title>
 </head>
 <body>
     <div id="ctl00_BannerControl1_MTPS_PrinterFriendlyBanner" class="PrinterFriendlyBanner">
@@ -15,7 +14,7 @@
             <tr>
                 <td class="PFB_Left">
                     <a href="http://www.wintellect.com">
-                        <img id="ctl00_BannerControl1_LogoImage" src="Wintellect.gif" style="border-width: 0px;" />
+                        <img id="ctl00_BannerControl1_LogoImage" src="Wintellect.gif" style="border-width: 0px;" alt="Visit Wintellect" />
                     </a>
                 </td>
                 <td class="PFB_Right">
@@ -28,7 +27,8 @@
         <!--starting processing-->
         <div class="topic">
             <div class="title">
-                WINTELLECT007: Assemblies have CopyrightAttribute Analyzer
+                WINTELLECT001: Returning Task Requires Async
+                Analyzer
             </div>
             <div id="mainSection">
                 <div id="mainBody">
@@ -39,14 +39,14 @@
                                     <td>
                                         <p>TypeName</p>
                                     </td>
-                                    <td>AssembliesHaveCopyrightAttributeAnalyzer</td>
+                                    <td>ReturningTaskRequiresAsyncAnalyzer</td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <p>CheckId</p>
                                     </td>
                                     <td>
-                                        <p>WINTELLECT007</p>
+                                        <p>WINTELLECT001</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -54,7 +54,7 @@
                                         <p>Category</p>
                                     </td>
                                     <td>
-                                        <p>Design</p>
+                                        <p>Usage</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -62,23 +62,20 @@
                                         <p>Breaking Change</p>
                                     </td>
                                     <td>
-                                        <p>Non Breaking</p>
+                                        <p>Yes, requires renaming a method</p>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
+                    <!--<span>-->
                     <div class="MTPS_CollapsibleRegion">
                         <div class="CollapseRegionLink">
                             Cause
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                The assembly being analyzed does not have a CopyrightAttribute
-                                set at the assembly level.
-                                <span>
-                                    Either it is missing or the string is empty.
-                                </span>
+                                A method returning a Task but not ending in "Async".
                             </p>
                         </div>
                     </div>
@@ -88,10 +85,7 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                Copyrights, even in open source software, are very important
-                                to protect your intellectual property and rights. All assemblies
-                                you build need to have the CopyrightAttribute set at the
-                                assembly level.
+                                Asynchronous programming is hard enough without a developer having to guess if a method is asynchronous or not. By ending the method  name in "Async" the intent is totally obvious.
                             </p>
                         </div>
                         <div class="MTPS_CollapsibleRegion">
@@ -100,65 +94,80 @@
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
                                 <p>
-                                    Somewhere in the assembly code, generally in a AssemblyInfo.cs
-                                    file, ensure you have the AssemblyCopyrightAttribute
-                                    set to a valid string.
+                                    Use the built in Code Fix provider to rename the method.
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            When to Suppress Warnings
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>Do not suppress a warning from this rule. </p>
+                        </div>
                         <div class="MTPS_CollapsibleRegion">
                             <div class="CollapseRegionLink">
-                                When to Suppress Warnings
+                                Example
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
-                                <p>Do not suppress a warning from this rule. </p>
-                            </div>
-                            <div class="MTPS_CollapsibleRegion">
-                                <div class="CollapseRegionLink">
-                                    Example
-                                </div>
-                                <div class="MTPS_CollapsibleSection" style="display: block;">
-                                    <p>
-                                        The following example how to set the
-                                        <span class="code">AssemblyCopyrightAttribute</span>.
-                                    </p>
-                                    <div id="snippetGroup">
-                                        <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
-                                            <div class="CodeSnippetTitleBar">
-                                                <div class="CodeDisplayLanguage">
-                                                    C#
-                                                </div>
-                                            </div>
-                                            <div dir="ltr" style="background-color: #ddd">
-                                                <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
-<span style="color: blue">using</span> System.Reflection;
-
-[assembly: AssemblyCopyright(<span style="color: maroon">&quot;Copyright © 2015 Wintellect</span>&quot;)]
-</pre>
+                                <p>
+                                    The following example shows an in correct method and a fixed method.
+                                </p>
+                                <div id="snippetGroup">
+                                    <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
+                                        <div class="CodeSnippetTitleBar">
+                                            <div class="CodeDisplayLanguage">
+                                                C#
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="MTPS_CollapsibleRegion">
-                                    <div class="CollapseRegionLink">
-                                        Related Links
-                                    </div>
-                                    <div class="MTPS_CollapsibleSection" style="display: block;">
-                                        <a id="sectionToggle4">
-                                            <!---->
-                                        </a>
+                                        <div dir="ltr" style="background-color: #ddd">
+                                            <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" style="word-wrap: break-word; word-break: break-all">
+<span style="color: blue">using</span> System.Reflection;
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Collections.Generic;
+<span style="color: blue">using</span> System.Collections.Immutable;
+<span style="color: blue">using</span> System.Threading;
+<span style="color: blue">using</span> System.Threading.Tasks;
+
+<span style="color: blue">namespace</span> Example
+{
+    <span style="color: blue">public class</span> GenericTask
+    {
+        <span style="color: green">// Incorrect method name.</span>
+        private Task&ltstring&gt; IncorrectNaming()
+        {
+            <span style="color: blue">return null</span>;
+        }
+
+        <span style="color: green">// Fixed and correct naming.</span>
+        <span style="color: blue">private Task&ltstring&gt;</span> GenericOperationAsync()
+        {
+            <span style="color: blue">return null</span>;
+        }
+
+    }
+}
+</pre>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <p>
-                        <a href="http://msdn.microsoft.com/en-us/library/system.reflection.assemblycopyrightattribute%28VS.100,loband%29.aspx">
-                            AssemblyCopyrightAttribute
-                        </a>
-                    </p>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Related Links
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <a id="sectionToggle4">
+                                <!---->
+                            </a>
+                        </div>
+                    </div>
                     <p>
                         <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
+
                     </p>
                     <span></span>
                 </div>
