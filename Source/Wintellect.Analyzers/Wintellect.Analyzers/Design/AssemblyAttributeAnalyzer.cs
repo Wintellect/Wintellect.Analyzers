@@ -21,28 +21,32 @@ namespace Wintellect.Analyzers
                                                                                    Resources.AssembliesHaveCompanyAttributeAnalyzerMessageFormat,
                                                                                    Resources.CategoryDesign,
                                                                                    DiagnosticSeverity.Warning,
-                                                                                   true);
+                                                                                   true,
+                                                                                   helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect006-AssembliesHaveCompanyAttribute.html");
 
         private static DiagnosticDescriptor copyrightRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveCopyrightAttributeAnalyzer,
                                                                                      Resources.AssembliesHaveCopyrightAttributeAnalyzerTitle,
                                                                                      Resources.AssembliesHaveCopyrightAttributeAnalyzerMessageFormat,
                                                                                      Resources.CategoryDesign,
                                                                                      DiagnosticSeverity.Warning,
-                                                                                     true);
+                                                                                     true,
+                                                                                     helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect007-AssembliesHaveCopyrightAttribute.html");
 
         private static DiagnosticDescriptor descriptionRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveDescriptionAttributeAnalyzer,
                                                                                        Resources.AssembliesHaveDescriptionAttributeAnalyzerTitle,
                                                                                        Resources.AssembliesHaveDescriptionAttributeAnalyzerMessageFormat,
                                                                                        Resources.CategoryDesign,
                                                                                        DiagnosticSeverity.Warning,
-                                                                                       true);
+                                                                                       true,
+                                                                                       helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect008-AssembliesHaveDescriptionAttribute.html");
 
         private static DiagnosticDescriptor titleRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveTitleAttributeAnalyzer,
                                                                                  Resources.AssembliesHaveTitleAttributeAnalyzerTitle,
                                                                                  Resources.AssembliesHaveTitleAttributeAnalyzerMessageFormat,
                                                                                  Resources.CategoryDesign,
                                                                                  DiagnosticSeverity.Warning,
-                                                                                 true);
+                                                                                 true,
+                                                                                 helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect009-AssembliesHaveTitleAttribute.html");
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {
             get

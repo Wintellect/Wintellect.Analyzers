@@ -24,7 +24,8 @@ namespace Wintellect.Analyzers
                                                                              Resources.CallAssertMethodsWithMessageParameterAnalyzerMessageFormat,
                                                                              Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
-                                                                             true);
+                                                                             true,
+                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect002-CallAssertMethodsWithMessageParameters.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

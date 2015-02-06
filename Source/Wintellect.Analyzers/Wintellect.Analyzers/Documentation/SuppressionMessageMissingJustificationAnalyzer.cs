@@ -27,7 +27,8 @@ namespace Wintellect.Analyzers
                                                                              Resources.SuppressionMessageMissingJustificationAnalyzerMessageFormat,
                                                                              Resources.CategoryDocumentation,
                                                                              DiagnosticSeverity.Warning,
-                                                                             isEnabledByDefault: true);
+                                                                             isEnabledByDefault: true,
+                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect011-SuppressMessageMissingJustification.html");
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
         public override void Initialize(AnalysisContext context)

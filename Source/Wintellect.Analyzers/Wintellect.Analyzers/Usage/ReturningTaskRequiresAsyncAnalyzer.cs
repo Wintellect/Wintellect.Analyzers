@@ -28,7 +28,8 @@ namespace Wintellect.Analyzers
                                                                              Resources.ReturningTaskRequiresAsyncAnalyzerMessageFormat,
                                                                              Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
-                                                                             isEnabledByDefault: true);
+                                                                             isEnabledByDefault: true, 
+                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html");
 
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
