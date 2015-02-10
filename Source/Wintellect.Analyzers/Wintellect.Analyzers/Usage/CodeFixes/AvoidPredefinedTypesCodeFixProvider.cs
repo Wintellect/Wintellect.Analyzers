@@ -58,7 +58,7 @@ namespace Wintellect.Analyzers
             var newType = SyntaxFactory.ParseTypeName(AvoidPreDefinedTypesAnalyzer.TypeMap[predefinedType]);
             newType = newType.WithAdditionalAnnotations(Formatter.Annotation);
 
-            var root = await document.GetSyntaxRootAsync();
+            var root = await document.GetSyntaxRootAsync(c);
             var newRoot = root.ReplaceNode(errorToken, newType);
             var newDocument = document.WithSyntaxRoot(newRoot);
 

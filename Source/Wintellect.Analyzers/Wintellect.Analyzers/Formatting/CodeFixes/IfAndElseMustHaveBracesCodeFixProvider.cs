@@ -75,7 +75,7 @@ namespace Wintellect.Analyzers
             if (toReplace != null)
             {
                 // Poke in our new call and update the document.
-                var root = await document.GetSyntaxRootAsync();
+                var root = await document.GetSyntaxRootAsync(c);
                 var newRoot = root.ReplaceNode(errorStatement, toReplace);
                 var newDocument = document.WithSyntaxRoot(newRoot);
                 return newDocument;

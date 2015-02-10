@@ -73,7 +73,7 @@ namespace Wintellect.Analyzers
             newCall = newCall.WithAdditionalAnnotations(Formatter.Annotation);
 
             // Poke in our new call and update the document.
-            var root = await document.GetSyntaxRootAsync();
+            var root = await document.GetSyntaxRootAsync(cancellationToken);
             var newRoot = root.ReplaceNode(invocationExpr, newCall);
             var newDocument = document.WithSyntaxRoot(newRoot);
 
