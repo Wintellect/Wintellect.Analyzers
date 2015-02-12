@@ -3,17 +3,17 @@
   <metadata>
     <id>Wintellect.Analyzers</id>
     <version>1.0.0-alpha1</version>
-    <title>Wintellect Roslyn Analyzers and Fixers</title>
-    <authors>Wintellect</authors>
-    <owners>Wintellect</owners>
+    <title>Wintellect Roslyn Analyzers and Code Fixers</title>
+    <authors>JohnWintellect, mozts2005</authors>
+    <owners>JohnWintellect</owners>
     <licenseUrl>https://github.com/Wintellect/Wintellect.Analyzers/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Wintellect/Wintellect.Analyzers</projectUrl>
-    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <iconUrl>https://avatars0.githubusercontent.com/u/2118457?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Wintellect Roslyn code analyzers for producing better code.</description>
-    <releaseNotes>Initial release.</releaseNotes>
+    <description>Wintellect Roslyn code analyzers and code fix providers for producing better code.</description>
+    <releaseNotes>Alpha release for VS 2015 CTP5 only</releaseNotes>
     <copyright>Copyright (c) 2014-2015 by Wintellect</copyright>
-    <tags>Roslyn Code Analysis</tags>
+    <tags>Roslyn, analyzers</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
