@@ -6,20 +6,20 @@
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
     <authors>JohnWintellect, mozts2005</authors>
     <owners>JohnWintellect</owners>
-    <licenseUrl>https://github.com/Wintellect/Wintellect.Analyzers/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/Wintellect/Wintellect.Analyzers/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/Wintellect/Wintellect.Analyzers</projectUrl>
     <iconUrl>https://avatars0.githubusercontent.com/u/2118457?v=3&amp;s=200</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Wintellect Roslyn code analyzers and code fix providers for producing better code.</description>
+    <description>Wintellect Roslyn code analyzers and code fix providers for producing better code. See the GitHub project for the source. Have ideas for analyzers? Feel free to fork or let us know!</description>
     <releaseNotes>Alpha release for VS 2015 CTP5 only</releaseNotes>
-    <copyright>Copyright (c) 2014-2015 by Wintellect</copyright>
+    <copyright>Copyright (c) 2014-2015 by Wintellect and individual contributors</copyright>
     <tags>Roslyn, analyzers</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="*.dll" target="tools\analyzers\" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*" />
+    <file src="*.dll" target="tools\analyzers\" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\Wintellect.Analyzers.Test.dll" />
     <file src="tools\*.ps1" target="tools\" />
   </files>
 </package>
