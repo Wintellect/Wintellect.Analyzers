@@ -181,7 +181,7 @@
     <value>Document the direct throw of type '{0}' with an &lt;exception&gt; tag</value>
   </data>
   <data name="ExceptionDocumentationMissingAnalyzerTitle" xml:space="preserve">
-    <value>Al direct throws must be documented with &lt;exception&gt; tags</value>
+    <value>All direct throws must be documented with &lt;exception&gt; tags</value>
   </data>
   <data name="IfAndElseMustHaveBracesAnalyzerMessageFormat" xml:space="preserve">
     <value>'{0}' statements must have braces</value>

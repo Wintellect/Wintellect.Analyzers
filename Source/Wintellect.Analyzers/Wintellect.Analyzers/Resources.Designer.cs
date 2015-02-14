@@ -251,7 +251,7 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Al direct throws must be documented with &lt;exception&gt; tags.
+        ///   Looks up a localized string similar to All direct throws must be documented with &lt;exception&gt; tags.
         /// </summary>
         internal static string ExceptionDocumentationMissingAnalyzerTitle {
             get {
