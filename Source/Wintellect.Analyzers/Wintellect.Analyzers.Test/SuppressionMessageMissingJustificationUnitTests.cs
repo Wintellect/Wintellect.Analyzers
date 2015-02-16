@@ -531,10 +531,84 @@ namespace SomeTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        [TestMethod]
+        [TestCategory("SuppressionMessageJustificationUnitTests")]
+        public void MethodPendingJustification()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+	public class BasicClass
+	{
+        [SuppressMessage(""Microsoft.Naming"",
+                            ""CA1709:IdentifiersShouldBeCasedCorrectly"",
+                            MessageId = ""Xo"",
+                            Justification = ""<Pending>"")]
+        public void XoXoX()
+        {
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = SuppressionMessageJustificationId,
+                Message = String.Format(SuppressionMessageJustificationMessageFormat, "XoXoX"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 14, 21)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("SuppressionMessageJustificationUnitTests")]
+        public void MethodPendingJustificationFullName()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+	public class BasicClass
+	{
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(""Microsoft.Naming"",
+                            ""CA1709:IdentifiersShouldBeCasedCorrectly"",
+                            MessageId = ""Xo"",
+                            Justification = ""<Pending>"")]
+        public void XoXoX()
+        {
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = SuppressionMessageJustificationId,
+                Message = String.Format(SuppressionMessageJustificationMessageFormat, "XoXoX"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 14, 21)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new SuppressionMessageMissingJustificationAnalyzer();
         }
-
     }
 }

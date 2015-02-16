@@ -192,6 +192,9 @@
   <data name="IfAndElseMustHaveBracesCodeFixProviderActionMessage" xml:space="preserve">
     <value>Enclose statement in braces</value>
   </data>
+  <data name="PendingText" xml:space="preserve">
+    <value>&lt;Pending&gt;</value>
+  </data>
   <data name="ReturningTaskRequiresAsyncAnalyzerMessageFormat" xml:space="preserve">
     <value>Method name {0} should be renamed {0}Async</value>
   </data>

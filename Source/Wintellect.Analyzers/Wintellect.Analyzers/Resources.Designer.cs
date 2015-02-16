@@ -287,6 +287,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;Pending&gt;.
+        /// </summary>
+        internal static string PendingText {
+            get {
+                return ResourceManager.GetString("PendingText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Method name {0} should be renamed {0}Async.
         /// </summary>
         internal static string ReturningTaskRequiresAsyncAnalyzerMessageFormat {

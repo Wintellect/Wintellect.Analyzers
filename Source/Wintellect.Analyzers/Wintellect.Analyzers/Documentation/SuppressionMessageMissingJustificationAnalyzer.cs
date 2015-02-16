@@ -34,9 +34,9 @@ namespace Wintellect.Analyzers
         public override void Initialize(AnalysisContext context)
         {
             // Request to be called back on all the symbols that can have a SuppressionMessageAttribute applied to them.
-            context.RegisterSymbolAction(AnalyzeSuppressMessage, 
-                                         SymbolKind.Method, 
-                                         SymbolKind.Field, 
+            context.RegisterSymbolAction(AnalyzeSuppressMessage,
+                                         SymbolKind.Method,
+                                         SymbolKind.Field,
                                          SymbolKind.Property,
                                          SymbolKind.NamedType,
                                          SymbolKind.NetModule);
@@ -56,13 +56,14 @@ namespace Wintellect.Analyzers
                         Boolean hasJustification = false;
 
                         // Look for the named parameters for Justification and if it doesn't exist, 
-                        // or is empty, report the error.
+                        // is empty, or has the text <Pending>, report the error.
                         var namedParams = attributes[i].NamedArguments;
                         for (int j = 0; j < namedParams.Count(); j++)
                         {
                             if (namedParams[j].Key.Equals("Justification"))
                             {
-                                if (String.IsNullOrEmpty(namedParams[j].Value.Value.ToString()))
+                                String textValue = namedParams[j].Value.Value.ToString();
+                                if ((String.IsNullOrEmpty(textValue) || (String.Equals(textValue, Resources.PendingText))))
                                 {
                                     var diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name);
                                     context.ReportDiagnostic(diagnostic);
