@@ -28,7 +28,7 @@ namespace Wintellect.Analyzers
     {
         private const String actionMessage = "Rename async method";
 
-        public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
         {
             return ImmutableArray.Create(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer);
         }

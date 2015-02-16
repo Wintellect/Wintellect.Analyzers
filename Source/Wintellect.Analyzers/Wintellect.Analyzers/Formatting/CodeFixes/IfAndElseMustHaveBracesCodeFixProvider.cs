@@ -27,7 +27,7 @@ namespace Wintellect.Analyzers
     [ExportCodeFixProvider("IfAndElseMustHaveBracesCodeFixProvider", LanguageNames.CSharp)]
     public class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
     {
-        public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
         {
             return ImmutableArray.Create(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer);
         }

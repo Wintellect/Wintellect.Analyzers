@@ -73,10 +73,10 @@ namespace Wintellect.Analyzers
             var titleAttributeSymbol = KnownTypes.TitleAttribute(context.Compilation);
 
             // Assume they are all not found.
-            bool companyAttributeGood = false;
-            bool copyrightAttributeGood = false;
-            bool descriptionAttributeGood = false;
-            bool titleAttributeGood = false;
+            Boolean companyAttributeGood = false;
+            Boolean copyrightAttributeGood = false;
+            Boolean descriptionAttributeGood = false;
+            Boolean titleAttributeGood = false;
 
             // Pound through each attribute in the assembly checking that the specific ones
             // are present and the parameters are not empty.
@@ -129,7 +129,7 @@ namespace Wintellect.Analyzers
             }
         }
 
-        private static bool CheckAttributeParameter(AttributeData attribute)
+        private static Boolean CheckAttributeParameter(AttributeData attribute)
         {
             if (attribute.ConstructorArguments.Length == 1)
             {

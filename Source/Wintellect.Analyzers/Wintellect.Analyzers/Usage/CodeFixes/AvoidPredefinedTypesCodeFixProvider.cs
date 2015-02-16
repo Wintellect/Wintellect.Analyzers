@@ -26,7 +26,7 @@ namespace Wintellect.Analyzers
     {
         private const String actionMessage = "Convert to specific type";
 
-        public sealed override ImmutableArray<string> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
         {
             return ImmutableArray.Create(DiagnosticIds.AvoidPreDefinedTypesAnalyzer);
         }

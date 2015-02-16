@@ -51,7 +51,7 @@ namespace Wintellect.Analyzers
 
         private static Boolean HasIgnorableAttributes(ImmutableArray<AttributeData> attributes)
         {
-            for (int i = 0; i < attributes.Count(); i++)
+            for (Int32 i = 0; i < attributes.Count(); i++)
             {
                 String name = attributes[i].AttributeClass.Name;
                 if (name.Equals("GeneratedCode") || name.Equals("DebuggerNonUserCodeAttribute"))

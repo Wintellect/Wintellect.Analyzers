@@ -50,7 +50,7 @@ namespace Wintellect.Analyzers
             {
                 // Look at the attributes for SuppressMessage.
                 var attributes = context.Symbol.GetAttributes();
-                for (int i = 0; i < attributes.Count(); i++)
+                for (Int32 i = 0; i < attributes.Count(); i++)
                 {
                     if (attributes[i].AttributeClass.Name.Equals("SuppressMessageAttribute"))
                     {
@@ -59,7 +59,7 @@ namespace Wintellect.Analyzers
                         // Look for the named parameters for Justification and if it doesn't exist, 
                         // is empty, or has the text <Pending>, report the error.
                         var namedParams = attributes[i].NamedArguments;
-                        for (int j = 0; j < namedParams.Count(); j++)
+                        for (Int32 j = 0; j < namedParams.Count(); j++)
                         {
                             if (namedParams[j].Key.Equals("Justification"))
                             {
