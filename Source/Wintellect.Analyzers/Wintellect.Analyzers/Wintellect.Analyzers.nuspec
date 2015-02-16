@@ -4,7 +4,7 @@
     <id>Wintellect.Analyzers</id>
     <version>1.0.0-alpha1</version>
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
-    <authors>JohnWintellect, mozts2005</authors>
+    <authors>JohnWintellect, JeffreyRichter, mozts2005</authors>
     <owners>JohnWintellect</owners>
     <licenseUrl>https://github.com/Wintellect/Wintellect.Analyzers/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>https://github.com/Wintellect/Wintellect.Analyzers</projectUrl>
