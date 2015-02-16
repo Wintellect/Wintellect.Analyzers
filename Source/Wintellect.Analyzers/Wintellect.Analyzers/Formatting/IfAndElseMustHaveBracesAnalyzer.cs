@@ -27,6 +27,7 @@ namespace Wintellect.Analyzers
                                                                              Resources.CategoryFormatting, 
                                                                              DiagnosticSeverity.Warning, 
                                                                              true,
+                                                                             Resources.IfAndElseMustHaveBracesAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect003-IfAndElseMustHaveBraces.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }

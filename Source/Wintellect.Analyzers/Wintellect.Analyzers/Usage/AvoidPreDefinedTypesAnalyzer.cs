@@ -27,6 +27,7 @@ namespace Wintellect.Analyzers
                                                                              Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Warning,
                                                                              true,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect004-AvoidPredefinedTypes.html");
 
         private readonly static ImmutableDictionary<String, String> typeMap = new Dictionary<String, String>()

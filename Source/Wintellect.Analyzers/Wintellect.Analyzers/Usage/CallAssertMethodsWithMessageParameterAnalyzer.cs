@@ -25,6 +25,7 @@ namespace Wintellect.Analyzers
                                                                              Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
                                                                              true,
+                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect002-CallAssertMethodsWithMessageParameters.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
@@ -55,7 +56,7 @@ namespace Wintellect.Analyzers
             // tests the module will be null because the whole tree hasn't been 
             // built. In that case, I'll just have to assume it's the real method.
             IMethodSymbol memberSymbol = context.SemanticModel.GetSymbolInfo(invocationExpr).Symbol as IMethodSymbol;
-            if ((memberSymbol != null ) && (!(memberSymbol.ContainingModule.ToString().Equals("System.DLL",
+            if ((memberSymbol != null) && (!(memberSymbol.ContainingModule.ToString().Equals("System.DLL",
                                                                                               StringComparison.OrdinalIgnoreCase))))
             {
                 return;

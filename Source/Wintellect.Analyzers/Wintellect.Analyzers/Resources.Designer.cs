@@ -62,6 +62,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifying the AssemblyCompanyAttribute identifies the company that produced the assembly.
+        /// </summary>
+        internal static string AssembliesHaveCompanyAttributeAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCompanyAttributeAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a filled out AssemblyCompanyAttribute to the assembly properties.
         /// </summary>
         internal static string AssembliesHaveCompanyAttributeAnalyzerMessageFormat {
@@ -76,6 +85,15 @@ namespace Wintellect.Analyzers {
         internal static string AssembliesHaveCompanyAttributeAnalyzerTitle {
             get {
                 return ResourceManager.GetString("AssembliesHaveCompanyAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifying the AssemblyCopyrightAttribute sets who owns the copyright to the assembly.
+        /// </summary>
+        internal static string AssembliesHaveCopyrightAttributeAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AssembliesHaveCopyrightAttributeAnalyzerDescription", resourceCulture);
             }
         }
         
@@ -98,6 +116,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Specifying the AssemblyDescriptionAttribute declares the purpose of the assembly.
+        /// </summary>
+        internal static string AssembliesHaveDescriptionAttributeAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AssembliesHaveDescriptionAttributeAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add a filled out AssemblyDescriptionAttribute to the assembly properties.
         /// </summary>
         internal static string AssembliesHaveDescriptionAttributeAnalyzerMessageFormat {
@@ -112,6 +139,15 @@ namespace Wintellect.Analyzers {
         internal static string AssembliesHaveDescriptionAttributeAnalyzerTitle {
             get {
                 return ResourceManager.GetString("AssembliesHaveDescriptionAttributeAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specifying the AssemblyTitleAttribute helps identify the assembly.
+        /// </summary>
+        internal static string AssembliesHaveTitleAttributeAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AssembliesHaveTitleAttributeAnalyzerDescription", resourceCulture);
             }
         }
         
@@ -134,6 +170,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Methods with variable length arguments (param array) can lead to performance problems.
+        /// </summary>
+        internal static string AvoidCallingMethodsWithParamArgsAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Call to a method using a param aray as arguments &apos;{0}&apos;.
         /// </summary>
         internal static string AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat {
@@ -152,6 +197,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Being explicit about your types is better according to CLR via C# by Jeffrey Richter.
+        /// </summary>
+        internal static string AvoidPreDefinedTypesAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AvoidPreDefinedTypesAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Convert &apos;{0}&apos; to the explicit type &apos;{1}&apos;.
         /// </summary>
         internal static string AvoidPreDefinedTypesAnalyzerMessageFormat {
@@ -166,6 +220,15 @@ namespace Wintellect.Analyzers {
         internal static string AvoidPreDefinedTypesAnalyzerTitle {
             get {
                 return ResourceManager.GetString("AvoidPreDefinedTypesAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always use the multiple parameter version of Debug.Assert for better error reporting.
+        /// </summary>
+        internal static string CallAssertMethodsWithMessageParameterAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("CallAssertMethodsWithMessageParameterAnalyzerDescription", resourceCulture);
             }
         }
         
@@ -242,6 +305,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Alll direct throws must always be documented with &lt;exception&gt; tags.
+        /// </summary>
+        internal static string ExceptionDocumentationMissingAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("ExceptionDocumentationMissingAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document the direct throw of type &apos;{0}&apos; with an &lt;exception&gt; tag.
         /// </summary>
         internal static string ExceptionDocumentationMissingAnalyzerMessageFormat {
@@ -256,6 +328,15 @@ namespace Wintellect.Analyzers {
         internal static string ExceptionDocumentationMissingAnalyzerTitle {
             get {
                 return ResourceManager.GetString("ExceptionDocumentationMissingAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If and else statements must use braces even for single line results.
+        /// </summary>
+        internal static string IfAndElseMustHaveBracesAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("IfAndElseMustHaveBracesAnalyzerDescription", resourceCulture);
             }
         }
         
@@ -296,6 +377,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Methods returning Tasks must end in &quot;Task&quot; to indicate they are asynchronous.
+        /// </summary>
+        internal static string ReturningTaskRequiresAsyncAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("ReturningTaskRequiresAsyncAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Method name {0} should be renamed {0}Async.
         /// </summary>
         internal static string ReturningTaskRequiresAsyncAnalyzerMessageFormat {
@@ -310,6 +400,15 @@ namespace Wintellect.Analyzers {
         internal static string ReturningTaskRequiresAsyncAnalyzerTitle {
             get {
                 return ResourceManager.GetString("ReturningTaskRequiresAsyncAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must always specify the Justification parameter with the SuppressionMessage attribute.
+        /// </summary>
+        internal static string SuppressionMessageMissingJustificationAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("SuppressionMessageMissingJustificationAnalyzerDescription", resourceCulture);
             }
         }
         

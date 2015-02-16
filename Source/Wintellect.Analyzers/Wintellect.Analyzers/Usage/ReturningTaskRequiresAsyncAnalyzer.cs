@@ -28,7 +28,8 @@ namespace Wintellect.Analyzers
                                                                              Resources.ReturningTaskRequiresAsyncAnalyzerMessageFormat,
                                                                              Resources.CategoryUsage,
                                                                              DiagnosticSeverity.Error,
-                                                                             isEnabledByDefault: true, 
+                                                                             true,
+                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerDescription, 
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html");
 
 

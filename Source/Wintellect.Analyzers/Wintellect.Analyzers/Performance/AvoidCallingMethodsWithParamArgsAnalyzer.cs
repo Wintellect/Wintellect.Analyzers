@@ -25,6 +25,7 @@ namespace Wintellect.Analyzers
                                                                              Resources.CategoryPerformance,
                                                                              DiagnosticSeverity.Info,
                                                                              true,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArg.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }

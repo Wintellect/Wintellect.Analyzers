@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AssembliesHaveCompanyAttributeAnalyzerDescription" xml:space="preserve">
+    <value>Specifying the AssemblyCompanyAttribute identifies the company that produced the assembly</value>
+  </data>
   <data name="AssembliesHaveCompanyAttributeAnalyzerMessageFormat" xml:space="preserve">
     <value>Add a filled out AssemblyCompanyAttribute to the assembly properties</value>
   </data>
   <data name="AssembliesHaveCompanyAttributeAnalyzerTitle" xml:space="preserve">
     <value>Assemblies need the AssemblyCompanyAttribute</value>
+  </data>
+  <data name="AssembliesHaveCopyrightAttributeAnalyzerDescription" xml:space="preserve">
+    <value>Specifying the AssemblyCopyrightAttribute sets who owns the copyright to the assembly</value>
   </data>
   <data name="AssembliesHaveCopyrightAttributeAnalyzerMessageFormat" xml:space="preserve">
     <value>Add a filled out AssemblyCopyrightAttribute to the assembly properties</value>
@@ -129,11 +135,17 @@
   <data name="AssembliesHaveCopyrightAttributeAnalyzerTitle" xml:space="preserve">
     <value>Assemblies need the AssemblyCopyrightAttribute</value>
   </data>
+  <data name="AssembliesHaveDescriptionAttributeAnalyzerDescription" xml:space="preserve">
+    <value>Specifying the AssemblyDescriptionAttribute declares the purpose of the assembly</value>
+  </data>
   <data name="AssembliesHaveDescriptionAttributeAnalyzerMessageFormat" xml:space="preserve">
     <value>Add a filled out AssemblyDescriptionAttribute to the assembly properties</value>
   </data>
   <data name="AssembliesHaveDescriptionAttributeAnalyzerTitle" xml:space="preserve">
     <value>Assemblies need the AssemblyDescriptionAttribute</value>
+  </data>
+  <data name="AssembliesHaveTitleAttributeAnalyzerDescription" xml:space="preserve">
+    <value>Specifying the AssemblyTitleAttribute helps identify the assembly</value>
   </data>
   <data name="AssembliesHaveTitleAttributeAnalyzerMessageFormat" xml:space="preserve">
     <value>Add a filled out AssemblyTitleAttribute to the assembly properties</value>
@@ -141,17 +153,26 @@
   <data name="AssembliesHaveTitleAttributeAnalyzerTitle" xml:space="preserve">
     <value>Assemblies need the AssemblyTitleDescriptionAttribute</value>
   </data>
+  <data name="AvoidCallingMethodsWithParamArgsAnalyzerDescription" xml:space="preserve">
+    <value>Methods with variable length arguments (param array) can lead to performance problems</value>
+  </data>
   <data name="AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat" xml:space="preserve">
     <value>Call to a method using a param aray as arguments '{0}'</value>
   </data>
   <data name="AvoidCallingMethodsWithParamArgsAnalyzerTitle" xml:space="preserve">
     <value>Avoid calling methods with param array arguments</value>
   </data>
+  <data name="AvoidPreDefinedTypesAnalyzerDescription" xml:space="preserve">
+    <value>Being explicit about your types is better according to CLR via C# by Jeffrey Richter</value>
+  </data>
   <data name="AvoidPreDefinedTypesAnalyzerMessageFormat" xml:space="preserve">
     <value>Convert '{0}' to the explicit type '{1}'</value>
   </data>
   <data name="AvoidPreDefinedTypesAnalyzerTitle" xml:space="preserve">
     <value>Use explicit types instead of predefined to avoid confusion</value>
+  </data>
+  <data name="CallAssertMethodsWithMessageParameterAnalyzerDescription" xml:space="preserve">
+    <value>Always use the multiple parameter version of Debug.Assert for better error reporting</value>
   </data>
   <data name="CallAssertMethodsWithMessageParameterAnalyzerMessageFormat" xml:space="preserve">
     <value>Never use the single parameter Debug.Assert</value>
@@ -177,11 +198,17 @@
   <data name="ExceptionDocumentationMissingAnalyzerActionMessage" xml:space="preserve">
     <value>Document this direct throw</value>
   </data>
+  <data name="ExceptionDocumentationMissingAnalyzerDescription" xml:space="preserve">
+    <value>Alll direct throws must always be documented with &lt;exception&gt; tags</value>
+  </data>
   <data name="ExceptionDocumentationMissingAnalyzerMessageFormat" xml:space="preserve">
     <value>Document the direct throw of type '{0}' with an &lt;exception&gt; tag</value>
   </data>
   <data name="ExceptionDocumentationMissingAnalyzerTitle" xml:space="preserve">
     <value>All direct throws must be documented with &lt;exception&gt; tags</value>
+  </data>
+  <data name="IfAndElseMustHaveBracesAnalyzerDescription" xml:space="preserve">
+    <value>If and else statements must use braces even for single line results</value>
   </data>
   <data name="IfAndElseMustHaveBracesAnalyzerMessageFormat" xml:space="preserve">
     <value>'{0}' statements must have braces</value>
@@ -195,11 +222,17 @@
   <data name="PendingText" xml:space="preserve">
     <value>&lt;Pending&gt;</value>
   </data>
+  <data name="ReturningTaskRequiresAsyncAnalyzerDescription" xml:space="preserve">
+    <value>Methods returning Tasks must end in "Task" to indicate they are asynchronous</value>
+  </data>
   <data name="ReturningTaskRequiresAsyncAnalyzerMessageFormat" xml:space="preserve">
     <value>Method name {0} should be renamed {0}Async</value>
   </data>
   <data name="ReturningTaskRequiresAsyncAnalyzerTitle" xml:space="preserve">
     <value>All Task or Task&lt;T&gt; returning method names must end with Async</value>
+  </data>
+  <data name="SuppressionMessageMissingJustificationAnalyzerDescription" xml:space="preserve">
+    <value>You must always specify the Justification parameter with the SuppressionMessage attribute</value>
   </data>
   <data name="SuppressionMessageMissingJustificationAnalyzerMessageFormat" xml:space="preserve">
     <value>The SuppressionMessage on '{0}' needs the Justification parameter filled out</value>

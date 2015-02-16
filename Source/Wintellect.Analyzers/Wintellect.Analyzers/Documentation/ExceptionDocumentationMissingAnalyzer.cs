@@ -27,7 +27,8 @@ namespace Wintellect.Analyzers
                                                                              Resources.ExceptionDocumentationMissingAnalyzerMessageFormat,
                                                                              Resources.CategoryDocumentation,
                                                                              DiagnosticSeverity.Error,
-                                                                             isEnabledByDefault: true,
+                                                                             true,
+                                                                             Resources.ExceptionDocumentationMissingAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect010-ExceptionDocumentationMissing.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
