@@ -186,6 +186,133 @@ namespace SomeTests
             VerifyCSharpFix(multiplePredefinedType, multiplePredefinedTypeFixed);
         }
 
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestIgnoreGeneratedCode()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [GeneratedCode ( ""Fake"" , ""1.0"" )]
+	public class BasicClass
+	{
+        public int XoXoX()
+        {
+            return 5;
+        }
+    }
+}
+";
+
+            DiagnosticResult[] expected = new DiagnosticResult[0];
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestIgnoreFullAttributeCode()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+	public class BasicClass
+	{
+        public int XoXoX()
+        {
+            return 5;
+        }
+    }
+}
+";
+
+            DiagnosticResult[] expected = new DiagnosticResult[0];
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestDifferentAttributesCode()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [SuppressMessage(""Microsoft.Usage"",
+                        ""CA1801:ReviewUnusedParameters"",
+                        MessageId = ""value"")]
+	public class BasicClass
+	{
+        public Int32 XoXoX()
+        {
+            return 5;
+        }
+    }
+}
+";
+
+            DiagnosticResult[] expected = new DiagnosticResult[0];
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestDifferentAttributesPredefineInMethodCode()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+    [SuppressMessage(""Microsoft.Usage"",
+                        ""CA1801:ReviewUnusedParameters"",
+                        MessageId = ""value"")]
+	public class BasicClass
+	{
+        public Int32 XoXoX(Int32 p)
+        {
+            for(int i = 0; i < p; i++)
+            {
+                if (i % 2)
+                {
+                    return 2;
+                }
+            }
+            return 5;
+        }
+    }
+}
+";
+
+            var expected = new DiagnosticResult
+            {
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "int", "Int32"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 15, 17)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
             return new AvoidPredefinedTypesCodeFixProvider();

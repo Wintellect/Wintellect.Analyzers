@@ -20,11 +20,14 @@ namespace Wintellect.Analyzers
         /// <param name="symbol">
         /// The <see cref="ISymbol"/> derived type to check.
         /// </param>
+        /// <param name="checkAssembly">
+        /// Set to true to check the assembly for the attributes. False to stop at the type.
+        /// </param>
         /// <returns>
         /// Returns true if the item, type, or assembly has the GeneratedCode attribute 
         /// applied.
         /// </returns>
-        public static Boolean IsGeneratedOrNonUserCode(this ISymbol symbol)
+        public static Boolean IsGeneratedOrNonUserCode(this ISymbol symbol, Boolean checkAssembly = true)
         {
             // The goal here is to see if this ISymbol is part of auto generated code.
             // To do that, I'll walk up the hierarchy of item, type, to module/assembly
@@ -37,10 +40,13 @@ namespace Wintellect.Analyzers
                     return true;
                 }
 
-                attributes = symbol.ContainingAssembly.GetAttributes();
-                if (HasIgnorableAttributes(attributes))
+                if (checkAssembly)
                 {
-                    return true;
+                    attributes = symbol.ContainingAssembly.GetAttributes();
+                    if (HasIgnorableAttributes(attributes))
+                    {
+                        return true;
+                    }
                 }
 
                 return false;
@@ -54,7 +60,7 @@ namespace Wintellect.Analyzers
             for (Int32 i = 0; i < attributes.Count(); i++)
             {
                 String name = attributes[i].AttributeClass.Name;
-                if (name.Equals("GeneratedCode") || name.Equals("DebuggerNonUserCodeAttribute"))
+                if (name.EndsWith("GeneratedCode") || name.EndsWith("DebuggerNonUserCodeAttribute"))
                 {
                     return true;
                 }
