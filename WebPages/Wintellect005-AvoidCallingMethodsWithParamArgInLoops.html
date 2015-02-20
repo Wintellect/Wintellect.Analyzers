@@ -7,7 +7,7 @@
     <meta content="en-us" name="ms.locale" />
     <meta content="ms182275" name="Search.ShortId" />
     <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
-    <title>WINTELLECT005: Avoid Calling Methods with Param Args</title>
+    <title>WINTELLECT005: Avoid Calling Methods with Param Args in Loops</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
         <!--starting processing-->
         <div class="topic">
             <div class="title">
-                WINTELLECT005: Avoid Calling Methods with Param Args
+                WINTELLECT005: Avoid Calling Methods with Param Arguments in Loops
             </div>
             <div id="mainSection">
                 <div id="mainBody">
@@ -41,7 +41,7 @@
                                         <p>TypeName</p>
                                     </td>
                                     <td>
-                                        <p>AvoidCallingMethodsWithParamArgsAnalyzer</p>
+                                        <p>AvoidCallingMethodsWithParamArgsInLoopsAnalyzer</p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                There was a call to a method that takes a params array. This is an informational only notification.
+                                There was a call to a method that takes a params array inside a loop. This is an informational only notification.
                             </p>
                         </div>
                     </div>
@@ -136,9 +136,14 @@
 {
     <span style="color: blue">public</span> class BasicClass
     {
-        <span style="color: blue">public</span> String DoSomeParamArrays(String message1, String message2, String message3)
+        <span style="color: blue">public</span> String DoSomeParamArrays(Int32 i, String message1, String message2, String message3)
         {
-            <span style="color: blue">return</span> String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            String returnString = String.Empty;
+            <span style="color: blue">for</span> (Int32 j = 0; j < i; j++)
+            {
+                 returnString += String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            }
+            return returnString;
         }
     }
 }

@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyAttributesUnitTests.cs" />
-    <Compile Include="AvoidCallingMethodsWithParamArgsUnitTests.cs" />
+    <Compile Include="AvoidCallingMethodsWithParamArgsInLoopsUnitTests.cs" />
     <Compile Include="AvoidPreDefinedTypesUnitTests.cs" />
     <Compile Include="CallAssertMethodsWithMessageUnitTests.cs" />
     <Compile Include="ExceptionDocumentationMissingUnitTests.cs" />

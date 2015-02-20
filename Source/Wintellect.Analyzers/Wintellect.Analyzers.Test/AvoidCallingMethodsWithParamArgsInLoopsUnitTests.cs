@@ -14,13 +14,13 @@ using TestHelper;
 namespace Wintellect.Analyzers.Test
 {
     [TestClass]
-    public class AvoidCallingMethodsWithParamArgsUnitTests : CodeFixVerifier
+    public class AvoidCallingMethodsWithParamArgsInLoopsUnitTests : CodeFixVerifier
     {
         const String AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId = "Wintellect005";
         const String AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat = "Call to a method using a param array as arguments '{0}' in a loop";
 
         [TestMethod]
-        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        [TestCategory("AvoidCallingMethodsWithParamArgsInLoopsUnitTests")]
         public void NoLoopTest()
         {
             const String test = @"
@@ -41,7 +41,7 @@ namespace SomeTests
         }
 
         [TestMethod]
-        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        [TestCategory("AvoidCallingMethodsWithParamArgsInLoopsUnitTests")]
         public void ForLoopTest()
         {
             const String test = @"
@@ -51,7 +51,7 @@ namespace SomeTests
 {
     public class BasicClass
     {
-        public String DoSomeParamArrays(Int32 i, string message1, string message2, string message3)
+        public String DoSomeParamArrays(Int32 i, String message1, String message2, String message3)
         {
             String returnString = String.Empty;
             for (Int32 j = 0; j < i; j++)
@@ -78,7 +78,7 @@ namespace SomeTests
         }
 
         [TestMethod]
-        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        [TestCategory("AvoidCallingMethodsWithParamArgsInLoopsUnitTests")]
         public void ForEachLoopTest()
         {
             const String test = @"
@@ -115,7 +115,7 @@ namespace SomeTests
         }
 
         [TestMethod]
-        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        [TestCategory("AvoidCallingMethodsWithParamArgsInLoopsUnitTests")]
         public void WhileLoopTest()
         {
             const String test = @"
@@ -152,7 +152,7 @@ namespace SomeTests
         }
 
         [TestMethod]
-        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        [TestCategory("AvoidCallingMethodsWithParamArgsInLoopsUnitTests")]
         public void DoLoopTest()
         {
             const String test = @"
