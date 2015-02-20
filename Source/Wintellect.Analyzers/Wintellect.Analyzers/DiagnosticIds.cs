@@ -21,7 +21,7 @@ namespace Wintellect.Analyzers
         public const String CallAssertMethodsWithMessageParameterAnalyzer = "Wintellect002";
         public const String IfAndElseMustHaveBracesAnalyzer = "Wintellect003";
         public const String AvoidPreDefinedTypesAnalyzer = "Wintellect004";
-        public const String AvoidCallingMethodsWithParamArgsAnalyzer = "Wintellect005";
+        public const String AvoidCallingMethodsWithParamArgsInLoopsAnalyzer = "Wintellect005";
         public const String AssembliesHaveCompanyAttributeAnalyzer = "Wintellect006";
         public const String AssembliesHaveCopyrightAttributeAnalyzer = "Wintellect007";
         public const String AssembliesHaveDescriptionAttributeAnalyzer = "Wintellect008";

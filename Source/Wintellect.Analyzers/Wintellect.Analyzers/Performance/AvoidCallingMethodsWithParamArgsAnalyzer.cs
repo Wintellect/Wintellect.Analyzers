@@ -17,15 +17,15 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class AvoidCallingMethodsWithParamArgsAnalyzer : DiagnosticAnalyzer
+    public class AvoidCallingMethodsWithParamArgsInLoopsAnalyzer : DiagnosticAnalyzer
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsAnalyzer,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerTitle,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat,
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsInLoopsAnalyzer,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat,
                                                                              Resources.CategoryPerformance,
                                                                              DiagnosticSeverity.Info,
                                                                              true,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsAnalyzerDescription,
+                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription,
                                                                              helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArg.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }

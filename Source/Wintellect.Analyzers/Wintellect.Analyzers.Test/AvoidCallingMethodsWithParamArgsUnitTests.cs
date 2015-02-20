@@ -16,8 +16,8 @@ namespace Wintellect.Analyzers.Test
     [TestClass]
     public class AvoidCallingMethodsWithParamArgsUnitTests : CodeFixVerifier
     {
-        const String AvoidCallingMethodsWithParamArgsAnalyzerId = "Wintellect005";
-        const String AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat = "Call to a method using a param aray as arguments '{0}'";
+        const String AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId = "Wintellect005";
+        const String AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat = "Call to a method using a param array as arguments '{0}' in a loop";
 
         [TestMethod]
         [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
@@ -65,8 +65,8 @@ namespace SomeTests
 ";
             var expected = new DiagnosticResult
             {
-                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
-                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Id = AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat, "String.Format"),
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
@@ -102,8 +102,8 @@ namespace SomeTests
 ";
             var expected = new DiagnosticResult
             {
-                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
-                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Id = AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat, "String.Format"),
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
@@ -139,8 +139,8 @@ namespace SomeTests
 ";
             var expected = new DiagnosticResult
             {
-                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
-                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Id = AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat, "String.Format"),
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
@@ -176,8 +176,8 @@ namespace SomeTests
 ";
             var expected = new DiagnosticResult
             {
-                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
-                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Id = AvoidCallingMethodsWithParamArgsInLoopsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat, "String.Format"),
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
@@ -189,7 +189,7 @@ namespace SomeTests
         }
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new AvoidCallingMethodsWithParamArgsAnalyzer();
+            return new AvoidCallingMethodsWithParamArgsInLoopsAnalyzer();
         }
 
     }

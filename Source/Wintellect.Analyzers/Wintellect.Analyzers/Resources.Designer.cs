@@ -170,29 +170,29 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Methods with variable length arguments (param array) can lead to performance problems.
+        ///   Looks up a localized string similar to Methods with variable length arguments (param array) can lead to performance problems inside loops.
         /// </summary>
-        internal static string AvoidCallingMethodsWithParamArgsAnalyzerDescription {
+        internal static string AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription {
             get {
-                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsAnalyzerDescription", resourceCulture);
+                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Call to a method using a param aray as arguments &apos;{0}&apos;.
+        ///   Looks up a localized string similar to Call to a method using a param array as arguments &apos;{0}&apos; in a loop.
         /// </summary>
-        internal static string AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat {
+        internal static string AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat {
             get {
-                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat", resourceCulture);
+                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoid calling methods with param array arguments.
+        ///   Looks up a localized string similar to Avoid calling methods with param array arguments in loops.
         /// </summary>
-        internal static string AvoidCallingMethodsWithParamArgsAnalyzerTitle {
+        internal static string AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle {
             get {
-                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsAnalyzerTitle", resourceCulture);
+                return ResourceManager.GetString("AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle", resourceCulture);
             }
         }
         

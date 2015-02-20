@@ -153,14 +153,14 @@
   <data name="AssembliesHaveTitleAttributeAnalyzerTitle" xml:space="preserve">
     <value>Assemblies need the AssemblyTitleDescriptionAttribute</value>
   </data>
-  <data name="AvoidCallingMethodsWithParamArgsAnalyzerDescription" xml:space="preserve">
-    <value>Methods with variable length arguments (param array) can lead to performance problems</value>
+  <data name="AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription" xml:space="preserve">
+    <value>Methods with variable length arguments (param array) can lead to performance problems inside loops</value>
   </data>
-  <data name="AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat" xml:space="preserve">
-    <value>Call to a method using a param aray as arguments '{0}'</value>
+  <data name="AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat" xml:space="preserve">
+    <value>Call to a method using a param array as arguments '{0}' in a loop</value>
   </data>
-  <data name="AvoidCallingMethodsWithParamArgsAnalyzerTitle" xml:space="preserve">
-    <value>Avoid calling methods with param array arguments</value>
+  <data name="AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle" xml:space="preserve">
+    <value>Avoid calling methods with param array arguments in loops</value>
   </data>
   <data name="AvoidPreDefinedTypesAnalyzerDescription" xml:space="preserve">
     <value>Being explicit about your types is better according to CLR via C# by Jeffrey Richter</value>
