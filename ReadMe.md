@@ -32,8 +32,8 @@ If and else statements without braces are reasons for being fired. This analyzer
 
 ## Performance Analyzers ##
 
-#### [AvoidCallingMethodsWithParamArgs](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArg.html) ####
-This informational level check gives you a hint that you are calling a method using param arrays. Because calls to these methods cause memory allocations you should know where these are happening.
+#### [AvoidCallingMethodsWithParamArgsInLoops](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArgInLoops.html) ####
+This informational level check gives you a hint that you are calling a method using param arrays inside a loop. Because calls to these methods cause memory allocations you should know where these are happening.
 
 ## Usage Analzyers ##
 
