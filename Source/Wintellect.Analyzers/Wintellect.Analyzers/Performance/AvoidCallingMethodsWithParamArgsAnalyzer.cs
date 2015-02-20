@@ -48,11 +48,15 @@ namespace Wintellect.Analyzers
                 {
                     if (methodSymbol.OriginalDefinition.Parameters[count - 1].IsParams)
                     {
-                        // We got us a problem here, boss.
-                        var diagnostic = Diagnostic.Create(Rule,
-                                                           indentifierName.GetLocation(),
-                                                           indentifierName.Parent.ToString());
-                        context.ReportDiagnostic(diagnostic);
+                        // Only report the error if this call is inside a loop.
+                        if (context.Node.IsNodeInALoop())
+                        {
+                            // We got us a problem here, boss.
+                            var diagnostic = Diagnostic.Create(Rule,
+                                                               indentifierName.GetLocation(),
+                                                               indentifierName.Parent.ToString());
+                            context.ReportDiagnostic(diagnostic);
+                        }
                     }
                 }
             }

@@ -16,7 +16,14 @@ namespace Wintellect.Analyzers.Test
     [TestClass]
     public class AvoidCallingMethodsWithParamArgsUnitTests : CodeFixVerifier
     {
-        static String callParamArrayMethod = @"
+        const String AvoidCallingMethodsWithParamArgsAnalyzerId = "Wintellect005";
+        const String AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat = "Call to a method using a param aray as arguments '{0}'";
+
+        [TestMethod]
+        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        public void NoLoopTest()
+        {
+            const String test = @"
 using System;
 
 namespace SomeTests
@@ -30,13 +37,32 @@ namespace SomeTests
     }
 }
 ";
-        const String AvoidCallingMethodsWithParamArgsAnalyzerId = "Wintellect005";
-        const String AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat = "Call to a method using a param aray as arguments '{0}'";
+            VerifyCSharpDiagnostic(test);
+        }
 
         [TestMethod]
         [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
-        public void TestCallParamArrayMethod()
+        public void ForLoopTest()
         {
+            const String test = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        public String DoSomeParamArrays(Int32 i, string message1, string message2, string message3)
+        {
+            String returnString = String.Empty;
+            for (Int32 j = 0; j < i; j++)
+            {
+                 returnString += String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            }
+            return returnString;
+        }
+    }
+}
+";
             var expected = new DiagnosticResult
             {
                 Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
@@ -44,13 +70,123 @@ namespace SomeTests
                 Severity = DiagnosticSeverity.Info,
                 Locations =
                     new[] {
-                            new DiagnosticResultLocation("Test0.cs", 10, 27)
+                            new DiagnosticResultLocation("Test0.cs", 13, 41)
                         }
             };
 
-            VerifyCSharpDiagnostic(callParamArrayMethod, expected);
+            VerifyCSharpDiagnostic(test, expected);
         }
 
+        [TestMethod]
+        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        public void ForEachLoopTest()
+        {
+            const String test = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        public String DoSomeParamArrays(Int32 i, string message1, string message2, string message3)
+        {
+            String returnString = String.Empty;
+            foreach (char c in message1)
+            {
+                 returnString += String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            }
+            return returnString;
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Severity = DiagnosticSeverity.Info,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 13, 41)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        public void WhileLoopTest()
+        {
+            const String test = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        public String DoSomeParamArrays(Int32 i, string message1, string message2, string message3)
+        {
+            String returnString = String.Empty;
+            while (returnString.Length < 100)
+            {
+                 returnString += String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            }
+            return returnString;
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Severity = DiagnosticSeverity.Info,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 13, 41)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidCallingMethodsWithParamArgsUnitTests")]
+        public void DoLoopTest()
+        {
+            const String test = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        public String DoSomeParamArrays(Int32 i, string message1, string message2, string message3)
+        {
+            String returnString = String.Empty;
+            do 
+            {
+                 returnString += String.Format(""{0}{1}{2}"", message1, message2, message3, message3);
+            } while (returnString.Length < 100);
+            return returnString;
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = AvoidCallingMethodsWithParamArgsAnalyzerId,
+                Message = String.Format(AvoidCallingMethodsWithParamArgsAnalyzerMessageFormat, "String.Format"),
+                Severity = DiagnosticSeverity.Info,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 13, 41)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new AvoidCallingMethodsWithParamArgsAnalyzer();
