@@ -195,6 +195,18 @@
   <data name="CategoryUsage" xml:space="preserve">
     <value>Usage</value>
   </data>
+  <data name="ClassesShouldBeSealedAnalyzerDescription" xml:space="preserve">
+    <value>When writing new classes, they should be declared as sealed</value>
+  </data>
+  <data name="ClassesShouldBeSealedAnalyzerMessageFormat" xml:space="preserve">
+    <value>The class '{0}' should be declared sealed if this is a newly written class</value>
+  </data>
+  <data name="ClassesShouldBeSealedAnalyzerTitle" xml:space="preserve">
+    <value>New classes should be declared as sealed</value>
+  </data>
+  <data name="ClassesShouldBeSealedCodeFixActionText" xml:space="preserve">
+    <value>Make sealed</value>
+  </data>
   <data name="ExceptionDocumentationMissingAnalyzerActionMessage" xml:space="preserve">
     <value>Document this direct throw</value>
   </data>

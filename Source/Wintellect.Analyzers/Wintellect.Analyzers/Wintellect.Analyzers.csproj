@@ -51,11 +51,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Usage\AvoidPreDefinedTypesAnalyzer.cs" />
+    <Compile Include="Usage\ClassesShouldBeSealedAnalyzer.cs" />
     <Compile Include="Usage\CodeFixes\AvoidPredefinedTypesCodeFixProvider.cs" />
     <Compile Include="Usage\CallAssertMethodsWithMessageParameterAnalyzer.cs" />
     <Compile Include="Usage\CodeFixes\CallAssertMethodsWithMessageParameterCodeFixProvide.cs" />
     <Compile Include="Formatting\IfAndElseMustHaveBracesAnalyzer.cs" />
     <Compile Include="Formatting\CodeFixes\IfAndElseMustHaveBracesCodeFixProvider.cs" />
+    <Compile Include="Usage\CodeFixes\ClassesShouldBeSealedCodeFixProvider.cs" />
     <Compile Include="Usage\CodeFixes\ReturningTaskRequiresAsyncCodeFixProvider.cs" />
     <Compile Include="Usage\ReturningTaskRequiresAsyncAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,7 +120,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

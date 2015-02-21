@@ -1,0 +1,170 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="ctl00_Head1">
+    <link id="ctl00_HeaderLink2" href="PrintFriendly.css" rel="stylesheet" type="text/css" />
+    <meta content="en-us" name="ms.locale" />
+    <meta content="ms182275" name="Search.ShortId" />
+    <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
+    <title>WINTELLECT012: Classes Should Be Sealed</title>
+</head>
+
+<body>
+    <div class="PrinterFriendlyBanner">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="PFB_Left">
+                    <a href="http://www.wintellect.com">
+                        <img id="ctl00_BannerControl1_LogoImage" src="Wintellect.gif" style="border-width: 0px;" />
+                    </a>
+                </td>
+                <td class="PFB_Right">
+                    <span id="ctl00_BannerControl1_CopyrightLabel" class="PrinterFriendlyCopyrightText" title="©2015 Wintellect. All rights reserved.">©2014-2015 Wintellect. All rights reserved.</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ContentArea">
+        <!--starting processing-->
+        <div class="topic">
+            <div class="title">
+                WINTELLECT012: Classes Should Be Sealed Analyzer
+            </div>
+            <div id="mainSection">
+                <div id="mainBody">
+                    <div class="introduction">
+                        <div class="tableSection">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>TypeName</p>
+                                    </td>
+                                    <td>
+                                        <p>ClassesShouldBeSealedAnalyzer</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>CheckId</p>
+                                    </td>
+                                    <td>
+                                        <p>WINTELLECT012</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Category</p>
+                                    </td>
+                                    <td>
+                                        <p>Usage</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Breaking Change</p>
+                                    </td>
+                                    <td>
+                                        <p>Non Breaking</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Cause
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                Classes ideally should be declared with the sealed modifier.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Rule Description
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                All new classes should be use the sealed attribute. As Jon Skeet says, <a href="http://stackoverflow.com/questions/6389417/should-i-recommend-sealing-classes-by-default">Design for inheritance, or prohibit it</a>. Jeffrey Richter says the same thing in his outstanding <a href="http://www.amazon.com/CLR-via-Edition-Developer-Reference/dp/0735667454">CLR via C#</a>. A sealed class indicates that this is a class you do not expect anyone to inherit from. Be explicit about your inheritable classes and you'll have more control. For more proof that this is important, read Eric Lippert's <a href="http://blogs.msdn.com/b/ericlippert/archive/2004/01/22/61803.aspx">discussion</a> as to why so many of the Framework Class Library is declared with sealed.
+                            </p>
+                            <p>
+                                Do note that this rule is intended for <b>new</b> class development. If you are working on a code base that has been through multiple versions you will want to carefully analyze if converting a class to sealed will break things.
+                            </p>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                How to Fix Violations
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>
+                                    Use the code fix to convert the class to sealed.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                When to Suppress Warnings
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>If the code has been released, you may want to consider suppressing this rule.</p>
+                            </div>
+                            <div class="MTPS_CollapsibleRegion">
+                                <div class="CollapseRegionLink">
+                                    Example
+                                </div>
+                                <div class="MTPS_CollapsibleSection" style="display: block;">
+                                    <p>
+                                        The following example shows a class,
+                                        <span class="code">BadExample</span>, that violates
+                                        the rule because it it is not declared sealed. In <span class="code">GoodClass</span> the
+                                        class is declared sealed.
+                                    </p>
+                                    <div id="snippetGroup">
+                                        <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
+                                            <div class="CodeSnippetTitleBar">
+                                                <div class="CodeDisplayLanguage">
+                                                    C#
+                                                </div>
+                                            </div>
+                                            <div dir="ltr" style="background-color: #ddd">
+                                                <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Diagnostics;
+<span style="color: blue">using</span> System.Diagnostics.CodeAnalysis;
+<span style="color: blue">namespace</span> ExampleLibrary
+{
+   <span style="color: blue">public</span> <span style="color: blue">class</span> BadExample
+   {
+   }
+
+   <span style="color: blue">public sealed</span> <span style="color: blue">class</span> GoodClass
+   {
+   }
+}</pre>
+                                            </div>
+                                        </div>
+                                        <div class="MTPS_CollapsibleRegion">
+                                            <div class="CollapseRegionLink">
+                                                Related Links
+                                            </div>
+                                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                                <a id="sectionToggle4">
+                                                    <!---->
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

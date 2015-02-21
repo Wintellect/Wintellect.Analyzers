@@ -43,6 +43,9 @@ The predefined types, such as int, should not be used. You want to be as explici
 #### [CallAssertMethodsWithMessageParameter](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect002-CallAssertMethodsWithMessageParameters.html) ####
 Calling the one parameter overload of Debug.Assert is a bad idea because they will not show you the expression you are asserting on. This analyzer will find those calls and the code fix will take the asserting expression and convert it into a string as the second parameter to the two parameter overload of Debug.Assert.
 
+### [ClassesShouldBeSealed](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect012-ClassesShouldBeSealed.html) ####
+When creating new classes, they should be declared with the the sealed modifier.
+
 #### [ReturningTaskRequiresAsync](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html) ####
 If you are returning a Task or Task<T> from a method, that method name must end in Async.
  

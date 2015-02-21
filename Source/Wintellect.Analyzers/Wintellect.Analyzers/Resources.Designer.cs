@@ -296,6 +296,42 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make sealed.
+        /// </summary>
+        internal static string ClassesShouldBeSealedCodeFixActionText {
+            get {
+                return ResourceManager.GetString("ClassesShouldBeSealedActionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When writing new classes, they should be declared as sealed.
+        /// </summary>
+        internal static string ClassesShouldBeSealedAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("ClassesShouldBeSealedAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The class &apos;{0}&apos; should be declared sealed if this is a newly written class.
+        /// </summary>
+        internal static string ClassesShouldBeSealedAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("ClassesShouldBeSealedAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New classes should be declared as sealed.
+        /// </summary>
+        internal static string ClassesShouldBeSealedAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("ClassesShouldBeSealedAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Document this direct throw.
         /// </summary>
         internal static string ExceptionDocumentationMissingAnalyzerActionMessage {
