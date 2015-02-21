@@ -25,7 +25,7 @@ namespace Wintellect.Analyzers
     [ExportCodeFixProvider("Wintellect.CallAssertMethodsWithMessageParameterCodeFixProvider",
                             LanguageNames.CSharp),
      Shared]
-    public class CallAssertMethodsWithMessageParameterCodeFixProvider : CodeFixProvider
+    public sealed class CallAssertMethodsWithMessageParameterCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Add test as a message parameter";
 

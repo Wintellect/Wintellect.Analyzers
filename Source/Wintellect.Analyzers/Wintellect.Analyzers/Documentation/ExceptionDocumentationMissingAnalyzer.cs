@@ -20,7 +20,7 @@ using System.Xml;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ExceptionDocumentationMissingAnalyzer : DiagnosticAnalyzer
+    public sealed class ExceptionDocumentationMissingAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ExceptionDocumentationMissingAnalyzer,
                                                                              Resources.ExceptionDocumentationMissingAnalyzerTitle,

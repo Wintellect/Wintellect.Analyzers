@@ -24,7 +24,7 @@ namespace Wintellect.Analyzers
     [ExportCodeFixProvider("Wintellect.ReturningTaskRequiresAsyncCodeFixProvider", 
                             LanguageNames.CSharp), 
      Shared]
-    public class ReturningTaskRequiresAsyncCodeFixProvider : CodeFixProvider
+    public sealed class ReturningTaskRequiresAsyncCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Rename async method";
 

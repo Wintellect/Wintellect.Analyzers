@@ -20,7 +20,7 @@ using System.Xml;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class SuppressionMessageMissingJustificationAnalyzer : DiagnosticAnalyzer
+    public sealed class SuppressionMessageMissingJustificationAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.SuppressionMessageMissingJustificationAnalyzer,
                                                                              Resources.SuppressionMessageMissingJustificationAnalyzerTitle,

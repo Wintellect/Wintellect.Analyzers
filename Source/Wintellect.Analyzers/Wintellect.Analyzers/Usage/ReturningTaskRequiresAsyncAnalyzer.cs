@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ReturningTaskRequiresAsyncAnalyzer : DiagnosticAnalyzer
+    public sealed class ReturningTaskRequiresAsyncAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         /// The error returned by this rule.

@@ -14,7 +14,7 @@ namespace Wintellect.Analyzers
     // working in VS 2015 CTP5 for VB.NET. I'll come back to this on the next CTP.
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     //[DiagnosticAnalyzer(LanguageNames.VisualBasic)]
-    public class AssemblyAttributeAnalyzer : DiagnosticAnalyzer
+    public sealed class AssemblyAttributeAnalyzer : DiagnosticAnalyzer
     {
         private static DiagnosticDescriptor companyRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveCompanyAttributeAnalyzer,
                                                                                    Resources.AssembliesHaveCompanyAttributeAnalyzerTitle,

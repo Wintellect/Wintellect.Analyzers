@@ -17,7 +17,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class AvoidCallingMethodsWithParamArgsInLoopsAnalyzer : DiagnosticAnalyzer
+    public sealed class AvoidCallingMethodsWithParamArgsInLoopsAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsInLoopsAnalyzer,
                                                                              Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle,

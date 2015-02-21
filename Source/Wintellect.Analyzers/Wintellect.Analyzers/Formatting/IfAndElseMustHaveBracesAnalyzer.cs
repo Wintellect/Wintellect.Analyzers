@@ -19,7 +19,7 @@ namespace Wintellect.Analyzers
     // This rule was done by Kevin Pilch-Bisson at TechEd Europe 2014.
     // http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class IfAndElseMustHaveBracesAnalyzer : DiagnosticAnalyzer
+    public sealed class IfAndElseMustHaveBracesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer,
                                                                              Resources.IfAndElseMustHaveBracesAnalyzerTitle,

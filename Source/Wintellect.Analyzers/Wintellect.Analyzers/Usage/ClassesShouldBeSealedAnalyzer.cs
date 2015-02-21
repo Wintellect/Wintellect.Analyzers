@@ -44,7 +44,7 @@ namespace Wintellect.Analyzers
             if (!symbol.IsGeneratedOrNonUserCode(false))
             {
                 // It's all about the class, no structure.
-                if ((!symbol.IsValueType) && (!symbol.IsSealed))
+                if ((!symbol.IsValueType) && (!symbol.IsSealed) && (!symbol.IsStatic))
                 {
                     var diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], symbol.Name);
                     context.ReportDiagnostic(diagnostic);

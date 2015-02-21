@@ -25,7 +25,7 @@ namespace Wintellect.Analyzers
     // http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345
     // I finished it off and ported it to VS 2015.
     [ExportCodeFixProvider("IfAndElseMustHaveBracesCodeFixProvider", LanguageNames.CSharp)]
-    public class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
+    public sealed class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
         {

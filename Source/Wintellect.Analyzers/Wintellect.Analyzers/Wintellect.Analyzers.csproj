@@ -123,7 +123,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\Wintellect.Analyzers.1.0.0-alpha3\tools\analyzers\Wintellect.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Wintellect.Analyzers.1.0.0-alpha4\tools\analyzers\Wintellect.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>

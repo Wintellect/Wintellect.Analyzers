@@ -17,7 +17,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class CallAssertMethodsWithMessageParameterAnalyzer : DiagnosticAnalyzer
+    public sealed class CallAssertMethodsWithMessageParameterAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer,
                                                                              Resources.CallAssertMethodsWithMessageParameterAnalyzerTitle,

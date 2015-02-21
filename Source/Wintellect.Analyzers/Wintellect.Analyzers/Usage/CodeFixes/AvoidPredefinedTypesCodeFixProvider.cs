@@ -22,7 +22,7 @@ using Microsoft.CodeAnalysis.Formatting;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider("AvoidPredefinedTypesCodeFixProvider", LanguageNames.CSharp)]
-    public class AvoidPredefinedTypesCodeFixProvider : CodeFixProvider
+    public sealed class AvoidPredefinedTypesCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Convert to specific type";
 

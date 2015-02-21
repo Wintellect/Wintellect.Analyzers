@@ -19,7 +19,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
+    public sealed class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidPreDefinedTypesAnalyzer,
                                                                              Resources.AvoidPreDefinedTypesAnalyzerTitle,
