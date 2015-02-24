@@ -23,13 +23,13 @@ namespace Wintellect.Analyzers
     public sealed class SuppressionMessageMissingJustificationAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.SuppressionMessageMissingJustificationAnalyzer,
-                                                                             Resources.SuppressionMessageMissingJustificationAnalyzerTitle,
-                                                                             Resources.SuppressionMessageMissingJustificationAnalyzerMessageFormat,
-                                                                             Resources.CategoryDocumentation,
+                                                                             new LocalizableResourceString(nameof(Resources.SuppressionMessageMissingJustificationAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.SuppressionMessageMissingJustificationAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryDocumentation), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Warning,
                                                                              true,
-                                                                             Resources.SuppressionMessageMissingJustificationAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect011-SuppressMessageMissingJustification.html");
+                                                                             new LocalizableResourceString(nameof(Resources.SuppressionMessageMissingJustificationAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect011-SuppressMessageMissingJustification.html");
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
         public override void Initialize(AnalysisContext context)

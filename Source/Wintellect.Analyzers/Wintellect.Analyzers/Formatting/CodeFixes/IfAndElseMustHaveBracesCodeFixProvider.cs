@@ -7,6 +7,7 @@ See License.txt in the project root for license information
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,12 +25,12 @@ namespace Wintellect.Analyzers
     // This fix was started by Kevin Pilch-Bisson at TechEd Europe 2014.
     // http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345
     // I finished it off and ported it to VS 2015.
-    [ExportCodeFixProvider("IfAndElseMustHaveBracesCodeFixProvider", LanguageNames.CSharp)]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(IfAndElseMustHaveBracesCodeFixProvider)), Shared]
     public sealed class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
     {
-        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> FixableDiagnosticIds
         {
-            return ImmutableArray.Create(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer);
+            get { return ImmutableArray.Create(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -37,7 +38,7 @@ namespace Wintellect.Analyzers
             return WellKnownFixAllProviders.BatchFixer;
         }
 
-        public sealed override async Task ComputeFixesAsync(CodeFixContext context)
+        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
@@ -51,7 +52,7 @@ namespace Wintellect.Analyzers
 
             CodeAction codeAction = CodeAction.Create(Resources.IfAndElseMustHaveBracesCodeFixProviderActionMessage,
                                                       c => AddMissingBracesAsync(context.Document, errorToken, c));
-            context.RegisterFix(codeAction, diagnostic);
+            context.RegisterCodeFix(codeAction, diagnostic);
         }
 
         private async Task<Document> AddMissingBracesAsync(Document document, SyntaxNode errorStatement, CancellationToken c)

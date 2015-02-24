@@ -21,13 +21,13 @@ namespace Wintellect.Analyzers
     {
        
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ClassesShouldBeSealedAnalyzer, 
-                                                                             Resources.ClassesShouldBeSealedAnalyzerTitle, 
-                                                                             Resources.ClassesShouldBeSealedAnalyzerMessageFormat, 
-                                                                             Resources.CategoryUsage, 
+                                                                             new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Info, 
                                                                              true,
-                                                                             Resources.ClassesShouldBeSealedAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect012-ClassesShouldBeSealed.html");
+                                                                             new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect012-ClassesShouldBeSealed.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

@@ -17,40 +17,40 @@ namespace Wintellect.Analyzers
     public sealed class AssemblyAttributeAnalyzer : DiagnosticAnalyzer
     {
         private static DiagnosticDescriptor companyRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveCompanyAttributeAnalyzer,
-                                                                                   Resources.AssembliesHaveCompanyAttributeAnalyzerTitle,
-                                                                                   Resources.AssembliesHaveCompanyAttributeAnalyzerMessageFormat,
-                                                                                   Resources.CategoryDesign,
+                                                                                   new LocalizableResourceString(nameof(Resources.AssembliesHaveCompanyAttributeAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                                   new LocalizableResourceString(nameof(Resources.AssembliesHaveCompanyAttributeAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                                   (new LocalizableResourceString(nameof(Resources.CategoryDesign), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                                    DiagnosticSeverity.Warning,
                                                                                    true,
-                                                                                   Resources.AssembliesHaveCompanyAttributeAnalyzerDescription,
-                                                                                   helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect006-AssembliesHaveCompanyAttribute.html");
+                                                                                   new LocalizableResourceString(nameof(Resources.AssembliesHaveCompanyAttributeAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                                   "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect006-AssembliesHaveCompanyAttribute.html");
 
         private static DiagnosticDescriptor copyrightRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveCopyrightAttributeAnalyzer,
-                                                                                     Resources.AssembliesHaveCopyrightAttributeAnalyzerTitle,
-                                                                                     Resources.AssembliesHaveCopyrightAttributeAnalyzerMessageFormat,
-                                                                                     Resources.CategoryDesign,
+                                                                                     new LocalizableResourceString(nameof(Resources.AssembliesHaveCopyrightAttributeAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                                     new LocalizableResourceString(nameof(Resources.AssembliesHaveCopyrightAttributeAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                                     (new LocalizableResourceString(nameof(Resources.CategoryDesign), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                                      DiagnosticSeverity.Warning,
                                                                                      true,
-                                                                                     Resources.AssembliesHaveCopyrightAttributeAnalyzerDescription,
-                                                                                     helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect007-AssembliesHaveCopyrightAttribute.html");
+                                                                                     new LocalizableResourceString(nameof(Resources.AssembliesHaveCopyrightAttributeAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                                     "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect007-AssembliesHaveCopyrightAttribute.html");
 
         private static DiagnosticDescriptor descriptionRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveDescriptionAttributeAnalyzer,
-                                                                                       Resources.AssembliesHaveDescriptionAttributeAnalyzerTitle,
-                                                                                       Resources.AssembliesHaveDescriptionAttributeAnalyzerMessageFormat,
-                                                                                       Resources.CategoryDesign,
+                                                                                       new LocalizableResourceString(nameof(Resources.AssembliesHaveDescriptionAttributeAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                                       new LocalizableResourceString(nameof(Resources.AssembliesHaveDescriptionAttributeAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                                       (new LocalizableResourceString(nameof(Resources.CategoryDesign), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                                        DiagnosticSeverity.Warning,
                                                                                        true,
-                                                                                       Resources.AssembliesHaveDescriptionAttributeAnalyzerDescription,
-                                                                                       helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect008-AssembliesHaveDescriptionAttribute.html");
+                                                                                       new LocalizableResourceString(nameof(Resources.AssembliesHaveDescriptionAttributeAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                                       "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect008-AssembliesHaveDescriptionAttribute.html");
 
         private static DiagnosticDescriptor titleRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveTitleAttributeAnalyzer,
-                                                                                 Resources.AssembliesHaveTitleAttributeAnalyzerTitle,
-                                                                                 Resources.AssembliesHaveTitleAttributeAnalyzerMessageFormat,
-                                                                                 Resources.CategoryDesign,
+                                                                                 new LocalizableResourceString(nameof(Resources.AssembliesHaveTitleAttributeAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                                 new LocalizableResourceString(nameof(Resources.AssembliesHaveTitleAttributeAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                                 (new LocalizableResourceString(nameof(Resources.CategoryDesign), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                                  DiagnosticSeverity.Warning,
                                                                                  true,
-                                                                                 Resources.AssembliesHaveTitleAttributeAnalyzerDescription,
-                                                                                 helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect009-AssembliesHaveTitleAttribute.html");
+                                                                                 new LocalizableResourceString(nameof(Resources.AssembliesHaveTitleAttributeAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                                 "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect009-AssembliesHaveTitleAttribute.html");
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
         {
             get

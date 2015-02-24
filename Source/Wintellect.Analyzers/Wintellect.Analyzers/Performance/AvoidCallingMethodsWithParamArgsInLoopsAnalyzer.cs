@@ -20,13 +20,13 @@ namespace Wintellect.Analyzers
     public sealed class AvoidCallingMethodsWithParamArgsInLoopsAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsInLoopsAnalyzer,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat,
-                                                                             Resources.CategoryPerformance,
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryPerformance), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Info,
                                                                              true,
-                                                                             Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArgInLoops.html");
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArgInLoops.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

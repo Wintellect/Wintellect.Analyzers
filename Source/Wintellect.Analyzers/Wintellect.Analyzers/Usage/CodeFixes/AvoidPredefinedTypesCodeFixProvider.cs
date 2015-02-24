@@ -7,6 +7,7 @@ See License.txt in the project root for license information
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,14 +22,14 @@ using Microsoft.CodeAnalysis.Formatting;
 
 namespace Wintellect.Analyzers
 {
-    [ExportCodeFixProvider("AvoidPredefinedTypesCodeFixProvider", LanguageNames.CSharp)]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AvoidPredefinedTypesCodeFixProvider)), Shared]
     public sealed class AvoidPredefinedTypesCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Convert to specific type";
 
-        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> FixableDiagnosticIds
         {
-            return ImmutableArray.Create(DiagnosticIds.AvoidPreDefinedTypesAnalyzer);
+            get { return ImmutableArray.Create(DiagnosticIds.AvoidPreDefinedTypesAnalyzer); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -36,7 +37,7 @@ namespace Wintellect.Analyzers
             return WellKnownFixAllProviders.BatchFixer;
         }
 
-        public sealed override async Task ComputeFixesAsync(CodeFixContext context)
+        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
@@ -47,7 +48,7 @@ namespace Wintellect.Analyzers
 
             CodeAction codeAction = CodeAction.Create(actionMessage,
                                                       c => ConvertPredefinedToSpecificTypeAsync(context.Document, errorToken, c));
-            context.RegisterFix(codeAction, diagnostic);
+            context.RegisterCodeFix(codeAction, diagnostic);
         }
 
         private async Task<Document> ConvertPredefinedToSpecificTypeAsync(Document document, 

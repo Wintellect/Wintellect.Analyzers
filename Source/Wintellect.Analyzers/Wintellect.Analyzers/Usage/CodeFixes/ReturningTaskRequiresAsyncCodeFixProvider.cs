@@ -18,19 +18,18 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
+using Microsoft.CodeAnalysis.Formatting;
 
 namespace Wintellect.Analyzers
 {
-    [ExportCodeFixProvider("Wintellect.ReturningTaskRequiresAsyncCodeFixProvider", 
-                            LanguageNames.CSharp), 
-     Shared]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(ReturningTaskRequiresAsyncCodeFixProvider)), Shared]
     public sealed class ReturningTaskRequiresAsyncCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Rename async method";
 
-        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> FixableDiagnosticIds
         {
-            return ImmutableArray.Create(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer);
+            get { return ImmutableArray.Create(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -38,7 +37,7 @@ namespace Wintellect.Analyzers
             return WellKnownFixAllProviders.BatchFixer;
         }
 
-        public sealed override async Task ComputeFixesAsync(CodeFixContext context)
+        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
@@ -50,7 +49,7 @@ namespace Wintellect.Analyzers
 
             // Do the rename async.
             CodeAction codeAction = CodeAction.Create(actionMessage, c => RenameMethodAsync(context.Document, methodDeclarationSyntax, c));
-            context.RegisterFix(codeAction, diagnostic);
+            context.RegisterCodeFix(codeAction, diagnostic);
         }
 
         private async Task<Solution> RenameMethodAsync(Document document, MethodDeclarationSyntax methodDecl, CancellationToken cancellationToken)

@@ -20,13 +20,13 @@ namespace Wintellect.Analyzers
     public sealed class CallAssertMethodsWithMessageParameterAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer,
-                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerTitle,
-                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerMessageFormat,
-                                                                             Resources.CategoryUsage,
+                                                                             new LocalizableResourceString(nameof(Resources.CallAssertMethodsWithMessageParameterAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.CallAssertMethodsWithMessageParameterAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Error,
                                                                              true,
-                                                                             Resources.CallAssertMethodsWithMessageParameterAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect002-CallAssertMethodsWithMessageParameters.html");
+                                                                             new LocalizableResourceString(nameof(Resources.CallAssertMethodsWithMessageParameterAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect002-CallAssertMethodsWithMessageParameters.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

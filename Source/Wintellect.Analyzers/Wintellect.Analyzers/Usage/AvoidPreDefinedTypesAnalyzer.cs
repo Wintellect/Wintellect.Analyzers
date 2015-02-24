@@ -22,13 +22,13 @@ namespace Wintellect.Analyzers
     public sealed class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidPreDefinedTypesAnalyzer,
-                                                                             Resources.AvoidPreDefinedTypesAnalyzerTitle,
-                                                                             Resources.AvoidPreDefinedTypesAnalyzerMessageFormat,
-                                                                             Resources.CategoryUsage,
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidPreDefinedTypesAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidPreDefinedTypesAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Warning,
                                                                              true,
-                                                                             Resources.AvoidPreDefinedTypesAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect004-AvoidPredefinedTypes.html");
+                                                                             new LocalizableResourceString(nameof(Resources.AvoidPreDefinedTypesAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect004-AvoidPredefinedTypes.html");
 
         private readonly static ImmutableDictionary<String, String> typeMap = new Dictionary<String, String>()
         {

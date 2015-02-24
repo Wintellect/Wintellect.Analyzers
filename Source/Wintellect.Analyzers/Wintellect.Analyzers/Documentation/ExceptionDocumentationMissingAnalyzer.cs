@@ -23,13 +23,13 @@ namespace Wintellect.Analyzers
     public sealed class ExceptionDocumentationMissingAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ExceptionDocumentationMissingAnalyzer,
-                                                                             Resources.ExceptionDocumentationMissingAnalyzerTitle,
-                                                                             Resources.ExceptionDocumentationMissingAnalyzerMessageFormat,
-                                                                             Resources.CategoryDocumentation,
+                                                                             new LocalizableResourceString(nameof(Resources.ExceptionDocumentationMissingAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.ExceptionDocumentationMissingAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryDocumentation), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Error,
                                                                              true,
-                                                                             Resources.ExceptionDocumentationMissingAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect010-ExceptionDocumentationMissing.html");
+                                                                             new LocalizableResourceString(nameof(Resources.ExceptionDocumentationMissingAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect010-ExceptionDocumentationMissing.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

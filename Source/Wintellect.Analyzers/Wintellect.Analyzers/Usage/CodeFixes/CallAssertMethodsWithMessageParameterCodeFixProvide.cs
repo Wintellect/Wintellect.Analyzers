@@ -20,18 +20,18 @@ using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.CodeAnalysis.Formatting;
 
+
 namespace Wintellect.Analyzers
 {
-    [ExportCodeFixProvider("Wintellect.CallAssertMethodsWithMessageParameterCodeFixProvider",
-                            LanguageNames.CSharp),
-     Shared]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CallAssertMethodsWithMessageParameterCodeFixProvider)), Shared]
+
     public sealed class CallAssertMethodsWithMessageParameterCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Add test as a message parameter";
 
-        public sealed override ImmutableArray<String> GetFixableDiagnosticIds()
+        public sealed override ImmutableArray<String> FixableDiagnosticIds
         {
-            return ImmutableArray.Create(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer);
+            get { return ImmutableArray.Create(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -39,7 +39,7 @@ namespace Wintellect.Analyzers
             return WellKnownFixAllProviders.BatchFixer;
         }
 
-        public sealed override async Task ComputeFixesAsync(CodeFixContext context)
+        public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             SyntaxNode root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
@@ -50,9 +50,9 @@ namespace Wintellect.Analyzers
             InvocationExpressionSyntax declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<InvocationExpressionSyntax>().First();
 
             // Register a code action that will invoke the fix.
-            CodeAction codeAction = CodeAction.Create(actionMessage, 
+            CodeAction codeAction = CodeAction.Create(actionMessage,
                                                       c => CreateMessageFromBooleanAsync(context.Document, declaration, c));
-            context.RegisterFix(codeAction, diagnostic);
+            context.RegisterCodeFix(codeAction, diagnostic);
         }
 
         private async Task<Document> CreateMessageFromBooleanAsync(Document document, InvocationExpressionSyntax invocationExpr, CancellationToken cancellationToken)
@@ -67,7 +67,7 @@ namespace Wintellect.Analyzers
             // That's not obvious, especially since the required 
             // Microsoft.CodeAnalysis.Formatting is not included by the wizard
             // generated code.
-            String newCallString = String.Format("Debug.Assert({0}, \"{0}\")", 
+            String newCallString = String.Format("Debug.Assert({0}, \"{0}\")",
                                                  boolParam.ToFullString());
             ExpressionSyntax newCall = SyntaxFactory.ParseExpression(newCallString);
             newCall = newCall.WithAdditionalAnnotations(Formatter.Annotation);

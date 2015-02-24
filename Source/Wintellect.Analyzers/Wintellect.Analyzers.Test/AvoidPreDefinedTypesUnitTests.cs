@@ -130,11 +130,7 @@ namespace SomeTests
         [TestCategory("AvoidPreDefinedTypesUnitTests")]
         public void TestMultiplePredefinedType()
         {
-            // Because this rule uses the RegisterSyntaxNodeAction to be called each time
-            // a predefined type is found, it fires multiple times. Hence, I need to 
-            // account for that in this test.
-
-            DiagnosticResult[] results = new DiagnosticResult[5];
+            DiagnosticResult[] results = new DiagnosticResult[3];
 
             results[0] = new DiagnosticResult
             {
@@ -148,9 +144,7 @@ namespace SomeTests
                     }
             };
 
-            results[1] = results[0];
-
-            results[2] = new DiagnosticResult
+            results[1] = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzeId,
                 Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "int", "Int32"),
@@ -162,9 +156,7 @@ namespace SomeTests
                     }
             };
 
-            results[3] = results[2];
-
-            results[4] = new DiagnosticResult
+            results[2] = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzeId,
                 Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "string", "String"),

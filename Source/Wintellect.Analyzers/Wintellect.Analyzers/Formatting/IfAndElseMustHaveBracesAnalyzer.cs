@@ -22,13 +22,13 @@ namespace Wintellect.Analyzers
     public sealed class IfAndElseMustHaveBracesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer,
-                                                                             Resources.IfAndElseMustHaveBracesAnalyzerTitle,
-                                                                             Resources.IfAndElseMustHaveBracesAnalyzerMessageFormat,
-                                                                             Resources.CategoryFormatting, 
+                                                                             new LocalizableResourceString(nameof(Resources.IfAndElseMustHaveBracesAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.IfAndElseMustHaveBracesAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryFormatting), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Warning, 
                                                                              true,
-                                                                             Resources.IfAndElseMustHaveBracesAnalyzerDescription,
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect003-IfAndElseMustHaveBraces.html");
+                                                                             new LocalizableResourceString(nameof(Resources.IfAndElseMustHaveBracesAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect003-IfAndElseMustHaveBraces.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 

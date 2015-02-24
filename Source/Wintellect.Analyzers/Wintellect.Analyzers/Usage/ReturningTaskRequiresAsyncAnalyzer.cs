@@ -24,13 +24,13 @@ namespace Wintellect.Analyzers
         /// The error returned by this rule.
         /// </summary>
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer,
-                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerTitle,
-                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerMessageFormat,
-                                                                             Resources.CategoryUsage,
+                                                                             new LocalizableResourceString(nameof(Resources.ReturningTaskRequiresAsyncAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.ReturningTaskRequiresAsyncAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
+                                                                             (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Error,
                                                                              true,
-                                                                             Resources.ReturningTaskRequiresAsyncAnalyzerDescription, 
-                                                                             helpLink: "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html");
+                                                                             new LocalizableResourceString(nameof(Resources.ReturningTaskRequiresAsyncAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html");
 
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
