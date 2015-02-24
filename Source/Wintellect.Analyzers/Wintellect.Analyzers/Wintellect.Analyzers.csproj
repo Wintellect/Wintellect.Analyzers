@@ -122,6 +122,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\Wintellect.Analyzers.1.0.0-alpha5\tools\analyzers\Wintellect.Analyzers.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if exist Wintellect.Analyzers.nuspec if exist "$(SolutionDir)\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe" "$(SolutionDir)\packages\NuGet.CommandLine.2.8.2\tools\NuGet.exe" pack Wintellect.Analyzers.nuspec -OutputDirectory .</PostBuildEvent>
