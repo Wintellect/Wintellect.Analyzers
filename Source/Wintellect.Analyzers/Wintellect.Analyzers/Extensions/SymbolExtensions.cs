@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Wintellect.Analyzers
 {
-    public static class Extensions
+    public static class SymbolExtensions
     {
         /// <summary>
         /// Returns the first parent of a node that is one of the specified types.
