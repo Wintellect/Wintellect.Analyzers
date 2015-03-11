@@ -42,8 +42,10 @@
     <Compile Include="DiagnosticIds.cs" />
     <Compile Include="Documentation\ExceptionDocumentationMissingAnalyzer.cs" />
     <Compile Include="Documentation\SuppressionMessageMissingJustificationAnalyzer.cs" />
+    <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\SymbolExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\SyntaxFactoryHelper.cs" />
     <Compile Include="Performance\AvoidCallingMethodsWithParamArgsInLoopsAnalyzer.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
