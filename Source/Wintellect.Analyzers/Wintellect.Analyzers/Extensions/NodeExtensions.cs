@@ -43,9 +43,31 @@ namespace Wintellect.Analyzers
             return unit;
         }
 
+        /// <summary>
+        /// Returns true if the PropertyDeclarationSyntax has a getter method.
+        /// </summary>
+        /// <param name="property">
+        /// The property to check.
+        /// </param>
+        /// <returns>
+        /// True if the property has a getter, false otherwise.
+        /// </returns>
         public static Boolean HasGetter(this PropertyDeclarationSyntax property)
         {
             return property.AccessorList.Accessors.Where(t => t.IsKind(SyntaxKind.GetAccessorDeclaration)).Any();
+        }
+
+        /// <summary>
+        /// From a FieldDeclarationSyntax, returns the field name.
+        /// </summary>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        public static String FieldName(this FieldDeclarationSyntax field)
+        {
+            var vars = field.DescendantNodes().Where(i => i.IsKind(SyntaxKind.VariableDeclarator));
+            VariableDeclaratorSyntax varName = (VariableDeclaratorSyntax)vars.First();
+
+            return varName.Identifier.ToString();
         }
     }
 }

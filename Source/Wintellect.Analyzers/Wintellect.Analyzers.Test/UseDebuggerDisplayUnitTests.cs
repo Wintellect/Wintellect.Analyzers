@@ -276,6 +276,154 @@ namespace ConsoleApplication1
             VerifyCSharpFix(test, fixtest);
         }
 
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void OnePropOneFieldFixTest()
+        {
+            var test = @"using System;
+
+namespace ConsoleApplication1
+{
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+        }
+    }
+}";
+            var fixtest = @"using System;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    // TODO: Change the automatically inserted DebuggerDisplay string
+    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+        }
+    }
+}
+";
+
+            VerifyCSharpFix(test, fixtest);
+        }
+
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void MultipleAttributeFixTest()
+        {
+            var test = @"using System;
+
+namespace ConsoleApplication1
+{
+    [Serializable()]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+        }
+    }
+}";
+            var fixtest = @"using System;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    [Serializable()]
+    // TODO: Change the automatically inserted DebuggerDisplay string
+    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+        }
+    }
+}
+";
+
+            VerifyCSharpFix(test, fixtest);
+        }
+
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void ThreeFieldFixTest()
+        {
+            var test = @"using System;
+
+namespace ConsoleApplication1
+{
+    public class MyClassName
+    {
+        Int32 fakeData;
+        Int32 fakeData2;
+        Int32 fakeData3;
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+            fakeData2 = data;
+            fakeData3 = data;
+        }
+    }
+}";
+            var fixtest = @"using System;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    // TODO: Change the automatically inserted DebuggerDisplay string
+    [DebuggerDisplay(""fakeData={fakeData} fakeData2={fakeData2}"")]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        Int32 fakeData2;
+        Int32 fakeData3;
+        public MyClassName(Int32 data)
+        {
+            fakeData = data;
+            fakeData2 = data;
+            fakeData3 = data;
+        }
+    }
+}
+";
+
+            VerifyCSharpFix(test, fixtest);
+        }
+
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
             return new UseDebuggerDisplayAttributeCodeFixProvider();

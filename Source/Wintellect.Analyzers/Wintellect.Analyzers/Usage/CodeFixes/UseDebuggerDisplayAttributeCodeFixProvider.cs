@@ -77,7 +77,8 @@ namespace Wintellect.Analyzers
             {
                 Int32 addedCount = 0;
                 // I'll take a stab at the display string by first looking for two properties and not available, 
-                // will default to fields. The analyzer already validated that the 
+                // will default to fields. The analyzer already validated that the class has at least one property
+                // or field.
                 var properties = classDecl.Members.Where(m => m.IsKind(SyntaxKind.PropertyDeclaration));
 
                 foreach (PropertyDeclarationSyntax prop in properties)
@@ -109,7 +110,8 @@ namespace Wintellect.Analyzers
                             builtDisplayString.Append(" ");
                         }
 
-                        builtDisplayString.AppendFormat("{0}={{{0}}}", field.ToString());
+                        builtDisplayString.AppendFormat("{0}={{{0}}}", field.FieldName());
+
                         addedCount += 1;
                         if (addedCount == 2)
                         {
