@@ -252,4 +252,13 @@
   <data name="SuppressionMessageMissingJustificationAnalyzerTitle" xml:space="preserve">
     <value>SuppressionMessageAttribute needs to specify the Justification parameter</value>
   </data>
+  <data name="UseDebuggerDisplayAttributeDescription" xml:space="preserve">
+    <value>A DebugggerDisplayAttribute should be used on all public classes to make debugging of the class easier</value>
+  </data>
+  <data name="UseDebuggerDisplayAttributeMessageFormat" xml:space="preserve">
+    <value>The public class '{0}' does not have a DebuggerDisplay attribute applied</value>
+  </data>
+  <data name="UseDebuggerDisplayAttributeTitle" xml:space="preserve">
+    <value>Use a DebuggerDisplay attribute</value>
+  </data>
 </root>

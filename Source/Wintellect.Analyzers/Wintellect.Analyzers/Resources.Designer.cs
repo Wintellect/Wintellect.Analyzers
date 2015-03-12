@@ -296,15 +296,6 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sealed.
-        /// </summary>
-        internal static string ClassesShouldBeSealedCodeFixActionText {
-            get {
-                return ResourceManager.GetString("ClassesShouldBeSealedActionText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to When writing new classes, they should be declared as sealed.
         /// </summary>
         internal static string ClassesShouldBeSealedAnalyzerDescription {
@@ -328,6 +319,15 @@ namespace Wintellect.Analyzers {
         internal static string ClassesShouldBeSealedAnalyzerTitle {
             get {
                 return ResourceManager.GetString("ClassesShouldBeSealedAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make sealed.
+        /// </summary>
+        internal static string ClassesShouldBeSealedCodeFixActionText {
+            get {
+                return ResourceManager.GetString("ClassesShouldBeSealedCodeFixActionText", resourceCulture);
             }
         }
         
@@ -463,6 +463,33 @@ namespace Wintellect.Analyzers {
         internal static string SuppressionMessageMissingJustificationAnalyzerTitle {
             get {
                 return ResourceManager.GetString("SuppressionMessageMissingJustificationAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A DebugggerDisplayAttribute should be used on all public classes to make debugging of the class easier.
+        /// </summary>
+        internal static string UseDebuggerDisplayAttributeDescription {
+            get {
+                return ResourceManager.GetString("UseDebuggerDisplayAttributeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The public class &apos;{0}&apos; does not have a DebuggerDisplay attribute applied.
+        /// </summary>
+        internal static string UseDebuggerDisplayAttributeMessageFormat {
+            get {
+                return ResourceManager.GetString("UseDebuggerDisplayAttributeMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use a DebuggerDisplay attribute.
+        /// </summary>
+        internal static string UseDebuggerDisplayAttributeTitle {
+            get {
+                return ResourceManager.GetString("UseDebuggerDisplayAttributeTitle", resourceCulture);
             }
         }
     }
