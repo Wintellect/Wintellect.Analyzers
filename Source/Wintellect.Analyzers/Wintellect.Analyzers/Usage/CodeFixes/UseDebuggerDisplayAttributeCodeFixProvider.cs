@@ -26,6 +26,9 @@ namespace Wintellect.Analyzers
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UseDebuggerDisplayAttributeCodeFixProvider))]
     public sealed class UseDebuggerDisplayAttributeCodeFixProvider : CodeFixProvider
     {
+        internal static LocalizableResourceString commentString = new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayCommentString), Resources.ResourceManager, typeof(Resources));
+        internal static LocalizableResourceString codeFixTitle = new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayCodeFixTitle), Resources.ResourceManager, typeof(Resources));
+
         public sealed override ImmutableArray<String> FixableDiagnosticIds
         {
             get { return ImmutableArray.Create(DiagnosticIds.UseDebuggerDisplayAttributeAnalyzer); }
@@ -47,8 +50,8 @@ namespace Wintellect.Analyzers
             var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First();
 
             // Register a code action that will invoke the fix.
-            context.RegisterCodeFix(CodeAction.Create("Add DebuggerDisplayAttribute",
-                                                        c => AddDebuggerDisplayAttributeCodeFix(context.Document, declaration, c)),
+            context.RegisterCodeFix(CodeAction.Create(codeFixTitle.ToString(),
+                                                      c => AddDebuggerDisplayAttributeCodeFix(context.Document, declaration, c)),
                                     diagnostic);
         }
 
@@ -125,7 +128,7 @@ namespace Wintellect.Analyzers
             var attr = SyntaxFactoryHelper.Attribute("DebuggerDisplay", builtDisplayString.ToString());
             var synList = SyntaxFactory.SeparatedList(new[] { attr });
 
-            var trivia = SyntaxFactory.Comment(@"// TODO: Change the automatically inserted DebuggerDisplay string");
+            var trivia = SyntaxFactory.Comment(commentString.ToString());
 
             // There seems to be a bug that if you add the leading trivia as a comment and DO NOT also 
             // include the CR/LF, the trivial is stripped off.

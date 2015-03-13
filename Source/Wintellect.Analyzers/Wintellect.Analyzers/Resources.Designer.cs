@@ -492,5 +492,23 @@ namespace Wintellect.Analyzers {
                 return ResourceManager.GetString("UseDebuggerDisplayAttributeTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add DebuggerDisplayAttribute.
+        /// </summary>
+        internal static string UseDebuggerDisplayCodeFixTitle {
+            get {
+                return ResourceManager.GetString("UseDebuggerDisplayCodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers.
+        /// </summary>
+        internal static string UseDebuggerDisplayCommentString {
+            get {
+                return ResourceManager.GetString("UseDebuggerDisplayCommentString", resourceCulture);
+            }
+        }
     }
 }

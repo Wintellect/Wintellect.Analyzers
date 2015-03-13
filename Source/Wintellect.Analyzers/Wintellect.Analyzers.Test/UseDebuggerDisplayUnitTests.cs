@@ -192,7 +192,7 @@ using System.Diagnostics;
 
 namespace ConsoleApplication1
 {
-    // TODO: Change the automatically inserted DebuggerDisplay string
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
     [DebuggerDisplay(""Count={Count()}"")]
     public class B : IEnumerable
     {
@@ -248,7 +248,7 @@ using System.Diagnostics;
 
 namespace ConsoleApplication1
 {
-    // TODO: Change the automatically inserted DebuggerDisplay string
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
     [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
     public class MyClassName
     {
@@ -304,7 +304,7 @@ using System.Diagnostics;
 
 namespace ConsoleApplication1
 {
-    // TODO: Change the automatically inserted DebuggerDisplay string
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
     [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
     public class MyClassName
     {
@@ -356,7 +356,7 @@ using System.Diagnostics;
 namespace ConsoleApplication1
 {
     [Serializable()]
-    // TODO: Change the automatically inserted DebuggerDisplay string
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
     [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
     public class MyClassName
     {
@@ -404,7 +404,7 @@ using System.Diagnostics;
 
 namespace ConsoleApplication1
 {
-    // TODO: Change the automatically inserted DebuggerDisplay string
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
     [DebuggerDisplay(""fakeData={fakeData} fakeData2={fakeData2}"")]
     public class MyClassName
     {

@@ -261,4 +261,10 @@
   <data name="UseDebuggerDisplayAttributeTitle" xml:space="preserve">
     <value>Use a DebuggerDisplay attribute</value>
   </data>
+  <data name="UseDebuggerDisplayCodeFixTitle" xml:space="preserve">
+    <value>Add DebuggerDisplayAttribute</value>
+  </data>
+  <data name="UseDebuggerDisplayCommentString" xml:space="preserve">
+    <value>// TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers</value>
+  </data>
 </root>
