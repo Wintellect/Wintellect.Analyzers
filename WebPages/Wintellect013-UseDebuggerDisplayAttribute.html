@@ -1,0 +1,231 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="ctl00_Head1">
+    <link id="ctl00_HeaderLink2" href="PrintFriendly.css" rel="stylesheet" type="text/css" />
+    <meta content="en-us" name="ms.locale" />
+    <meta content="ms182275" name="Search.ShortId" />
+    <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
+    <title>WINTELLECT013: Use DebuggerDisplay Attribute on Public Classes</title>
+</head>
+<body>
+    <div class="PrinterFriendlyBanner">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="PFB_Left">
+                    <a href="http://www.wintellect.com">
+                        <img id="ctl00_BannerControl1_LogoImage" src="Wintellect.gif" style="border-width: 0px;" />
+                    </a>
+                </td>
+                <td class="PFB_Right">
+                    <span id="ctl00_BannerControl1_CopyrightLabel" class="PrinterFriendlyCopyrightText" title="©2015 Wintellect. All rights reserved.">©2014-2015 Wintellect. All rights reserved.</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ContentArea">
+        <!--starting processing-->
+        <div class="topic">
+            <div class="title">
+                WINTELLECT013: Use DebuggerDisplay Attribute on Public Classes
+            </div>
+            <div id="mainSection">
+                <div id="mainBody">
+                    <div class="introduction">
+                        <div class="tableSection">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>TypeName</p>
+                                    </td>
+                                    <td>
+                                        <p>UseDebuggerDisplayAnalyzer</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>CheckId</p>
+                                    </td>
+                                    <td>
+                                        <p>WINTELLECT013</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Category</p>
+                                    </td>
+                                    <td>
+                                        <p>Usage</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Breaking Change</p>
+                                    </td>
+                                    <td>
+                                        <p>Non Breaking</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Cause
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                A publicly visible class does not have a DebuggerDisplay attribute on the class.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Rule Description
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                One of the secrets to debugging is seeing the key information in an object quickly. The debugger 
+                                defaults to showing the type name, but if the class either overrides ToString, or has a 
+                                <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>
+                                the debugger will evaluate those instead. Thus the consumer of the class will see the important
+                                information quickly in Data Tips or any of the Watch family of windows, instead of having to manually
+                                expand and read through various fields.
+                            </p>
+                            <p>
+                                This analyzer triggers when the following conditions are met:
+                                <ul>
+                                    <li>The class is public (this rule does not apply to value types)</li>
+                                    <li>ToString is not overloaded and implemented by the class</li>
+                                    <li>There is at least one field or property in the class</li>
+                                    <li>The <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a> is not already present on the class</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                How to Fix Violations
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>
+                                    The accompanying code fix provider will insert a default <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a> 
+                                    on the class. The expression string will be made up of the first two properties found on the class. If there are no or only one property, the
+                                    rest of the expression will use the first fields found. If the class is derived from 
+                                    <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerable%28v=vs.110%29.aspx">IEnumerable</a>, 
+                                    the inserted expression will be <span class="code">Count={Count()}</span> to show how many items are in the
+                                    collection. You should update the expression to reflect the important information.
+                                </p>
+                                <p>
+                                    In addition to adding the <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>, the code fix will add a the using for System.Diagnostics if
+                                    it is not already included. Lastly, it will put in a TODO comment to remind you to change the change the 
+                                    expression statement to exactly what it should be.
+                                </p>
+                                <p>
+                                    As when debugging, all fields and properties no matter their protection levels are available to use in the 
+                                    <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>. You can also access fields off of them so if you want to see deep information at 
+                                    a glance, feel free to use "x.y.z". Finally, you can even call methods in the expression, but ensure you only
+                                    call methods that do not change state.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                When to Suppress Warnings
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>In most cases you should not suppress this warning but it's reasonable there are a few classes that you would
+                                never look at in the debugger so those could be suppressed.</p>
+                            </div>
+                            <div class="MTPS_CollapsibleRegion">
+                                <div class="CollapseRegionLink">
+                                    Example
+                                </div>
+                                <div class="MTPS_CollapsibleSection" style="display: block;">
+                                    <p>
+                                        The following example shows a class,
+                                        <span class="code">BadExample</span>, that violates
+                                        the rule because there is no DebuggerDisplayAttribute. 
+                                        In <span class="code">FixedExample</span> you see the result of running the code fix.
+                                    </p>
+                                    <div id="snippetGroup">
+                                        <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
+                                            <div class="CodeSnippetTitleBar">
+                                                <div class="CodeDisplayLanguage">
+                                                    C#
+                                                </div>
+                                            </div>
+                                            <div dir="ltr" style="background-color: #ddd">
+                                                <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
+<span style="color: blue">using</span> System;
+
+<span style="color: blue">namespace</span> ExampleLibrary
+{
+    <span style="color: blue">public class</span> BadExample : IEnumerable
+    {
+        Int32 fakeData2;
+        <span style="color: blue">public</span> String FakeProperty2
+        {
+            <span style="color: blue">get</span>;
+            <span style="color: blue">set</span>;
+        }
+
+        <span style="color: blue">public</span> IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+
+<em>After the code fix is applied:</em>
+
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Diagnostic;
+
+<span style="color: blue">namespace</span> ExampleLibrary
+{
+    <span style="color: green">// TODO: Change the automatically inserted DebuggerDisplay string</span>
+    [DebuggerDisplay("Count={Count()}")]
+    <span style="color: blue">public class</span> FixedExample : IEnumerable
+    {
+        Int32 fakeData2;
+        <span style="color: blue">public</span> String FakeProperty2
+        {
+            <span style="color: blue">get</span>;
+            <span style="color: blue">set</span>;
+        }
+
+        <span style="color: blue">public</span> IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}</pre>
+                                            </div>
+                                        </div>
+                                        <div class="MTPS_CollapsibleRegion">
+                                            <div class="CollapseRegionLink">
+                                                Related Links
+                                            </div>
+                                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                                <a id="sectionToggle4">
+                                                    <!---->
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a><br />
+                    </p>
+                    <p>
+                        <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
