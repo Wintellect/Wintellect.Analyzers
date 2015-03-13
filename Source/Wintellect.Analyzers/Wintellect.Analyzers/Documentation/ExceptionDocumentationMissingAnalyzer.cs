@@ -52,9 +52,16 @@ namespace Wintellect.Analyzers
                 return;
             }
 
+            ThrowStatementSyntax throwSyntax = context.Node as ThrowStatementSyntax;
+
+            // If there's no descendant nodes, it's a "throw;" so there's nothing to do here.
+            if (!throwSyntax.DescendantNodes().Any())
+            {
+                return;
+            }
+
             // Get the type being thrown by searching for the IdentifierNameSyntax. This works for both "throw new BlahException" and 
             // "throw ex" (in case someone's crazy enough to do that).
-            ThrowStatementSyntax throwSyntax = context.Node as ThrowStatementSyntax;
             IdentifierNameSyntax ident = throwSyntax.DescendantNodes().First(node => node is IdentifierNameSyntax) as IdentifierNameSyntax;
 
             if (ident != null)

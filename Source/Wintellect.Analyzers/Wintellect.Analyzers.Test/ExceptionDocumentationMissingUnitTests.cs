@@ -52,6 +52,43 @@ namespace SomeTests
 
         [TestMethod]
         [TestCategory("ExceptionDocumentationMissingUnitTests")]
+        public void MethodRethrowCorrect()
+        {
+            var test = @"
+using System;
+using System.Diagnostics;
+
+public class MyClassName
+{
+    Int32 fakeData;
+    public String FakePropertyOne
+    {
+        get;
+        set;
+    }
+    public String FakePropertyTwo
+    {
+        get;
+        set;
+    }
+
+    public MyClassName(Int32 data)
+    {
+        try
+        {
+            Debug.WriteLine(""Hello world!"");
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+    }
+    }
+";
+            VerifyCSharpDiagnostic(test);
+        }
+        [TestMethod]
+        [TestCategory("ExceptionDocumentationMissingUnitTests")]
         public void MethodNotDocumented()
         {
             var test = @"
