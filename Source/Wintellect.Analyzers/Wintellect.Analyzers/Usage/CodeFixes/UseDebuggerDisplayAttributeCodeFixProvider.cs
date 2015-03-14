@@ -68,7 +68,11 @@ namespace Wintellect.Analyzers
             SimpleBaseTypeSyntax baseEnumerable = null;
             if (classDecl.BaseList != null)
             {
-                baseEnumerable = classDecl.BaseList.ChildNodes().Where(t => t.ToString().EndsWith("IEnumerable")).First() as SimpleBaseTypeSyntax;
+                var lookedFor = classDecl.BaseList.ChildNodes().Where(t => t.ToString().EndsWith("IEnumerable"));
+                if (lookedFor.Any())
+                {
+                    baseEnumerable = lookedFor.First() as SimpleBaseTypeSyntax;
+                }
             }
 
             if (baseEnumerable != null)
@@ -134,10 +138,10 @@ namespace Wintellect.Analyzers
             // include the CR/LF, the trivial is stripped off.
             var list = SyntaxFactory.AttributeList(synList).WithLeadingTrivia(trivia, SyntaxFactory.CarriageReturnLineFeed);
 
-            var classWithNewAttribute = classDecl.AddAttributeLists(list);
+            var classWithNewAttribute = classDecl.AddAttributeLists(list).WithAdditionalAnnotations(Formatter.Annotation);
 
             CompilationUnitSyntax root = (CompilationUnitSyntax)await document.GetSyntaxRootAsync(cancellationToken);
-            root = root.ReplaceNode(classDecl, classWithNewAttribute);
+            root = root.ReplaceNode(classDecl, classWithNewAttribute).WithAdditionalAnnotations(Formatter.Annotation);
 
             root = root.AddUsingIfNotPresent("System.Diagnostics");
 

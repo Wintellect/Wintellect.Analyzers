@@ -167,7 +167,8 @@ namespace ConsoleApplication1
         [TestCategory("UseDebuggerDisplayUnitTests")]
         public void EnumerableFixTest()
         {
-            var test = @"using System;
+            var test = @"
+using System;
 
 namespace ConsoleApplication1
 {
@@ -187,7 +188,8 @@ namespace ConsoleApplication1
     }
 }";
 
-            var fixtest = @"using System;
+            var fixtest = @"
+using System;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -208,8 +210,7 @@ namespace ConsoleApplication1
             throw new NotImplementedException();
         }
     }
-}
-";
+}";
 
             VerifyCSharpFix(test, fixtest);
         }
@@ -218,7 +219,8 @@ namespace ConsoleApplication1
         [TestCategory("UseDebuggerDisplayUnitTests")]
         public void SimpleFixTest()
         {
-            var test = @"using System;
+            var test = @"
+using System;
 
 namespace ConsoleApplication1
 {
@@ -243,7 +245,8 @@ namespace ConsoleApplication1
         }
     }
 }";
-            var fixtest = @"using System;
+            var fixtest = @"
+using System;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -270,8 +273,7 @@ namespace ConsoleApplication1
             fakeData = data;
         }
     }
-}
-";
+}";
 
             VerifyCSharpFix(test, fixtest);
         }
@@ -280,7 +282,8 @@ namespace ConsoleApplication1
         [TestCategory("UseDebuggerDisplayUnitTests")]
         public void OnePropOneFieldFixTest()
         {
-            var test = @"using System;
+            var test = @"
+using System;
 
 namespace ConsoleApplication1
 {
@@ -299,7 +302,8 @@ namespace ConsoleApplication1
         }
     }
 }";
-            var fixtest = @"using System;
+            var fixtest = @"
+using System;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -320,8 +324,7 @@ namespace ConsoleApplication1
             fakeData = data;
         }
     }
-}
-";
+}";
 
             VerifyCSharpFix(test, fixtest);
         }
@@ -330,7 +333,8 @@ namespace ConsoleApplication1
         [TestCategory("UseDebuggerDisplayUnitTests")]
         public void MultipleAttributeFixTest()
         {
-            var test = @"using System;
+            var test = @"
+using System;
 
 namespace ConsoleApplication1
 {
@@ -350,7 +354,8 @@ namespace ConsoleApplication1
         }
     }
 }";
-            var fixtest = @"using System;
+            var fixtest = @"
+using System;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -372,8 +377,7 @@ namespace ConsoleApplication1
             fakeData = data;
         }
     }
-}
-";
+}";
 
             VerifyCSharpFix(test, fixtest);
         }
@@ -382,7 +386,8 @@ namespace ConsoleApplication1
         [TestCategory("UseDebuggerDisplayUnitTests")]
         public void ThreeFieldFixTest()
         {
-            var test = @"using System;
+            var test = @"
+using System;
 
 namespace ConsoleApplication1
 {
@@ -399,7 +404,8 @@ namespace ConsoleApplication1
         }
     }
 }";
-            var fixtest = @"using System;
+            var fixtest = @"
+using System;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -418,8 +424,7 @@ namespace ConsoleApplication1
             fakeData3 = data;
         }
     }
-}
-";
+}";
 
             VerifyCSharpFix(test, fixtest);
         }

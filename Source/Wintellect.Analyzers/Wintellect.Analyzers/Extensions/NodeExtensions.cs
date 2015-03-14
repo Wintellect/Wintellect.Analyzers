@@ -7,6 +7,7 @@ See License.txt in the project root for license information
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.Formatting;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -38,7 +39,10 @@ namespace Wintellect.Analyzers
             if (!t.Any())
             {
                 UsingDirectiveSyntax usingDirective = SyntaxFactoryHelper.QualifiedUsing(usingString);
-                unit = unit.AddUsings(usingDirective).NormalizeWhitespace().WithTrailingTrivia(SyntaxFactory.CarriageReturnLineFeed);
+
+                // I'll never understand why WithAdditionalAnnotations(Formatter.Annotation) isn't the default. Picking
+                // up the default formatting should be the default and would make developing rules much easier.
+                unit = unit.AddUsings(usingDirective).WithAdditionalAnnotations(Formatter.Annotation);
             }
             return unit;
         }
