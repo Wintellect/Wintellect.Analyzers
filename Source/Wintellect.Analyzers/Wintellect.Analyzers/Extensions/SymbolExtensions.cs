@@ -16,61 +16,6 @@ namespace Wintellect.Analyzers
 {
     public static class SymbolExtensions
     {
-        /// <summary>
-        /// Returns the first parent of a node that is one of the specified types.
-        /// </summary>
-        /// <param name="node">
-        /// The node to check.
-        /// </param>
-        /// <param name="types">
-        /// The array of types to check.
-        /// </param>
-        /// <returns>
-        /// If one of the parents in the <paramref name="types"/> array matches, that type, otherwise null.
-        /// </returns>
-        /// <remarks>
-        /// Full credit to the awesome Giggio at 
-        /// https://github.com/code-cracker/code-cracker/blob/master/src/Common/CodeCracker.Common/Extensions/AnalyzerExtensions.cs
-        /// </remarks>
-        public static SyntaxNode FirstAncestorOfType(this SyntaxNode node, params Type[] types)
-        {
-            SyntaxNode currentNode = node;
-            while (currentNode != null)
-            {
-                SyntaxNode parent = currentNode.Parent;
-                if (parent != null)
-                {
-                    for (Int32 i = 0; i < types.Length; i++)
-                    {
-                        if (parent.GetType() == types[i])
-                        {
-                            return parent;
-                        }
-                    }
-                }
-
-                currentNode = parent;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Returns true if this node is part of a looping construct.
-        /// </summary>
-        /// <param name="node">
-        /// The node to check.
-        /// </param>
-        /// <returns>
-        /// True if part of a looping construct, false otherwise.
-        /// </returns>
-        public static Boolean IsNodeInALoop(this SyntaxNode node)
-        {
-            return null != node.FirstAncestorOfType(typeof(ForEachStatementSyntax),
-                                                    typeof(ForStatementSyntax),
-                                                    typeof(WhileStatementSyntax),
-                                                    typeof(DoStatementSyntax));
-        }
 
         /// <summary>
         /// Determines if the symbol is part of generated or non-user code.
