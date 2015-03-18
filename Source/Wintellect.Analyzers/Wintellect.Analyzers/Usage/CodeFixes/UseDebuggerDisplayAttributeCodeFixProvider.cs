@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis.Formatting;
 using System;
 using System.Collections;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,6 +22,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UseDebuggerDisplayAttributeCodeFixProvider))]
+    [DebuggerDisplay("CodeFix={DiagnosticIds.UseDebuggerDisplayAttributeAnalyzer}")]
     public sealed class UseDebuggerDisplayAttributeCodeFixProvider : CodeFixProvider
     {
         internal static LocalizableResourceString commentString = new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayCommentString), Resources.ResourceManager, typeof(Resources));

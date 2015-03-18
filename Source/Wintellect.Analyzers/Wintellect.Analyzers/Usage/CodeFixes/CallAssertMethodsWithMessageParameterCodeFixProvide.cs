@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Immutable;
 using System.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(CallAssertMethodsWithMessageParameterCodeFixProvider)), Shared]
-
+    [DebuggerDisplay("CodeFix={DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer}")]
     public sealed class CallAssertMethodsWithMessageParameterCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Add test as a message parameter";

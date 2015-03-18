@@ -9,12 +9,14 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
     // This rule was done by Kevin Pilch-Bisson at TechEd Europe 2014.
     // http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DebuggerDisplay("Rule={DiagnosticIds.IfAndElseMustHaveBracesAnalyzer}")]
     public sealed class IfAndElseMustHaveBracesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.IfAndElseMustHaveBracesAnalyzer,

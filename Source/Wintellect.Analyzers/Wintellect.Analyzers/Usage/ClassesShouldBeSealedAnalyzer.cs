@@ -7,10 +7,12 @@ See License.txt in the project root for license information
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DebuggerDisplay("Rule={DiagnosticIds.ClassesShouldBeSealedAnalyzer}")]
     public sealed class ClassesShouldBeSealedAnalyzer : DiagnosticAnalyzer
     {
        

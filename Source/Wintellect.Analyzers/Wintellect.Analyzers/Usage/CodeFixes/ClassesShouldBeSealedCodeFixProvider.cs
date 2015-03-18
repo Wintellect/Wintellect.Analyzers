@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis.Formatting;
 using System;
 using System.Collections.Immutable;
 using System.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(ClassesShouldBeSealedCodeFixProvider)), Shared]
+    [DebuggerDisplay("CodeFix={DiagnosticIds.ClassesShouldBeSealedAnalyzer}")]
     public sealed class ClassesShouldBeSealedCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Make sealed";

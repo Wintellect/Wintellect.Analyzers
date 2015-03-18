@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Immutable;
 using System.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Wintellect.Analyzers
     // http://channel9.msdn.com/Events/TechEd/Europe/2014/DEV-B345
     // I finished it off and ported it to VS 2015.
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(IfAndElseMustHaveBracesCodeFixProvider)), Shared]
+    [DebuggerDisplay("CodeFix={DiagnosticIds.IfAndElseMustHaveBracesAnalyzer}")]
     public sealed class IfAndElseMustHaveBracesCodeFixProvider : CodeFixProvider
     {
         public sealed override ImmutableArray<String> FixableDiagnosticIds

@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis.Rename;
 using System;
 using System.Collections.Immutable;
 using System.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(ReturningTaskRequiresAsyncCodeFixProvider)), Shared]
+    [DebuggerDisplay("CodeFix={DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer}")]
     public sealed class ReturningTaskRequiresAsyncCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Rename async method";

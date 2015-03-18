@@ -14,6 +14,7 @@ using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Immutable;
 using System.Composition;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ using System.Threading.Tasks;
 namespace Wintellect.Analyzers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(AvoidPredefinedTypesCodeFixProvider)), Shared]
+    [DebuggerDisplay("CodeFix={DiagnosticIds.AvoidPreDefinedTypesAnalyzer}")]
     public sealed class AvoidPredefinedTypesCodeFixProvider : CodeFixProvider
     {
         private const String actionMessage = "Convert to specific type";

@@ -10,10 +10,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DebuggerDisplay("Rule={DiagnosticIds.AvoidCallingMethodsWithParamArgsInLoopsAnalyzer}")]
     public sealed class AvoidCallingMethodsWithParamArgsInLoopsAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidCallingMethodsWithParamArgsInLoopsAnalyzer,

@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
@@ -14,6 +15,7 @@ namespace Wintellect.Analyzers
     // working in VS 2015 CTP5 for VB.NET. I'll come back to this on the next CTP.
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     //[DiagnosticAnalyzer(LanguageNames.VisualBasic)]
+    [DebuggerDisplay("Rules={DiagnosticIds.AssembliesHaveCompanyAttributeAnalyzer},{DiagnosticIds.AssembliesHaveCopyrightAttributeAnalyzer}...")]
     public sealed class AssemblyAttributeAnalyzer : DiagnosticAnalyzer
     {
         private static DiagnosticDescriptor companyRule = new DiagnosticDescriptor(DiagnosticIds.AssembliesHaveCompanyAttributeAnalyzer,

@@ -11,11 +11,12 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DebuggerDisplay("Rule={DiagnosticIds.AvoidPreDefinedTypesAnalyzer}")]
     public sealed class AvoidPreDefinedTypesAnalyzer : DiagnosticAnalyzer
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.AvoidPreDefinedTypesAnalyzer,

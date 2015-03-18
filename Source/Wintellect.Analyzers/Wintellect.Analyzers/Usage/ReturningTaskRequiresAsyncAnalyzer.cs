@@ -8,10 +8,12 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
+    [DebuggerDisplay("Rule={DiagnosticIds.ReturningTaskRequiresAsyncAnalyzer}")]
     public sealed class ReturningTaskRequiresAsyncAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
