@@ -62,6 +62,7 @@ namespace Wintellect.Analyzers
             var classSymbol = semanticModel.GetDeclaredSymbol(classDecl) as INamedTypeSymbol;
             Boolean isIEnumerable = classSymbol.IsDerivedFromInterface(typeof(IEnumerable));
 
+            // Start building up the display string.
             StringBuilder builtDisplayString = new StringBuilder(40);
             builtDisplayString.Append("\"");
 
@@ -124,15 +125,26 @@ namespace Wintellect.Analyzers
 
             var trivia = SyntaxFactory.Comment(commentString.ToString());
 
+            // Grab any attributes that are already on the class. This will get the trivia as well because I don't
+            // want to screw that up.
+            var origAttributes = classDecl.AttributeLists;
+            
             // There seems to be a bug that if you add the leading trivia as a comment and DO NOT also 
             // include the CR/LF, the trivial is stripped off.
             var list = SyntaxFactory.AttributeList(synList).WithLeadingTrivia(trivia, SyntaxFactory.CarriageReturnLineFeed);
 
-            var classWithNewAttribute = classDecl.WithLeadingTrivia().AddAttributeLists(list).WithAdditionalAnnotations(Formatter.Annotation);
+            // Tack the new DebuggerDisplayAttribute on the end.
+            var newAttributes = origAttributes.Add(list);
 
+            // Add the new list. The WithAttributeLists call ensures that we don't duplicate attributes that were 
+            // already added.
+            var classWithNewAttribute = classDecl.WithLeadingTrivia().WithAttributeLists(newAttributes).WithAdditionalAnnotations(Formatter.Annotation);
+
+            // Now to replace the original class node with the new one where I added the DebuggerDisplay attribute.
             CompilationUnitSyntax root = (CompilationUnitSyntax)await document.GetSyntaxRootAsync(cancellationToken);
             root = root.ReplaceNode(classDecl, classWithNewAttribute).WithAdditionalAnnotations(Formatter.Annotation);
 
+            // Ensure the required using is there for the introduction of DebuggerDisplay.
             root = root.AddUsingIfNotPresent("System.Diagnostics");
 
             Document newDocument = document.WithSyntaxRoot(root);

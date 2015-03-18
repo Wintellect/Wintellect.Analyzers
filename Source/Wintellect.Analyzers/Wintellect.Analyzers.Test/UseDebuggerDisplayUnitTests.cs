@@ -597,6 +597,60 @@ namespace ConsoleApplication1
             VerifyCSharpFix(test, fixtest);
         }
 
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void MultipleAttributesWithCommentsTest()
+        {
+            var test = @"
+using System;
+
+namespace ConsoleApplication1
+{
+    // A comment on serializable. Does it stay?
+    [Serializable]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+        public String FakePropertyTwo
+        {
+            get;
+            set;
+        }
+    }
+}";
+            var fixtest = @"
+using System;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    // A comment on serializable. Does it stay?
+    [Serializable]
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
+    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
+    public class MyClassName
+    {
+        Int32 fakeData;
+        public String FakePropertyOne
+        {
+            get;
+            set;
+        }
+        public String FakePropertyTwo
+        {
+            get;
+            set;
+        }
+    }
+}";
+
+            VerifyCSharpFix(test, fixtest);
+        }
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
             return new UseDebuggerDisplayAttributeCodeFixProvider();
