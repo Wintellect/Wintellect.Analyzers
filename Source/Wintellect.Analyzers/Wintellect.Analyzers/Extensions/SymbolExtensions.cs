@@ -200,6 +200,21 @@ namespace Wintellect.Analyzers
             return true;
         }
 
+        /// <summary>
+        /// Determines if the INamedTypeSymbol is derived from the specific reflection interface.
+        /// </summary>
+        /// <param name="namedType">
+        /// The type being extended.
+        /// </param>
+        /// <param name="type">
+        /// The reflection type to check.
+        /// </param>
+        /// <returns>
+        /// True if <paramref name="type"/> is in the inheritance chain.
+        /// </returns>
+        /// <remarks>
+        /// This method does no checking if <paramref name="type"/> is actually an interface.
+        /// </remarks>
         public static Boolean IsDerivedFromInterface(this INamedTypeSymbol namedType, Type type)
         {
             foreach (var iFace in namedType.AllInterfaces)
@@ -256,9 +271,7 @@ namespace Wintellect.Analyzers
         /// </returns>
         public static String GetTypesQualifiedAssemblyName(this INamedTypeSymbol namedType)
         {
-            String symbolType = namedType.ToDisplayString();
-            String symbolAssemblyQualifiedName = symbolType + ", " + new AssemblyName(namedType.ContainingAssembly.Identity.GetDisplayName(true));
-            return symbolAssemblyQualifiedName;
+            return BuildQualifiedAssemblyName(null, namedType.ToDisplayString(), namedType.ContainingAssembly);
         }
 
         /// <summary>
@@ -272,9 +285,9 @@ namespace Wintellect.Analyzers
         /// </returns>
         public static String GetTypesQualifiedAssemblyName(this IParameterSymbol parameter)
         {
-            String symbolType = String.Format("{0}.{1}", parameter.Type.ContainingNamespace.Name, parameter.Type.Name);
-            String symbolAssemblyQualifiedName = symbolType + ", " + new AssemblyName(parameter.Type.ContainingAssembly.Identity.GetDisplayName(true));
-            return symbolAssemblyQualifiedName;
+            return BuildQualifiedAssemblyName(parameter.Type.ContainingNamespace.Name,
+                                              parameter.Type.Name,
+                                              parameter.Type.ContainingAssembly);
         }
 
         /// <summary>
@@ -288,9 +301,24 @@ namespace Wintellect.Analyzers
         /// </returns>
         public static String GetTypesQualifiedAssemblyName(this IMethodSymbol method)
         {
-            String symbolType = String.Format("{0}.{1}", method.ContainingType.ContainingNamespace.Name, method.ContainingType.Name);
-            String symbolAssemblyQualifiedName = symbolType + ", " + new AssemblyName(method.ContainingType.ContainingAssembly.Identity.GetDisplayName(true));
-            return symbolAssemblyQualifiedName;
+            return BuildQualifiedAssemblyName(method.ContainingType.ContainingNamespace.Name,
+                                              method.ContainingType.Name,
+                                              method.ContainingType.ContainingAssembly);
+        }
+
+        private static String BuildQualifiedAssemblyName(String nameSpace, String typeName, IAssemblySymbol assemblySymbol)
+        {
+            String symbolType;
+            if (String.IsNullOrEmpty(nameSpace))
+            {
+                symbolType = typeName;
+            }
+            else
+            {
+                symbolType = String.Format("{0}.{1}", nameSpace, typeName);
+            }
+            String symbolAssemblyQualiedName = symbolType + ", " + new AssemblyName(assemblySymbol.Identity.GetDisplayName(true));
+            return symbolAssemblyQualiedName;
         }
 
         private static Boolean HasIgnorableAttributes(ImmutableArray<AttributeData> attributes)
