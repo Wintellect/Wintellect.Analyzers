@@ -165,7 +165,7 @@ namespace ConsoleApplication1
 
         [TestMethod]
         [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void EnumerableFixTest()
+        public void BadCodeTest()
         {
             var test = @"
 using System;
@@ -188,8 +188,38 @@ namespace ConsoleApplication1
     }
 }";
 
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void EnumerableFixTest()
+        {
+            var test = @"
+using System;
+using System.Collections;
+
+namespace ConsoleApplication1
+{
+    public class B : IEnumerable
+    {
+        Int32 fakeData2;
+        public String FakeProperty2
+        {
+            get;
+            set;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}";
+
             var fixtest = @"
 using System;
+using System.Collections;
 using System.Diagnostics;
 
 namespace ConsoleApplication1
@@ -203,6 +233,144 @@ namespace ConsoleApplication1
         {
             get;
             set;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}";
+
+            VerifyCSharpFix(test, fixtest);
+        }
+
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void EnumerableTwoDeepFixTest()
+        {
+            var test = @"
+using System;
+using System.Collections;
+
+namespace ConsoleApplication1
+{
+    public class B : IEnumerable
+    {
+        Int32 fakeData2;
+        public String FakeProperty2
+        {
+            get;
+            set;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class A : B
+    {
+        Int32 fakeData3;
+        public String FakeProperty3
+        {
+            get;
+            set;
+        }
+    }
+}";
+
+            var fixtest = @"
+using System;
+using System.Collections;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
+    [DebuggerDisplay(""Count={Count()}"")]
+    public class B : IEnumerable
+    {
+        Int32 fakeData2;
+        public String FakeProperty2
+        {
+            get;
+            set;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
+    [DebuggerDisplay(""Count={Count()}"")]
+    public class A : B
+    {
+        Int32 fakeData3;
+        public String FakeProperty3
+        {
+            get;
+            set;
+        }
+    }
+}";
+
+            VerifyCSharpFix(test, fixtest);
+        }
+
+        [TestMethod]
+        [TestCategory("UseDebuggerDisplayUnitTests")]
+        public void EnumerableMultipleInheritanceFixTest()
+        {
+            var test = @"
+using System;
+using System.Collections;
+
+namespace ConsoleApplication1
+{
+    public class B : IEnumerable, IComparable
+    {
+        Int32 fakeData2;
+        public String FakeProperty2
+        {
+            get;
+            set;
+        }
+
+        public Int32 CompareTo(Object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}";
+
+            var fixtest = @"
+using System;
+using System.Collections;
+using System.Diagnostics;
+
+namespace ConsoleApplication1
+{
+    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
+    [DebuggerDisplay(""Count={Count()}"")]
+    public class B : IEnumerable, IComparable
+    {
+        Int32 fakeData2;
+        public String FakeProperty2
+        {
+            get;
+            set;
+        }
+
+        public Int32 CompareTo(Object obj)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerator GetEnumerator()

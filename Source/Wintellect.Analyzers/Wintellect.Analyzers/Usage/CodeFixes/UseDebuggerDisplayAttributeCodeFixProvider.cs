@@ -20,6 +20,8 @@ using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.CodeAnalysis.Formatting;
 using System.Text;
+using System.Diagnostics;
+using System.Collections;
 
 namespace Wintellect.Analyzers
 {
@@ -55,27 +57,20 @@ namespace Wintellect.Analyzers
                                     diagnostic);
         }
 
-        private async Task<Document> AddDebuggerDisplayAttributeCodeFix(Document document, 
-                                                                        ClassDeclarationSyntax classDecl, 
+        private async Task<Document> AddDebuggerDisplayAttributeCodeFix(Document document,
+                                                                        ClassDeclarationSyntax classDecl,
                                                                         CancellationToken cancellationToken)
         {
+            // Grab the symbol for the class so I can see if this is derived from IEnumerable.
+            var semanticModel = await document.GetSemanticModelAsync(cancellationToken);
+
+            var classSymbol = semanticModel.GetDeclaredSymbol(classDecl) as INamedTypeSymbol;
+            Boolean isIEnumerable = classSymbol.IsDerivedFromInterface(typeof(IEnumerable));
+
             StringBuilder builtDisplayString = new StringBuilder(40);
             builtDisplayString.Append("\"");
 
-            // I really dislike having to do the string search here for a base interface of IEnumerable. However,
-            // while you can get the SemanticModel from the document, all the symbol information is empty or null
-            // when trying to look up the SimpleBaseTypeSyntax.
-            SimpleBaseTypeSyntax baseEnumerable = null;
-            if (classDecl.BaseList != null)
-            {
-                var lookedFor = classDecl.BaseList.ChildNodes().Where(t => t.ToString().EndsWith("IEnumerable"));
-                if (lookedFor.Any())
-                {
-                    baseEnumerable = lookedFor.First() as SimpleBaseTypeSyntax;
-                }
-            }
-
-            if (baseEnumerable != null)
+            if (isIEnumerable)
             {
                 // For IEnumerable derived types, show the count of items.
                 builtDisplayString.Append("Count={Count()}");
@@ -138,7 +133,7 @@ namespace Wintellect.Analyzers
             // include the CR/LF, the trivial is stripped off.
             var list = SyntaxFactory.AttributeList(synList).WithLeadingTrivia(trivia, SyntaxFactory.CarriageReturnLineFeed);
 
-            var classWithNewAttribute = classDecl.AddAttributeLists(list).WithAdditionalAnnotations(Formatter.Annotation);
+            var classWithNewAttribute = classDecl.WithLeadingTrivia().AddAttributeLists(list).WithAdditionalAnnotations(Formatter.Annotation);
 
             CompilationUnitSyntax root = (CompilationUnitSyntax)await document.GetSyntaxRootAsync(cancellationToken);
             root = root.ReplaceNode(classDecl, classWithNewAttribute).WithAdditionalAnnotations(Formatter.Annotation);

@@ -13,6 +13,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Diagnostics;
 
 namespace Wintellect.Analyzers
 {
@@ -37,6 +38,16 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeType(SymbolAnalysisContext context)
         {
+            // Are there any problems with this symbol? If there is, I don't want to continue because the code
+            // fix needs a good class declaration because I will build up the DebuggerDisplay parameter based
+            // on the inheritance (IEnumerable only), properties, and fields. I don't want to create a string
+            // with bad data.
+            var diagnostics = context.Compilation.GetDeclarationDiagnostics();
+            if(diagnostics.Any())
+            {
+                return;
+            }
+
             INamedTypeSymbol namedSymbol = context.Symbol as INamedTypeSymbol;
 
             // Right now this analyzer only applies to classes. It could be applicable to structs, but 

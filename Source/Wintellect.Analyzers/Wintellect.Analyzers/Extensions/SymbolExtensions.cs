@@ -200,6 +200,18 @@ namespace Wintellect.Analyzers
             return true;
         }
 
+        public static Boolean IsDerivedFromInterface(this INamedTypeSymbol namedType, Type type)
+        {
+            foreach (var iFace in namedType.AllInterfaces)
+            {
+                if (iFace.IsType(type))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         /// <summary>
         /// Returns true if the IParameterSymbol matches the specified reflection type.
         /// </summary>
@@ -215,6 +227,38 @@ namespace Wintellect.Analyzers
         public static Boolean IsType(this IParameterSymbol parameter, Type type)
         {
             return parameter.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// Returns true if the INamedTypeSymbols matches the specified reflection type.
+        /// </summary>
+        /// <param name="namedType"></param>
+        /// The INamedTypeSymbols in question
+        /// <param name="type">
+        /// The reflection type.
+        /// </param>
+        /// <returns>
+        /// True if they match, false otherwise.
+        /// </returns>
+        public static Boolean IsType(this INamedTypeSymbol namedType, Type type)
+        {
+            return namedType.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// For the INamedTypeSymbol returns the assembly qualified name from Roslyn.
+        /// </summary>
+        /// <param name="namedType">
+        /// The item being extended.
+        /// </param>
+        /// <returns>
+        /// The qualified assembly name this type comes from.
+        /// </returns>
+        public static String GetTypesQualifiedAssemblyName(this INamedTypeSymbol namedType)
+        {
+            String symbolType = namedType.ToDisplayString();
+            String symbolAssemblyQualifiedName = symbolType + ", " + new AssemblyName(namedType.ContainingAssembly.Identity.GetDisplayName(true));
+            return symbolAssemblyQualifiedName;
         }
 
         /// <summary>
