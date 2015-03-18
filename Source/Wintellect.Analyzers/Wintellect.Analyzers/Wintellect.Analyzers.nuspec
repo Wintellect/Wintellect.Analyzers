@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Wintellect Roslyn code analyzers and code fix providers for producing better code. See the GitHub project for the source. Have ideas for analyzers? Feel free to fork or let us know!</description>
     <summary>Wintellect Roslyn code analyzers and code fix providers for producing better code.</summary>
-    <releaseNotes>Updated for VS 2015 CTP6</releaseNotes>
+    <releaseNotes>Added UseDebuggerDisplayAttributeAnalyzer and code fix.</releaseNotes>
     <copyright>Copyright (c) 2014-2015 by Wintellect and individual contributors</copyright>
     <tags>Roslyn, analyzers</tags>
     <frameworkAssemblies>
