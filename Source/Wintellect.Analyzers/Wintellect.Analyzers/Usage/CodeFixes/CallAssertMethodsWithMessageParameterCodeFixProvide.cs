@@ -26,7 +26,7 @@ namespace Wintellect.Analyzers
     [DebuggerDisplay("CodeFix={DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer}")]
     public sealed class CallAssertMethodsWithMessageParameterCodeFixProvider : CodeFixProvider
     {
-        private const String actionMessage = "Add test as a message parameter";
+        internal static String actionMessage = (new LocalizableResourceString(nameof(Resources.CallAssertMethodsWithMessageParameterCodeFixTitle), Resources.ResourceManager, typeof(Resources))).ToString();
 
         public sealed override ImmutableArray<String> FixableDiagnosticIds
         {

@@ -251,6 +251,15 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add test as a message parameter.
+        /// </summary>
+        internal static string CallAssertMethodsWithMessageParameterCodeFixTitle {
+            get {
+                return ResourceManager.GetString("CallAssertMethodsWithMessageParameterCodeFixTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design.
         /// </summary>
         internal static string CategoryDesign {

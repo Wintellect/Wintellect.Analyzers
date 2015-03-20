@@ -180,6 +180,9 @@
   <data name="CallAssertMethodsWithMessageParameterAnalyzerTitle" xml:space="preserve">
     <value>Always use Debug.Assert methods that have a message parameter</value>
   </data>
+  <data name="CallAssertMethodsWithMessageParameterCodeFixTitle" xml:space="preserve">
+    <value>Add test as a message parameter</value>
+  </data>
   <data name="CategoryDesign" xml:space="preserve">
     <value>Design</value>
   </data>
