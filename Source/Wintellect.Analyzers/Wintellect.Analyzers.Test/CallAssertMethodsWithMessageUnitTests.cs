@@ -154,6 +154,5 @@ namespace ConsoleApplication1
         {
             return new CallAssertMethodsWithMessageParameterAnalyzer();
         }
-
     }
 }

@@ -50,15 +50,20 @@ namespace Wintellect.Analyzers
                 return;
             }
 
-            // Let's get serious and double check that we are dealing with 
-            // System.Diagnostic.System.Assert. In some scenarios, such as unit 
-            // tests the module will be null because the whole tree hasn't been 
+            // Let's get serious and double check that we are dealing with System.Diagnostic.System.Assert.
+            // In some scenarios, such as unit tests the module will be null because the whole tree hasn't been 
             // built. In that case, I'll just have to assume it's the real method.
             IMethodSymbol memberSymbol = context.SemanticModel.GetSymbolInfo(invocationExpr).Symbol as IMethodSymbol;
-            if ((memberSymbol != null) && (!(memberSymbol.ContainingModule.ToString().Equals("System.DLL",
-                                                                                              StringComparison.OrdinalIgnoreCase))))
+            if (memberSymbol != null)
             {
-                return;
+                INamedTypeSymbol classSymbol = memberSymbol.ContainingSymbol as INamedTypeSymbol;
+                if (classSymbol != null)
+                {
+                    if (!classSymbol.IsType(typeof(Debug)))
+                    {
+                        return;
+                    }
+                }
             }
 
             // How many parameters are there?
@@ -69,8 +74,7 @@ namespace Wintellect.Analyzers
             }
 
             // We got us a problem here, boss.
-            var diagnostic = Diagnostic.Create(Rule,
-                                               invocationExpr.GetLocation());
+            var diagnostic = Diagnostic.Create(Rule, invocationExpr.GetLocation());
             context.ReportDiagnostic(diagnostic);
         }
     }
