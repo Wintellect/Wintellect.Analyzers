@@ -145,6 +145,7 @@ namespace ConsoleApplication1
             String thisTest = @"
 using System;
 using System.Diagnostics;
+using System.CodeDom.Compiler;
 
 namespace ConsoleApplication1
 {

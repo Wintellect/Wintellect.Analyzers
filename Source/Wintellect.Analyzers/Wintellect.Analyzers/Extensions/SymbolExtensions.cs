@@ -6,8 +6,10 @@ See License.txt in the project root for license information
 ------------------------------------------------------------------------------*/
 using Microsoft.CodeAnalysis;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 
@@ -324,8 +326,9 @@ namespace Wintellect.Analyzers
         {
             for (Int32 i = 0; i < attributes.Count(); i++)
             {
-                String name = attributes[i].AttributeClass.Name;
-                if (name.EndsWith("GeneratedCode") || name.EndsWith("DebuggerNonUserCodeAttribute"))
+                AttributeData attr = attributes[i];
+                if ((attr.AttributeClass.IsType(typeof(GeneratedCodeAttribute)) ||
+                    (attr.AttributeClass.IsType(typeof(DebuggerNonUserCodeAttribute)))))
                 {
                     return true;
                 }

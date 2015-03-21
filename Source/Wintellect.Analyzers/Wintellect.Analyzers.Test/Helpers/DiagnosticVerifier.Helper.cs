@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
+using System.CodeDom;
+using System.CodeDom.Compiler;
 
 namespace TestHelper
 {
@@ -161,7 +163,8 @@ namespace TestHelper
                 .AddMetadataReference(projectId, CorlibReference)
                 .AddMetadataReference(projectId, SystemCoreReference)
                 .AddMetadataReference(projectId, CSharpSymbolsReference)
-                .AddMetadataReference(projectId, CodeAnalysisReference);
+                .AddMetadataReference(projectId, CodeAnalysisReference)
+                .AddMetadataReference(projectId, MetadataReference.CreateFromAssembly(typeof(GeneratedCodeAttribute).Assembly));
 
             int count = 0;
             foreach (var source in sources)
