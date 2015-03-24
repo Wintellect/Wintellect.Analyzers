@@ -9,17 +9,19 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Wintellect.Analyzers
 {
-    internal static class NodeExtensions
+    [DebuggerDisplay("nonUserAttributeRegex={nonUserAttributeRegex}")]
+    public static class NodeExtensions
     {
         /// <summary>
         /// Used to look up non user code attributes in HasIgnorableAttributes.
         /// </summary>
-        private static readonly Regex nonUserAttributeRegex = new Regex(@".*(GeneratedCode|DebuggerNonUserCode)(Attribute)?", 
+        private static readonly Regex nonUserAttributeRegex = new Regex(@".*(GeneratedCode|DebuggerNonUserCode)(Attribute)?",
                                                                         RegexOptions.IgnorePatternWhitespace);
 
         /// <summary>
@@ -35,7 +37,7 @@ namespace Wintellect.Analyzers
         /// If one of the parents in the <paramref name="types"/> array matches, that type, otherwise null.
         /// </returns>
         /// <remarks>
-        /// Full credit to the awesome Giggio at 
+        /// Full credit to the awesome Giggio for the inspiration 
         /// https://github.com/code-cracker/code-cracker/blob/master/src/Common/CodeCracker.Common/Extensions/AnalyzerExtensions.cs
         /// </remarks>
         public static SyntaxNode FirstAncestorOfType(this SyntaxNode node, params Type[] types)
@@ -74,7 +76,7 @@ namespace Wintellect.Analyzers
         /// If the self or one of the parents in the <paramref name="types"/> array matches, that type, otherwise null.
         /// </returns>
         /// <remarks>
-        /// Full credit to the awesome Giggio at 
+        /// Full credit to the awesome Giggio for the inspiration
         /// https://github.com/code-cracker/code-cracker/blob/master/src/Common/CodeCracker.Common/Extensions/AnalyzerExtensions.cs
         /// </remarks>
         public static SyntaxNode FirstAncestorOrSelfOfType(this SyntaxNode node, params Type[] types)
