@@ -10,11 +10,18 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Formatting;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Wintellect.Analyzers
 {
-    public static class NodeExtensions
+    internal static class NodeExtensions
     {
+        /// <summary>
+        /// Used to look up non user code attributes in HasIgnorableAttributes.
+        /// </summary>
+        private static readonly Regex nonUserAttributeRegex = new Regex(@".*(GeneratedCode|DebuggerNonUserCode)(Attribute)?", 
+                                                                        RegexOptions.IgnorePatternWhitespace);
+
         /// <summary>
         /// Returns the first parent of a node that is one of the specified types.
         /// </summary>
@@ -201,15 +208,14 @@ namespace Wintellect.Analyzers
         /// </returns>
         public static Boolean HasIgnorableAttributes(this SyntaxList<AttributeListSyntax> attributeList)
         {
+
             for (Int32 i = 0; i < attributeList.Count; i++)
             {
                 AttributeListSyntax currAttrList = attributeList[i];
                 for (Int32 k = 0; k < currAttrList.Attributes.Count; k++)
                 {
                     AttributeSyntax attr = currAttrList.Attributes[k];
-                    if ((attr.Name.ToString().EndsWith("GeneratedCode", StringComparison.Ordinal)) ||
-                        ((attr.Name.ToString().EndsWith("DebuggerNonUserCode", StringComparison.Ordinal)))||
-                        ((attr.Name.ToString().EndsWith("DebuggerNonUserCodeAttribute", StringComparison.Ordinal))))
+                    if (nonUserAttributeRegex.IsMatch(attr.Name.ToString()))
                     {
                         return true;
                     }

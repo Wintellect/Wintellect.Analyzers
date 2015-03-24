@@ -227,9 +227,30 @@ namespace SomeTests
 }
 ";
 
-            DiagnosticResult[] expected = new DiagnosticResult[0];
+            VerifyCSharpDiagnostic(test);
+        }
 
-            VerifyCSharpDiagnostic(test, expected);
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestIgnoreFullGenCodeAttributeCode()
+        {
+            var test = @"
+using System;
+
+namespace SomeTests
+{
+    [System.CodeDom.Compiler.GeneratedCodeAttribute(""Fake"", ""1.0"")]
+    public class BasicClass
+        {
+            public int XoXoX()
+            {
+                return 5;
+            }
+        }
+    }
+";
+
+            VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
