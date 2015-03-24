@@ -55,6 +55,41 @@ namespace Wintellect.Analyzers
         }
 
         /// <summary>
+        /// Returns the current or first parent of a node that is one of the specified types.
+        /// </summary>
+        /// <param name="node">
+        /// The node to check.
+        /// </param>
+        /// <param name="types">
+        /// The array of types to check.
+        /// </param>
+        /// <returns>
+        /// If the self or one of the parents in the <paramref name="types"/> array matches, that type, otherwise null.
+        /// </returns>
+        /// <remarks>
+        /// Full credit to the awesome Giggio at 
+        /// https://github.com/code-cracker/code-cracker/blob/master/src/Common/CodeCracker.Common/Extensions/AnalyzerExtensions.cs
+        /// </remarks>
+        public static SyntaxNode FirstAncestorOrSelfOfType(this SyntaxNode node, params Type[] types)
+        {
+            SyntaxNode currentNode = node;
+            while (currentNode != null)
+            {
+                for (Int32 i = 0; i < types.Length; i++)
+                {
+                    if (currentNode.GetType() == types[i])
+                    {
+                        return currentNode;
+                    }
+                }
+
+                currentNode = currentNode.Parent;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Returns true if this node is part of a looping construct.
         /// </summary>
         /// <param name="node">
@@ -70,6 +105,7 @@ namespace Wintellect.Analyzers
                                                     typeof(WhileStatementSyntax),
                                                     typeof(DoStatementSyntax));
         }
+
         /// <summary>
         /// Adds the string specified using statement to the CompilationUnitSyntax if that using is not already present.
         /// </summary>
@@ -124,6 +160,63 @@ namespace Wintellect.Analyzers
             VariableDeclaratorSyntax varName = (VariableDeclaratorSyntax)vars.First();
 
             return varName.Identifier.ToString();
+        }
+
+        /// <summary>
+        /// Returns true if this is generated or non user code.
+        /// </summary>
+        /// <param name="node">
+        /// The SyntaxNode to check.
+        /// </param>
+        /// <returns>
+        /// True if this node or its defining types are non user code.
+        /// </returns>
+        public static Boolean IsGeneratedOrNonUserCode(this SyntaxNode node)
+        {
+            // Look at the type, which could be nested.
+            TypeDeclarationSyntax currType = (TypeDeclarationSyntax)(node.FirstAncestorOrSelfOfType(typeof(ClassDeclarationSyntax),
+                                                                                                    typeof(StructDeclarationSyntax)));
+            while (currType != null)
+            {
+                if (currType.AttributeLists.HasIgnorableAttributes())
+                {
+                    return true;
+                }
+                currType = (TypeDeclarationSyntax)(currType.FirstAncestorOfType(typeof(ClassDeclarationSyntax),
+                                                                                typeof(StructDeclarationSyntax)));
+            }
+
+            // That's as far as we can go with nodes. There's no assembly with them.
+            return false;
+        }
+
+        /// <summary>
+        /// Takes an SyntaxList of Attributes and checks if any are non user code attributes.
+        /// </summary>
+        /// <param name="attributeList">
+        /// The list to check.
+        /// </param>
+        /// <returns>
+        /// True if the list contains a non user code attribute.
+        /// </returns>
+        public static Boolean HasIgnorableAttributes(this SyntaxList<AttributeListSyntax> attributeList)
+        {
+            for (Int32 i = 0; i < attributeList.Count; i++)
+            {
+                AttributeListSyntax currAttrList = attributeList[i];
+                for (Int32 k = 0; k < currAttrList.Attributes.Count; k++)
+                {
+                    AttributeSyntax attr = currAttrList.Attributes[k];
+                    if ((attr.Name.ToString().EndsWith("GeneratedCode", StringComparison.Ordinal)) ||
+                        ((attr.Name.ToString().EndsWith("DebuggerNonUserCode", StringComparison.Ordinal)))||
+                        ((attr.Name.ToString().EndsWith("DebuggerNonUserCodeAttribute", StringComparison.Ordinal))))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

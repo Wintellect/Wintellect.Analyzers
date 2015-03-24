@@ -37,6 +37,11 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeIfOrElseStatement(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             IfStatementSyntax ifStatement = context.Node as IfStatementSyntax;
 
             // Is this an if statement followed directly by a call with no braces?

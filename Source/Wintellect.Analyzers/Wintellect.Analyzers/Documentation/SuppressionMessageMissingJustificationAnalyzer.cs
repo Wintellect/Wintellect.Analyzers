@@ -40,39 +40,40 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeSuppressMessage(SymbolAnalysisContext context)
         {
-            // Are we looking at generated code?
-            if (!context.Symbol.IsGeneratedOrNonUserCode())
+            if (context.IsGeneratedOrNonUserCode())
             {
-                // Look at the attributes for SuppressMessage.
-                var attributes = context.Symbol.GetAttributes();
-                for (Int32 i = 0; i < attributes.Count(); i++)
+                return;
+            }
+
+            // Look at the attributes for SuppressMessage.
+            var attributes = context.Symbol.GetAttributes();
+            for (Int32 i = 0; i < attributes.Count(); i++)
+            {
+                if (attributes[i].AttributeClass.Name.Equals("SuppressMessageAttribute"))
                 {
-                    if (attributes[i].AttributeClass.Name.Equals("SuppressMessageAttribute"))
+                    Boolean hasJustification = false;
+
+                    // Look for the named parameters for Justification and if it doesn't exist, 
+                    // is empty, or has the text <Pending>, report the error.
+                    var namedParams = attributes[i].NamedArguments;
+                    for (Int32 j = 0; j < namedParams.Count(); j++)
                     {
-                        Boolean hasJustification = false;
-
-                        // Look for the named parameters for Justification and if it doesn't exist, 
-                        // is empty, or has the text <Pending>, report the error.
-                        var namedParams = attributes[i].NamedArguments;
-                        for (Int32 j = 0; j < namedParams.Count(); j++)
+                        if (namedParams[j].Key.Equals("Justification"))
                         {
-                            if (namedParams[j].Key.Equals("Justification"))
+                            String textValue = namedParams[j].Value.Value.ToString();
+                            if ((String.IsNullOrEmpty(textValue) || (String.Equals(textValue, Resources.PendingText))))
                             {
-                                String textValue = namedParams[j].Value.Value.ToString();
-                                if ((String.IsNullOrEmpty(textValue) || (String.Equals(textValue, Resources.PendingText))))
-                                {
-                                    var diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name);
-                                    context.ReportDiagnostic(diagnostic);
-                                }
-                                hasJustification = true;
+                                var diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name);
+                                context.ReportDiagnostic(diagnostic);
                             }
+                            hasJustification = true;
                         }
+                    }
 
-                        if (!hasJustification)
-                        {
-                            var diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name);
-                            context.ReportDiagnostic(diagnostic);
-                        }
+                    if (!hasJustification)
+                    {
+                        var diagnostic = Diagnostic.Create(Rule, context.Symbol.Locations[0], context.Symbol.Name);
+                        context.ReportDiagnostic(diagnostic);
                     }
                 }
             }

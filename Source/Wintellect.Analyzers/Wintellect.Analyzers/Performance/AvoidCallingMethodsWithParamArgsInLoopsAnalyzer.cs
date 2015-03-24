@@ -36,6 +36,11 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeIdentifier(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             // Look at the method
             // If it has parameters, check if see if the last parameter has the IsParams set.
             IdentifierNameSyntax indentifierName = context.Node as IdentifierNameSyntax;

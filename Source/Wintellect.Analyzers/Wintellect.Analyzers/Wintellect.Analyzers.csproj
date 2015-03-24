@@ -42,6 +42,7 @@
     <Compile Include="DiagnosticIds.cs" />
     <Compile Include="Documentation\ExceptionDocumentationMissingAnalyzer.cs" />
     <Compile Include="Documentation\SuppressionMessageMissingJustificationAnalyzer.cs" />
+    <Compile Include="Extensions\ContextExtensions.cs" />
     <Compile Include="Extensions\NodeExtensions.cs" />
     <Compile Include="Extensions\SymbolExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />

@@ -38,6 +38,11 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeNode(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             // Look for calls to Debug.Assert.
             // Ensure it's the
             // Look at the parameters. 

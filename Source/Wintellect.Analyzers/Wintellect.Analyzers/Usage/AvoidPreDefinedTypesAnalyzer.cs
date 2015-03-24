@@ -65,9 +65,7 @@ namespace Wintellect.Analyzers
 
         private void AnalyzePredefinedType(SyntaxNodeAnalysisContext context)
         {
-            // Skip any generated code.
-            var symbol = context.SemanticModel.GetEnclosingSymbol(context.Node.SpanStart);
-            if (symbol.IsGeneratedOrNonUserCode(false))
+            if (context.IsGeneratedOrNonUserCode())
             {
                 return;
             }

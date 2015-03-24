@@ -42,6 +42,11 @@ namespace Wintellect.Analyzers
 
         private void AnalyzeThrowDocumentation(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             // Get the method that contains this throw statement. I'm asking for the symbol table because
             // it's got all the XML data and doesn't require me walking the SyntaxNode trees.
             var methodSymbol = context.SemanticModel.GetEnclosingSymbol(context.Node.SpanStart) as IMethodSymbol;

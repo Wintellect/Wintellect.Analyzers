@@ -39,6 +39,12 @@ namespace Wintellect.Analyzers
 
         private static void AnalyzeMethod(SymbolAnalysisContext context)
         {
+            // I don't care about generated code.
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             // Look for a return of Task<T> or Task
             // Look at method name
             // If doesn't end in Async, report diagnostic

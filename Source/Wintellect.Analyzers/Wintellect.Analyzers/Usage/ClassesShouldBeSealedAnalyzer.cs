@@ -15,12 +15,12 @@ namespace Wintellect.Analyzers
     [DebuggerDisplay("Rule={DiagnosticIds.ClassesShouldBeSealedAnalyzer}")]
     public sealed class ClassesShouldBeSealedAnalyzer : DiagnosticAnalyzer
     {
-       
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ClassesShouldBeSealedAnalyzer, 
+
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticIds.ClassesShouldBeSealedAnalyzer,
                                                                              new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerTitle), Resources.ResourceManager, typeof(Resources)),
                                                                              new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerMessageFormat), Resources.ResourceManager, typeof(Resources)),
                                                                              (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
-                                                                             DiagnosticSeverity.Info, 
+                                                                             DiagnosticSeverity.Info,
                                                                              true,
                                                                              new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect012-ClassesShouldBeSealed.html");
@@ -34,17 +34,19 @@ namespace Wintellect.Analyzers
 
         private void ClassSealedCheck(SymbolAnalysisContext context)
         {
+            // I don't care about generated code.
+            if (context.IsGeneratedOrNonUserCode())
+            {
+                return;
+            }
+
             INamedTypeSymbol symbol = context.Symbol as INamedTypeSymbol;
 
-            // I don't care about generated code.
-            if (!symbol.IsGeneratedOrNonUserCode(false))
+            // It's all about the class, no structure.
+            if ((!symbol.IsValueType) && (!symbol.IsSealed) && (!symbol.IsStatic))
             {
-                // It's all about the class, no structure.
-                if ((!symbol.IsValueType) && (!symbol.IsSealed) && (!symbol.IsStatic))
-                {
-                    var diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], symbol.Name);
-                    context.ReportDiagnostic(diagnostic);
-                }
+                var diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], symbol.Name);
+                context.ReportDiagnostic(diagnostic);
             }
         }
     }
