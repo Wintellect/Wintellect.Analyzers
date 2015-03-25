@@ -2,7 +2,9 @@
 
 At [Wintellect](http://www.wintellect.com), we love anything that will help us write the best code possible. Microsoft's new Roslyn compiler is a huge step in that direction so we had to jump in and start writing analyzers and code fixes we've wanted for years. Feel free to fork and add your own favorites. We'll keep adding these as we think of them.
 
-If you contribute code make sure to include unit tests as well as add code to the demo program to show off your analyzer/code fix.
+To add these analyzers to your project easily, use the NuGet package. In the Visual Studio Package Manager Console exeute the following:
+
+    Install-Package Wintellect.Analyzers -Prerelease
 
 ## Design Analyzers ##
 #### [AssembliesHaveCompanyAtrribute](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect006-AssembliesHaveCompanyAttribute.html) ####
