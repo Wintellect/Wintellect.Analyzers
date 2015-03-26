@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22231.1
+VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintellect.Analyzers", "Wintellect.Analyzers\Wintellect.Analyzers\Wintellect.Analyzers.csproj", "{42BD6126-800A-402B-B715-390DC4194EBF}"
 EndProject
@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C8BD0
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintellect.Analyzers.Test", "Wintellect.Analyzers\Wintellect.Analyzers.Test\Wintellect.Analyzers.Test.csproj", "{765CC73B-7D67-4022-A25C-972F5C256E91}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintellect.Analyzers.Vsix", "Wintellect.Analyzers\Wintellect.Analyzers.Vsix\Wintellect.Analyzers.Vsix.csproj", "{C7DAABB3-90A4-44E2-BF13-8E9562643BAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +26,6 @@ Global
 		{765CC73B-7D67-4022-A25C-972F5C256E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{765CC73B-7D67-4022-A25C-972F5C256E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{765CC73B-7D67-4022-A25C-972F5C256E91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7DAABB3-90A4-44E2-BF13-8E9562643BAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7DAABB3-90A4-44E2-BF13-8E9562643BAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7DAABB3-90A4-44E2-BF13-8E9562643BAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7DAABB3-90A4-44E2-BF13-8E9562643BAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
