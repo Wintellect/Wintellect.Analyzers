@@ -19,6 +19,10 @@ This warning ensures you have the AssemblyDescriptionAttribute present and a fil
 #### [AssembliesHaveTitleAtrribute](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect009-AssembliesHaveTitleAttribute.html) ####
 This warning ensures you have the AssemblyTitleAttribute present and a filled out value in the parameter.
 
+#### [CatchBlocksShouldRethrow](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect014-CatchBlocksShouldRethrow.html) ####
+This informational analyzer will report when you have a catch block that eats an exception. Because exception handling is so hard
+to get right, this notification is important to remind you too look at those catch blocks.
+
 ## Documentation Analyzers ##
 #### [ExceptionDocumentationMissing](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect010-ExceptionDocumentationMissing.html) ####
 If you have a direct throw in your code, you need to document it with an <exception> tag in the XML documentation comments. A direct throw is one where you specifically use the throw statement in your code. This analyzer does not apply to private methods, only accessibility levels where calls outside the defining method can take place.

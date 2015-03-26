@@ -26,5 +26,6 @@ namespace Wintellect.Analyzers
         public const String SuppressionMessageMissingJustificationAnalyzer = "Wintellect011";
         public const String ClassesShouldBeSealedAnalyzer = "Wintellect012";
         public const String UseDebuggerDisplayAttributeAnalyzer = "Wintellect013";
+        public const String CatchBlocksShouldRethrowAnalyzer = "Wintellect014";
     }
 }

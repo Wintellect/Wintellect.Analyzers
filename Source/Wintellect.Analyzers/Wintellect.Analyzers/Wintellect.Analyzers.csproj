@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Design\AssemblyAttributeAnalyzer.cs" />
+    <Compile Include="Design\CatchBlocksShouldRethrowAnalyzer.cs" />
     <Compile Include="DiagnosticIds.cs" />
     <Compile Include="Documentation\ExceptionDocumentationMissingAnalyzer.cs" />
     <Compile Include="Documentation\SuppressionMessageMissingJustificationAnalyzer.cs" />
@@ -129,7 +130,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\Wintellect.Analyzers.1.0.0-alpha6\tools\analyzers\Wintellect.Analyzers.dll" />
+    <Analyzer Include="..\..\packages\Wintellect.Analyzers.1.0.0-alpha7\tools\analyzers\Wintellect.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>

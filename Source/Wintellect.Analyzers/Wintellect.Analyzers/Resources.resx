@@ -183,6 +183,15 @@
   <data name="CallAssertMethodsWithMessageParameterCodeFixTitle" xml:space="preserve">
     <value>Add test as a message parameter</value>
   </data>
+  <data name="CatchBlocksShouldRethrowAnalyzerDescription" xml:space="preserve">
+    <value>Best practices dictate that any catch block should rethrow or throw and not eat exceptions</value>
+  </data>
+  <data name="CatchBlocksShouldRethrowAnalyzerMessageFormat" xml:space="preserve">
+    <value>Catch blocks should rethrow or throw</value>
+  </data>
+  <data name="CatchBlocksShouldRethrowAnalyzerTitle" xml:space="preserve">
+    <value>Catch blocks should rethrow or throw</value>
+  </data>
   <data name="CategoryDesign" xml:space="preserve">
     <value>Design</value>
   </data>

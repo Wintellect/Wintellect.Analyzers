@@ -1,0 +1,196 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="ctl00_Head1">
+    <link id="ctl00_HeaderLink2" href="PrintFriendly.css" rel="stylesheet" type="text/css" />
+    <meta content="en-us" name="ms.locale" />
+    <meta content="ms182275" name="Search.ShortId" />
+    <link href="MPTS.css?l=en-us&amp;i=library&amp;ct=CodeSnippet;CollapsibleArea;DropDownFilter;InstrumentedLink;MtDisclaimer;PrinterFriendlyBanner;RedVelvetCodeSnippet;RedVelvetCollapsibleArea;RedVelvetInstrumentedLink;WikiViewer&amp;clustimg=1" rel="stylesheet" type="text/css" />
+    <title>WINTELLECT014: Catch Blocks Should Rethrow or Throw</title>
+</head>
+<body>
+    <div class="PrinterFriendlyBanner">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td class="PFB_Left">
+                    <a href="http://www.wintellect.com">
+                        <img id="ctl00_BannerControl1_LogoImage" src="Wintellect.gif" style="border-width: 0px;" />
+                    </a>
+                </td>
+                <td class="PFB_Right">
+                    <span id="ctl00_BannerControl1_CopyrightLabel" class="PrinterFriendlyCopyrightText" title="©2015 Wintellect. All rights reserved.">©2014-2015 Wintellect. All rights reserved.</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="ContentArea">
+        <!--starting processing-->
+        <div class="topic">
+            <div class="title">
+                WINTELLECT014: Catch Blocks Should Rethrow or Throw
+            </div>
+            <div id="mainSection">
+                <div id="mainBody">
+                    <div class="introduction">
+                        <div class="tableSection">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p>TypeName</p>
+                                    </td>
+                                    <td>
+                                        <p>CatchBlocksShouldRethrowAnalyzer</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>CheckId</p>
+                                    </td>
+                                    <td>
+                                        <p>WINTELLECT014</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Category</p>
+                                    </td>
+                                    <td>
+                                        <p>Design</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Breaking Change</p>
+                                    </td>
+                                    <td>
+                                        <p>Breaking</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Cause
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                Best practices dictate that catch blocks should not eat exceptions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="MTPS_CollapsibleRegion">
+                        <div class="CollapseRegionLink">
+                            Rule Description
+                        </div>
+                        <div class="MTPS_CollapsibleSection" style="display: block;">
+                            <p>
+                                According to Jeffrey Richter, a catch block should ideally always either rethrow the handled exception or throw a new one. 
+                                This information analyzer will report those instances when a catch block eats an exception. It's not wrong to eat an exception so
+                                it doesn't propagate up chain, but it's something you want to be extremely careful about. Being able to see this informational
+                                notification will give you a heads up that you want to pay close attention to the offending catch block when doing a code 
+                                review.
+                            </p>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                How to Fix Violations
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>
+                                    Determine if it is appropriate for the catch block to be eating the exception. If not at least 
+                                    rethrow the exception.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="MTPS_CollapsibleRegion">
+                            <div class="CollapseRegionLink">
+                                When to Suppress Warnings
+                            </div>
+                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                <p>Only suppress this analyzer when you have proven eating the exception is appropriate.</p>
+                            </div>
+                            <div class="MTPS_CollapsibleRegion">
+                                <div class="CollapseRegionLink">
+                                    Example
+                                </div>
+                                <div class="MTPS_CollapsibleSection" style="display: block;">
+                                    <p>
+                                        The following example shows a class,
+                                        <span class="code">BadExample</span>, that violates
+                                        the rule because it silently eats the exception.
+                                    </p>
+                                    <div id="snippetGroup">
+                                        <div id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_CSharp" class="libCScode">
+                                            <div class="CodeSnippetTitleBar">
+                                                <div class="CodeDisplayLanguage">
+                                                    C#
+                                                </div>
+                                            </div>
+                                            <div dir="ltr" style="background-color: #ddd">
+                                                <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
+<span style="color: blue">using</span> System;
+
+<span style="color: blue">namespace</span> ExampleLibrary
+{
+    <span style="color: blue">public class</span> BadExample 
+    {
+        <span style="color: blue">public void</span> DoOperation()
+        {
+            <span style="color: blue">try</span>
+            {
+                CallDangerousMethod();
+            }
+            <span style="color: blue">catch</span>
+            {
+            }
+        }
+    }
+}
+
+<span style="color: blue">using</span> System;
+<span style="color: blue">using</span> System.Diagnostic;
+
+<span style="color: blue">namespace</span> ExampleLibrary
+{
+    <span style="color: blue">public class</span> FixedExample
+    {
+        <span style="color: blue">public void</span> DoOperation()
+        {
+            <span style="color: blue">try</span>
+            {
+                CallDangerousMethod();
+            }
+            <span style="color: blue">catch</span>
+            {
+                <span style="color: blue">throw</span>;
+            }
+        }
+    }
+}</pre>
+                                            </div>
+                                        </div>
+                                        <div class="MTPS_CollapsibleRegion">
+                                            <div class="CollapseRegionLink">
+                                                Related Links
+                                            </div>
+                                            <div class="MTPS_CollapsibleSection" style="display: block;">
+                                                <a id="sectionToggle4">
+                                                    <!---->
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <a href="https://github.com/Wintellect/Wintellect.Analyzers">Project Source Code</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

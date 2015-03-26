@@ -260,6 +260,33 @@ namespace Wintellect.Analyzers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Best practices dictate that any catch block should rethrow or throw and not eat exceptions.
+        /// </summary>
+        internal static string CatchBlocksShouldRethrowAnalyzerDescription {
+            get {
+                return ResourceManager.GetString("CatchBlocksShouldRethrowAnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch blocks should rethrow or throw.
+        /// </summary>
+        internal static string CatchBlocksShouldRethrowAnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("CatchBlocksShouldRethrowAnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Catch blocks should rethrow or throw.
+        /// </summary>
+        internal static string CatchBlocksShouldRethrowAnalyzerTitle {
+            get {
+                return ResourceManager.GetString("CatchBlocksShouldRethrowAnalyzerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Design.
         /// </summary>
         internal static string CategoryDesign {

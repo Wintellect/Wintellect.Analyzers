@@ -94,6 +94,7 @@
     <Compile Include="AvoidCallingMethodsWithParamArgsInLoopsUnitTests.cs" />
     <Compile Include="AvoidPreDefinedTypesUnitTests.cs" />
     <Compile Include="CallAssertMethodsWithMessageUnitTests.cs" />
+    <Compile Include="CatchBlockShouldRethrowUnitTests.cs" />
     <Compile Include="ClassesShouldBeSealedUnitTests.cs" />
     <Compile Include="ExceptionDocumentationMissingUnitTests.cs" />
     <Compile Include="IfAndElseMustHaveBracesUnitTests.cs" />
