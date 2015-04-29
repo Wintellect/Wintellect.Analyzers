@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Wintellect.Analyzers</id>
-    <version>1.0.0-alpha7</version>
+    <version>1.0.0-beta1</version>
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
     <authors>JohnWintellect, JeffreyRichter, mozts2005</authors>
     <owners>JohnWintellect</owners>

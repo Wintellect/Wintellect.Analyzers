@@ -1,14 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintellect.Analyzers", "Wintellect.Analyzers\Wintellect.Analyzers\Wintellect.Analyzers.csproj", "{42BD6126-800A-402B-B715-390DC4194EBF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2C8BD0A1-00E1-4B71-8BC1-68591467A524}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wintellect.Analyzers.Test", "Wintellect.Analyzers\Wintellect.Analyzers.Test\Wintellect.Analyzers.Test.csproj", "{765CC73B-7D67-4022-A25C-972F5C256E91}"
 EndProject

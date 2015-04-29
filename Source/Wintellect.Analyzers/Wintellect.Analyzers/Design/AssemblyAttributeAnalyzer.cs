@@ -63,10 +63,10 @@ namespace Wintellect.Analyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterCompilationEndAction(AnalyzeCompilation);
+            context.RegisterCompilationAction(AnalyzeCompilation);
         }
 
-        private void AnalyzeCompilation(CompilationEndAnalysisContext context)
+        private void AnalyzeCompilation(CompilationAnalysisContext context)
         {
             // Get the particular attributes I need to look for.
             var companyAttributeSymbol = KnownTypes.CompanyAttribute(context.Compilation);
