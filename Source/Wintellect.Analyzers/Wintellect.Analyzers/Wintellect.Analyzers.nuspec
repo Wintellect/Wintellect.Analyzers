@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Wintellect.Analyzers</id>
-    <version>1.0.0-beta1</version>
+    <version>1.0.0-rc1</version>
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
     <authors>JohnWintellect, JeffreyRichter, mozts2005</authors>
     <owners>JohnWintellect</owners>
@@ -14,13 +14,13 @@
     <summary>Wintellect Roslyn code analyzers and code fix providers for producing better code.</summary>
     <releaseNotes>Added UseDebuggerDisplayAttributeAnalyzer and code fix.</releaseNotes>
     <copyright>Copyright (c) 2014-2015 by Wintellect and individual contributors</copyright>
-    <tags>Roslyn, analyzers</tags>
+    <tags>Roslyn, analyzers, Wintellect</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="*.dll" target="tools\analyzers\" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\Wintellect.Analyzers.Test.dll" />
+    <file src="Wintellect.Analyzers.dll" target="tools\analyzers\C#"/>
     <file src="tools\*.ps1" target="tools\" />
   </files>
 </package>
