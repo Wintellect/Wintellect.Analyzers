@@ -43,7 +43,7 @@ namespace Wintellect.Analyzers
             INamedTypeSymbol symbol = context.Symbol as INamedTypeSymbol;
 
             // It's all about the class, no structure.
-            if ((!symbol.IsValueType) && (!symbol.IsSealed) && (!symbol.IsStatic))
+            if ((!symbol.IsValueType) && (!symbol.IsSealed) && (!symbol.IsStatic) && (!symbol.IsAbstract))
             {
                 var diagnostic = Diagnostic.Create(Rule, symbol.Locations[0], symbol.Name);
                 context.ReportDiagnostic(diagnostic);

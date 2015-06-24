@@ -163,6 +163,32 @@ namespace ConsoleApplication1
             VerifyCSharpDiagnostic(thisTest);
         }
 
+        [TestMethod]
+        [TestCategory("ClassesShouldBeSealedUnitTests")]
+        public void TestAbstractClassNotSealed()
+        {
+            String thisTest = @"
+using System;
+using System.Diagnostics;
+using System.CodeDom.Compiler;
+
+namespace ConsoleApplication1
+{
+    private abstract class ShouldBeIgnored
+    {   
+        public MyClassName() {}
+
+         abstract public int SomeWork();
+    }
+
+    struct MyStructName
+    {
+    }
+
+}";
+            VerifyCSharpDiagnostic(thisTest);
+        }
+
         protected override CodeFixProvider GetCSharpCodeFixProvider()
         {
             return new ClassesShouldBeSealedCodeFixProvider();
