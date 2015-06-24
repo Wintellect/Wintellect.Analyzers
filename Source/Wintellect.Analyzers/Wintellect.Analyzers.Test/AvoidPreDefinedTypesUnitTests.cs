@@ -112,6 +112,38 @@ namespace SomeTests
 
         [TestMethod]
         [TestCategory("AvoidPreDefinedTypesUnitTests")]
+        public void TestUintPredefinedType()
+        {
+            String singleUintPredefinedType = @"
+using System;
+
+namespace SomeTests
+{
+    public class BasicClass
+    {
+        public void SomeWork(uint message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+}
+";
+            var expected = new DiagnosticResult
+            {
+                Id = AvoidPreDefinedTypesAnalyzeId,
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "uint", "Uint32"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 8, 30)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(singleUintPredefinedType, expected);
+        }
+
+        [TestMethod]
+        [TestCategory("AvoidPreDefinedTypesUnitTests")]
         public void TestFixedSinglePredefinedType()
         {
             DiagnosticResult[] expected = new DiagnosticResult[0] ;
