@@ -131,7 +131,7 @@ namespace SomeTests
             var expected = new DiagnosticResult
             {
                 Id = AvoidPreDefinedTypesAnalyzeId,
-                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "uint", "Uint32"),
+                Message = String.Format(AvoidPreDefinedTypesAnalyzerMessageFormat, "uint", "UInt32"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[] {

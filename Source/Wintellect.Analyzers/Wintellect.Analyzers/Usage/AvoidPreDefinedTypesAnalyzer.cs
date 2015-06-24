@@ -43,8 +43,8 @@ namespace Wintellect.Analyzers
             ["sbyte"] = "SByte",
             ["short"] = "Int16",
             ["string"] = "String",
-            ["uint"] = "Uint32",
-            ["ulong"] = "Uint64",
+            ["uint"] = "UInt32",
+            ["ulong"] = "UInt64",
             ["ushort"] = "UInt16",
         }.ToImmutableDictionary();
 
