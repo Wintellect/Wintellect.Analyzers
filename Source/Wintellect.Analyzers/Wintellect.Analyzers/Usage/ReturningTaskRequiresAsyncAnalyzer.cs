@@ -53,8 +53,8 @@ namespace Wintellect.Analyzers
             ITypeSymbol returnTypeSymbol = methodSymbol.ReturnType;
 
             // Make sure we are dealing with the true system type.
-            String assemblyName = returnTypeSymbol.ContainingAssembly.Identity.Name;
-            if (!assemblyName.Contains("mscorlib"))
+            String assemblyName = returnTypeSymbol?.ContainingAssembly?.Identity?.Name;
+            if ((assemblyName != null) && (!assemblyName.Contains("mscorlib")))
             {
                 return;
             }
