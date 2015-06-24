@@ -155,7 +155,7 @@ namespace ConsoleApplication1
             {
                 Id = UseDebuggerDisplayAttributeAnalyzerId,
                 Message = String.Format(UseDebuggerDisplayAttributeAnalyzerMessageFormat, "MyClassName"),
-                Severity = DiagnosticSeverity.Warning,
+                Severity = DiagnosticSeverity.Info,
                 Locations = new[] { new DiagnosticResultLocation("Test0.cs", 7, 18) }
             };
 
