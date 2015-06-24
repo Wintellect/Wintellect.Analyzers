@@ -21,7 +21,7 @@ namespace Wintellect.Analyzers
                                                                             new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayAttributeTitle), Resources.ResourceManager, typeof(Resources)),
                                                                             new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayAttributeMessageFormat), Resources.ResourceManager, typeof(Resources)),
                                                                             (new LocalizableResourceString(nameof(Resources.CategoryUsage), Resources.ResourceManager, typeof(Resources))).ToString(),
-                                                                            DiagnosticSeverity.Warning, 
+                                                                            DiagnosticSeverity.Info, 
                                                                             true,
                                                                             new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayAttributeDescription), Resources.ResourceManager, typeof(Resources)),
                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect013-UseDebuggerDisplayAttribute.html");
