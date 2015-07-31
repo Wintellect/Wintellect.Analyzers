@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Wintellect.Analyzers</id>
-    <version>1.0.0-rc2</version>
+    <version>1.0.0</version>
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
     <authors>JohnWintellect, JeffreyRichter, mozts2005</authors>
     <owners>JohnWintellect</owners>
@@ -19,8 +19,9 @@
       <frameworkAssembly assemblyName="System" targetFramework="" />
     </frameworkAssemblies>
   </metadata>
+  <!-- The convention for analyzers is to put language agnostic dlls in analyzers\dotnet and language specific analyzers in either analyzers\dotnet\cs or analyzers\dotnet\vb -->
   <files>
-    <file src="Wintellect.Analyzers.dll" target="tools\analyzers\C#"/>
+    <file src="*.dll" target="analyzers\dotnet\cs" exclude="**\Microsoft.CodeAnalysis.*;**\System.Collections.Immutable.*;**\System.Reflection.Metadata.*;**\System.Composition.*" />
     <file src="tools\*.ps1" target="tools\" />
   </files>
 </package>
