@@ -47,7 +47,8 @@ namespace Wintellect.Analyzers
             PredefinedTypeSyntax errorToken = root.FindToken(diagnosticSpan.Start).Parent as PredefinedTypeSyntax;
 
             CodeAction codeAction = CodeAction.Create(actionMessage,
-                                                      c => ConvertPredefinedToSpecificTypeAsync(context.Document, errorToken, c));
+                                                      c => ConvertPredefinedToSpecificTypeAsync(context.Document, errorToken, c),
+                                                      actionMessage);
             context.RegisterCodeFix(codeAction, diagnostic);
         }
 

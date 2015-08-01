@@ -47,7 +47,9 @@ namespace Wintellect.Analyzers
             MethodDeclarationSyntax methodDeclarationSyntax = root.FindToken(diagnosticSpan.Start).Parent as MethodDeclarationSyntax;
 
             // Do the rename async.
-            CodeAction codeAction = CodeAction.Create(actionMessage, c => RenameMethodAsync(context.Document, methodDeclarationSyntax, c));
+            CodeAction codeAction = CodeAction.Create(actionMessage, 
+                                                      c => RenameMethodAsync(context.Document, methodDeclarationSyntax, c),
+                                                      actionMessage);
             context.RegisterCodeFix(codeAction, diagnostic);
         }
 

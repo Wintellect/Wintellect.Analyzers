@@ -46,7 +46,8 @@ namespace Wintellect.Analyzers
             var declaration = root.FindToken(diagnosticSpan.Start).Parent.AncestorsAndSelf().OfType<ClassDeclarationSyntax>().First();
 
             context.RegisterCodeFix(CodeAction.Create(actionMessage,
-                                   c => AddSealedAsync(context.Document, declaration, c)),
+                                   c => AddSealedAsync(context.Document, declaration, c),
+                                   actionMessage),
                                    diagnostic);
         }
 

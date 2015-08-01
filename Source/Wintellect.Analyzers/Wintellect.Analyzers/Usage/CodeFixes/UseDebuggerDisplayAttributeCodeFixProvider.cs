@@ -50,7 +50,8 @@ namespace Wintellect.Analyzers
 
             // Register a code action that will invoke the fix.
             context.RegisterCodeFix(CodeAction.Create(codeFixTitle.ToString(),
-                                                      c => AddDebuggerDisplayAttributeCodeFix(context.Document, declaration, c)),
+                                                      c => AddDebuggerDisplayAttributeCodeFix(context.Document, declaration, c),
+                                                      codeFixTitle.ToString()),
                                     diagnostic);
         }
 

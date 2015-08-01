@@ -51,7 +51,8 @@ namespace Wintellect.Analyzers
             SyntaxNode errorToken = token.Parent;
 
             CodeAction codeAction = CodeAction.Create(Resources.IfAndElseMustHaveBracesCodeFixProviderActionMessage,
-                                                      c => AddMissingBracesAsync(context.Document, errorToken, c));
+                                                      c => AddMissingBracesAsync(context.Document, errorToken, c),
+                                                      Resources.IfAndElseMustHaveBracesCodeFixProviderActionMessage);
             context.RegisterCodeFix(codeAction, diagnostic);
         }
 

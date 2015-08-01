@@ -50,7 +50,8 @@ namespace Wintellect.Analyzers
 
             // Register a code action that will invoke the fix.
             CodeAction codeAction = CodeAction.Create(actionMessage,
-                                                      c => CreateMessageFromBooleanAsync(context.Document, declaration, c));
+                                                      c => CreateMessageFromBooleanAsync(context.Document, declaration, c),
+                                                      actionMessage);
             context.RegisterCodeFix(codeAction, diagnostic);
         }
 
