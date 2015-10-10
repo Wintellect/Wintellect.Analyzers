@@ -240,10 +240,7 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// True if they match, false otherwise.
         /// </returns>
-        public static Boolean IsType(this IParameterSymbol parameter, Type type)
-        {
-            return parameter.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
-        }
+        public static Boolean IsType(this IParameterSymbol parameter, Type type) => parameter.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
 
         /// <summary>
         /// Returns true if the INamedTypeSymbols matches the specified reflection type.
@@ -256,10 +253,7 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// True if they match, false otherwise.
         /// </returns>
-        public static Boolean IsType(this INamedTypeSymbol namedType, Type type)
-        {
-            return namedType.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
-        }
+        public static Boolean IsType(this INamedTypeSymbol namedType, Type type) => namedType.GetTypesQualifiedAssemblyName().Equals(type.AssemblyQualifiedName, StringComparison.Ordinal);
 
         /// <summary>
         /// For the INamedTypeSymbol returns the assembly qualified name from Roslyn.
@@ -270,10 +264,7 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// The qualified assembly name this type comes from.
         /// </returns>
-        public static String GetTypesQualifiedAssemblyName(this INamedTypeSymbol namedType)
-        {
-            return BuildQualifiedAssemblyName(null, namedType.ToDisplayString(), namedType.ContainingAssembly);
-        }
+        public static String GetTypesQualifiedAssemblyName(this INamedTypeSymbol namedType) => BuildQualifiedAssemblyName(null, namedType.ToDisplayString(), namedType.ContainingAssembly);
 
         /// <summary>
         /// For the IParameterSymbol returns the assembly qualified name from Roslyn.
@@ -284,12 +275,9 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// The qualified assembly name this type comes from.
         /// </returns>
-        public static String GetTypesQualifiedAssemblyName(this IParameterSymbol parameter)
-        {
-            return BuildQualifiedAssemblyName(parameter.Type.ContainingNamespace.Name,
-                                              parameter.Type.Name,
-                                              parameter.Type.ContainingAssembly);
-        }
+        public static String GetTypesQualifiedAssemblyName(this IParameterSymbol parameter) => BuildQualifiedAssemblyName(parameter.Type.ContainingNamespace.Name,
+                                                                                                                          parameter.Type.Name,
+                                                                                                                          parameter.Type.ContainingAssembly);
 
         /// <summary>
         /// For the IMethodSymbol returns the assembly qualified name from Roslyn.
@@ -300,12 +288,9 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// The qualified assembly name this type comes from.
         /// </returns>
-        public static String GetTypesQualifiedAssemblyName(this IMethodSymbol method)
-        {
-            return BuildQualifiedAssemblyName(method.ContainingType.ContainingNamespace.Name,
-                                              method.ContainingType.Name,
-                                              method.ContainingType.ContainingAssembly);
-        }
+        public static String GetTypesQualifiedAssemblyName(this IMethodSymbol method) => BuildQualifiedAssemblyName(method.ContainingType.ContainingNamespace.Name,
+                                                                                                                    method.ContainingType.Name,
+                                                                                                                    method.ContainingType.ContainingAssembly);
 
         private static String BuildQualifiedAssemblyName(String nameSpace, String typeName, IAssemblySymbol assemblySymbol)
         {

@@ -62,10 +62,7 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// The built up name as a QualifiedNameSyntax
         /// </returns>
-        public static QualifiedNameSyntax QualifiedName(String left, String right)
-        {
-            return SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName(left), SyntaxFactory.IdentifierName(right));
-        }
+        public static QualifiedNameSyntax QualifiedName(String left, String right) => SyntaxFactory.QualifiedName(SyntaxFactory.IdentifierName(left), SyntaxFactory.IdentifierName(right));
 
         /// <summary>
         /// Takes a normal using statement string and builds up a UsingDirectiveSyntax. 

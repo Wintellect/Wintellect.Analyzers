@@ -186,10 +186,7 @@ namespace SomeTests
 
             VerifyCSharpDiagnostic(test, expected);
         }
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new AvoidCallingMethodsWithParamArgsInLoopsAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new AvoidCallingMethodsWithParamArgsInLoopsAnalyzer();
 
     }
 }

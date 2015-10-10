@@ -107,13 +107,10 @@ namespace Wintellect.Analyzers
         /// <returns>
         /// True if part of a looping construct, false otherwise.
         /// </returns>
-        public static Boolean IsNodeInALoop(this SyntaxNode node)
-        {
-            return null != node.FirstAncestorOfType(typeof(ForEachStatementSyntax),
-                                                    typeof(ForStatementSyntax),
-                                                    typeof(WhileStatementSyntax),
-                                                    typeof(DoStatementSyntax));
-        }
+        public static Boolean IsNodeInALoop(this SyntaxNode node) => null != node.FirstAncestorOfType(typeof(ForEachStatementSyntax),
+                                                                                                      typeof(ForStatementSyntax),
+                                                                                                      typeof(WhileStatementSyntax),
+                                                                                                      typeof(DoStatementSyntax));
 
         /// <summary>
         /// Adds the string specified using statement to the CompilationUnitSyntax if that using is not already present.
@@ -155,6 +152,10 @@ namespace Wintellect.Analyzers
         /// </returns>
         public static Boolean HasGetter(this PropertyDeclarationSyntax property)
         {
+            if (property.AccessorList == null)
+            {
+                return false;
+            }
             return property.AccessorList.Accessors.Where(t => t.IsKind(SyntaxKind.GetAccessorDeclaration)).Any();
         }
 

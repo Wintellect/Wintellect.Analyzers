@@ -27,7 +27,8 @@ namespace Wintellect.Analyzers
                                                                              new LocalizableResourceString(nameof(Resources.AvoidCallingMethodsWithParamArgsInLoopsAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect005-AvoidCallingMethodsWithParamArgInLoops.html");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

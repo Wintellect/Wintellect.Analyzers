@@ -53,13 +53,8 @@ namespace Wintellect.Analyzers
                                                                                  true,
                                                                                  new LocalizableResourceString(nameof(Resources.AssembliesHaveTitleAttributeAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                                  "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect009-AssembliesHaveTitleAttribute.html");
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics
-        {
-            get
-            {
-                return ImmutableArray.Create(companyRule, copyrightRule, descriptionRule, titleRule);
-            }
-        }
+
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(companyRule, copyrightRule, descriptionRule, titleRule);
 
         public override void Initialize(AnalysisContext context)
         {
@@ -147,23 +142,13 @@ namespace Wintellect.Analyzers
 
         private static class KnownTypes
         {
-            public static INamedTypeSymbol CompanyAttribute(Compilation compilation)
-            {
-                return compilation.GetTypeByMetadataName("System.Reflection.AssemblyCompanyAttribute");
-            }
+            public static INamedTypeSymbol CompanyAttribute(Compilation compilation) => compilation.GetTypeByMetadataName("System.Reflection.AssemblyCompanyAttribute");
 
-            public static INamedTypeSymbol CopyrightAttribute(Compilation compilation)
-            {
-                return compilation.GetTypeByMetadataName("System.Reflection.AssemblyCopyrightAttribute");
-            }
-            public static INamedTypeSymbol DescriptionAttribute(Compilation compilation)
-            {
-                return compilation.GetTypeByMetadataName("System.Reflection.AssemblyDescriptionAttribute");
-            }
-            public static INamedTypeSymbol TitleAttribute(Compilation compilation)
-            {
-                return compilation.GetTypeByMetadataName("System.Reflection.AssemblyTitleAttribute");
-            }
+            public static INamedTypeSymbol CopyrightAttribute(Compilation compilation) => compilation.GetTypeByMetadataName("System.Reflection.AssemblyCopyrightAttribute");
+
+            public static INamedTypeSymbol DescriptionAttribute(Compilation compilation) => compilation.GetTypeByMetadataName("System.Reflection.AssemblyDescriptionAttribute");
+
+            public static INamedTypeSymbol TitleAttribute(Compilation compilation) => compilation.GetTypeByMetadataName("System.Reflection.AssemblyTitleAttribute");
         }
     }
 }

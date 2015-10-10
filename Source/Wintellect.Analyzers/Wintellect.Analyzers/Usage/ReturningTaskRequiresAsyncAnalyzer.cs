@@ -29,7 +29,7 @@ namespace Wintellect.Analyzers
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect001-ReturningTaskRequiresAsync.html");
 
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

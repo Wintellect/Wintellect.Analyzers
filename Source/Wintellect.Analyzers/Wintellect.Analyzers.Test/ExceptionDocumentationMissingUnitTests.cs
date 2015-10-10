@@ -983,9 +983,6 @@ namespace SomeTests
             VerifyCSharpDiagnostic(test, expected);
         }
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new ExceptionDocumentationMissingAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new ExceptionDocumentationMissingAnalyzer();
     }
 }

@@ -145,14 +145,8 @@ namespace ConsoleApplication1
             VerifyCSharpFix(debugComplicatedFixed, debugComplicatedFixed);
         }
 
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new CallAssertMethodsWithMessageParameterCodeFixProvider();
-        }
+        protected override CodeFixProvider GetCSharpCodeFixProvider() => new CallAssertMethodsWithMessageParameterCodeFixProvider();
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new CallAssertMethodsWithMessageParameterAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new CallAssertMethodsWithMessageParameterAnalyzer();
     }
 }

@@ -26,7 +26,7 @@ namespace Wintellect.Analyzers
                                                                             new LocalizableResourceString(nameof(Resources.UseDebuggerDisplayAttributeDescription), Resources.ResourceManager, typeof(Resources)),
                                                                             "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect013-UseDebuggerDisplayAttribute.html");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

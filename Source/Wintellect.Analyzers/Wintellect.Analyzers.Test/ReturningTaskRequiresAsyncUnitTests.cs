@@ -144,14 +144,8 @@ namespace NonGenericTask
             VerifyCSharpFix(genericTaskReturn, genericTaskReturnFixed);
         }
 
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new ReturningTaskRequiresAsyncCodeFixProvider();
-        }
+        protected override CodeFixProvider GetCSharpCodeFixProvider() => new ReturningTaskRequiresAsyncCodeFixProvider();
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new ReturningTaskRequiresAsyncAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new ReturningTaskRequiresAsyncAnalyzer();
     }
 }

@@ -605,9 +605,6 @@ namespace SomeTests
         }
 
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new SuppressionMessageMissingJustificationAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new SuppressionMessageMissingJustificationAnalyzer();
     }
 }

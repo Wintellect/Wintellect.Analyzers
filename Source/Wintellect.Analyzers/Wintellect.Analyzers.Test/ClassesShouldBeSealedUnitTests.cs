@@ -189,14 +189,8 @@ namespace ConsoleApplication1
             VerifyCSharpDiagnostic(thisTest);
         }
 
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new ClassesShouldBeSealedCodeFixProvider();
-        }
+        protected override CodeFixProvider GetCSharpCodeFixProvider() => new ClassesShouldBeSealedCodeFixProvider();
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new ClassesShouldBeSealedAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new ClassesShouldBeSealedAnalyzer();
     }
 }

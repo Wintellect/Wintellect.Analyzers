@@ -29,7 +29,7 @@ namespace Wintellect.Analyzers
                                                                              new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect014-CatchBlocksShouldRethrow.html");
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

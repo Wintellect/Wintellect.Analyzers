@@ -25,7 +25,7 @@ namespace Wintellect.Analyzers
                                                                              true,
                                                                              new LocalizableResourceString(nameof(Resources.SuppressionMessageMissingJustificationAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect011-SuppressMessageMissingJustification.html");
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

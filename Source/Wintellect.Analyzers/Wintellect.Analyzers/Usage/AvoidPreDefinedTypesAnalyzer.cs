@@ -48,15 +48,9 @@ namespace Wintellect.Analyzers
             ["ushort"] = "UInt16",
         }.ToImmutableDictionary();
 
-        public static ImmutableDictionary<String, String> TypeMap
-        {
-            get
-            {
-                return typeMap;
-            }
-        }
+        public static ImmutableDictionary<String, String> TypeMap => typeMap;
 
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         public override void Initialize(AnalysisContext context)
         {

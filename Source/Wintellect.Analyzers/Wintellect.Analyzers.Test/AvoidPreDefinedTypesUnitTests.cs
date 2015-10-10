@@ -358,15 +358,9 @@ namespace SomeTests
 
             VerifyCSharpDiagnostic(test, expected);
         }
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new AvoidPredefinedTypesCodeFixProvider();
-        }
+        protected override CodeFixProvider GetCSharpCodeFixProvider() => new AvoidPredefinedTypesCodeFixProvider();
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new AvoidPreDefinedTypesAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new AvoidPreDefinedTypesAnalyzer();
 
     }
 }

@@ -28,15 +28,9 @@ namespace Wintellect.Analyzers
     {
         internal static String actionMessage = (new LocalizableResourceString(nameof(Resources.CallAssertMethodsWithMessageParameterCodeFixTitle), Resources.ResourceManager, typeof(Resources))).ToString();
 
-        public sealed override ImmutableArray<String> FixableDiagnosticIds
-        {
-            get { return ImmutableArray.Create(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer); }
-        }
+        public sealed override ImmutableArray<String> FixableDiagnosticIds => ImmutableArray.Create(DiagnosticIds.CallAssertMethodsWithMessageParameterAnalyzer);
 
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            return WellKnownFixAllProviders.BatchFixer;
-        }
+        public sealed override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {

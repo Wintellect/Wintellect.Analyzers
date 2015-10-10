@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Wintellect.Analyzers</id>
-    <version>1.0.1.0</version>
+    <version>1.0.2.0</version>
     <title>Wintellect Roslyn Analyzers and Code Fixers</title>
     <authors>JohnWintellect, JeffreyRichter, mozts2005</authors>
     <owners>JohnWintellect</owners>
@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Wintellect Roslyn code analyzers and code fix providers for producing better code. See the GitHub project for the source. Have ideas for analyzers? Feel free to fork or let us know!</description>
     <summary>Wintellect Roslyn code analyzers and code fix providers for producing better code.</summary>
-    <releaseNotes>1.0.1.0 for VS 2015.</releaseNotes>
+    <releaseNotes>1.0.2.0 for VS 2015.</releaseNotes>
     <copyright>Copyright (c) 2014-2015 by Wintellect and individual contributors</copyright>
     <tags>Roslyn, analyzers, Wintellect</tags>
     <frameworkAssemblies>

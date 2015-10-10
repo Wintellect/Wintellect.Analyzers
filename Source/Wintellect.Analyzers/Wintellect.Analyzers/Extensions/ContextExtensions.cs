@@ -26,10 +26,7 @@ namespace Wintellect.Analyzers
             return context.SemanticModel?.SyntaxTree.IsGeneratedOrNonUserCode() ?? false;
         }
 
-        public static Boolean IsGeneratedOrNonUserCode (this SyntaxTree tree)
-        {
-            return IsGeneratedCodeFilename(tree.FilePath);
-        }
+        public static Boolean IsGeneratedOrNonUserCode(this SyntaxTree tree) => IsGeneratedCodeFilename(tree.FilePath);
 
         public static Boolean IsGeneratedOrNonUserCode(this SymbolAnalysisContext context)
         {

@@ -191,474 +191,520 @@ namespace ConsoleApplication1
             VerifyCSharpDiagnostic(test);
         }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void EnumerableFixTest()
-        {
-            var test = @"
-using System;
-using System.Collections;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void EnumerableFixTest()
+//        {
+//            var test = @"
+//using System;
+//using System.Collections;
 
-namespace ConsoleApplication1
-{
-    public class B : IEnumerable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    public class B : IEnumerable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}";
 
-            var fixtest = @"
-using System;
-using System.Collections;
-using System.Diagnostics;
+//            var fixtest = @"
+//using System;
+//using System.Collections;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""Count={Count()}"")]
-    public class B : IEnumerable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""Count={Count()}"")]
+//    public class B : IEnumerable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void EnumerableTwoDeepFixTest()
-        {
-            var test = @"
-using System;
-using System.Collections;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void EnumerableTwoDeepFixTest()
+//        {
+//            var test = @"
+//using System;
+//using System.Collections;
 
-namespace ConsoleApplication1
-{
-    public class B : IEnumerable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    public class B : IEnumerable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    public class A : B
-    {
-        Int32 fakeData3;
-        public String FakeProperty3
-        {
-            get;
-            set;
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//    public class A : B
+//    {
+//        Int32 fakeData3;
+//        public String FakeProperty3
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
 
-            var fixtest = @"
-using System;
-using System.Collections;
-using System.Diagnostics;
+//            var fixtest = @"
+//using System;
+//using System.Collections;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""Count={Count()}"")]
-    public class B : IEnumerable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""Count={Count()}"")]
+//    public class B : IEnumerable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""Count={Count()}"")]
-    public class A : B
-    {
-        Int32 fakeData3;
-        public String FakeProperty3
-        {
-            get;
-            set;
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//    [DebuggerDisplay(""Count={Count()}"")]
+//    public class A : B
+//    {
+//        Int32 fakeData3;
+//        public String FakeProperty3
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void EnumerableMultipleInheritanceFixTest()
-        {
-            var test = @"
-using System;
-using System.Collections;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void EnumerableMultipleInheritanceFixTest()
+//        {
+//            var test = @"
+//using System;
+//using System.Collections;
 
-namespace ConsoleApplication1
-{
-    public class B : IEnumerable, IComparable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    public class B : IEnumerable, IComparable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public Int32 CompareTo(Object obj)
-        {
-            throw new NotImplementedException();
-        }
+//        public Int32 CompareTo(Object obj)
+//        {
+//            throw new NotImplementedException();
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}";
 
-            var fixtest = @"
-using System;
-using System.Collections;
-using System.Diagnostics;
+//            var fixtest = @"
+//using System;
+//using System.Collections;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""Count={Count()}"")]
-    public class B : IEnumerable, IComparable
-    {
-        Int32 fakeData2;
-        public String FakeProperty2
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""Count={Count()}"")]
+//    public class B : IEnumerable, IComparable
+//    {
+//        Int32 fakeData2;
+//        public String FakeProperty2
+//        {
+//            get;
+//            set;
+//        }
 
-        public Int32 CompareTo(Object obj)
-        {
-            throw new NotImplementedException();
-        }
+//        public Int32 CompareTo(Object obj)
+//        {
+//            throw new NotImplementedException();
+//        }
 
-        public IEnumerator GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
-    }
-}";
+//        public IEnumerator GetEnumerator()
+//        {
+//            throw new NotImplementedException();
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void SimpleFixTest()
-        {
-            var test = @"
-using System;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void SimpleFixTest()
+//        {
+//            var test = @"
+//using System;
 
-namespace ConsoleApplication1
-{
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public String FakePropertyTwo
-        {
-            get;
-            set;
-        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
-            var fixtest = @"
-using System;
-using System.Diagnostics;
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public String FakePropertyTwo
-        {
-            get;
-            set;
-        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void OnePropOneFieldFixTest()
-        {
-            var test = @"
-using System;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void OnePropOneFieldFixTest()
+//        {
+//            var test = @"
+//using System;
 
-namespace ConsoleApplication1
-{
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
-            var fixtest = @"
-using System;
-using System.Diagnostics;
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void MultipleAttributeFixTest()
-        {
-            var test = @"
-using System;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void MultipleAttributeFixTest()
+//        {
+//            var test = @"
+//using System;
 
-namespace ConsoleApplication1
-{
-    [Serializable()]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [Serializable()]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
-            var fixtest = @"
-using System;
-using System.Diagnostics;
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    [Serializable()]
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
+//namespace ConsoleApplication1
+//{
+//    [Serializable()]
+//    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} fakeData={fakeData}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
 
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-        }
-    }
-}";
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void ThreeFieldFixTest()
-        {
-            var test = @"
-using System;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void ThreeFieldFixTest()
+//        {
+//            var test = @"
+//using System;
 
-namespace ConsoleApplication1
-{
-    public class MyClassName
-    {
-        Int32 fakeData;
-        Int32 fakeData2;
-        Int32 fakeData3;
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-            fakeData2 = data;
-            fakeData3 = data;
-        }
-    }
-}";
-            var fixtest = @"
-using System;
-using System.Diagnostics;
+//namespace ConsoleApplication1
+//{
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        Int32 fakeData2;
+//        Int32 fakeData3;
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//            fakeData2 = data;
+//            fakeData3 = data;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""fakeData={fakeData} fakeData2={fakeData2}"")]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        Int32 fakeData2;
-        Int32 fakeData3;
-        public MyClassName(Int32 data)
-        {
-            fakeData = data;
-            fakeData2 = data;
-            fakeData3 = data;
-        }
-    }
-}";
+//namespace ConsoleApplication1
+//{
+//    [DebuggerDisplay(""fakeData={fakeData} fakeData2={fakeData2}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        Int32 fakeData2;
+//        Int32 fakeData3;
+//        public MyClassName(Int32 data)
+//        {
+//            fakeData = data;
+//            fakeData2 = data;
+//            fakeData3 = data;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        [TestMethod]
-        [TestCategory("UseDebuggerDisplayUnitTests")]
-        public void MultipleAttributesWithCommentsTest()
-        {
-            var test = @"
-using System;
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void MultipleAttributesWithCommentsTest()
+//        {
+//            var test = @"
+//using System;
 
-namespace ConsoleApplication1
-{
-    // A comment on serializable. Does it stay?
-    [Serializable]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
-        public String FakePropertyTwo
-        {
-            get;
-            set;
-        }
-    }
-}";
-            var fixtest = @"
-using System;
-using System.Diagnostics;
+//namespace ConsoleApplication1
+//{
+//    // A comment on serializable. Does it stay?
+//    [Serializable]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
 
-namespace ConsoleApplication1
-{
-    // A comment on serializable. Does it stay?
-    [Serializable]
-    // TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers
-    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
-    public class MyClassName
-    {
-        Int32 fakeData;
-        public String FakePropertyOne
-        {
-            get;
-            set;
-        }
-        public String FakePropertyTwo
-        {
-            get;
-            set;
-        }
-    }
-}";
+//namespace ConsoleApplication1
+//{
+//    // A comment on serializable. Does it stay?
+//    [Serializable]
+//    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
 
-            VerifyCSharpFix(test, fixtest);
-        }
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new UseDebuggerDisplayAttributeCodeFixProvider();
-        }
+//            VerifyCSharpFix(test, fixtest);
+//        }
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new UseDebuggerDisplayAttributeAnalyzer();
-        }
+//        [TestMethod]
+//        [TestCategory("UseDebuggerDisplayUnitTests")]
+//        public void DocCommentCommentsTest()
+//        {
+//            var test = @"
+//using System;
+
+//namespace ConsoleApplication1
+//{
+//    /// <summary>
+//    /// An MSBuild task that compiles HTML Help Workshop projects into 
+//    /// compiled help (.CHM) files.
+//    /// </summary>
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
+//            var fixtest = @"
+//using System;
+//using System.Diagnostics;
+
+//namespace ConsoleApplication1
+//{
+//    /// <summary>
+//    /// An MSBuild task that compiles HTML Help Workshop projects into 
+//    /// compiled help (.CHM) files.
+//    /// </summary>
+//    [DebuggerDisplay(""FakePropertyOne={FakePropertyOne} FakePropertyTwo={FakePropertyTwo}"")]
+//    public class MyClassName
+//    {
+//        Int32 fakeData;
+//        public String FakePropertyOne
+//        {
+//            get;
+//            set;
+//        }
+//        public String FakePropertyTwo
+//        {
+//            get;
+//            set;
+//        }
+//    }
+//}";
+
+//            VerifyCSharpFix(test, fixtest);
+//        }
+
+
+
+        //protected override CodeFixProvider GetCSharpCodeFixProvider() => new UseDebuggerDisplayAttributeCodeFixProvider();
+
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new UseDebuggerDisplayAttributeAnalyzer();
     }
 }

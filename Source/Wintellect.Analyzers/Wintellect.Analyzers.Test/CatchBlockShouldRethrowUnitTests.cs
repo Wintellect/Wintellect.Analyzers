@@ -324,10 +324,7 @@ namespace Tests
 
             VerifyCSharpDiagnostic(eatTest, expected);
         }
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new CatchBlocksShouldRethrowAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new CatchBlocksShouldRethrowAnalyzer();
 
     }
 }

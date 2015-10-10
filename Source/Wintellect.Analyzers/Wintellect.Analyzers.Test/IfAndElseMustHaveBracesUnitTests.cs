@@ -159,15 +159,9 @@ namespace SomeTests
             VerifyCSharpFix(ElseMissingBraces, ElseFixedBraces);
         }
 
-        protected override CodeFixProvider GetCSharpCodeFixProvider()
-        {
-            return new IfAndElseMustHaveBracesCodeFixProvider();
-        }
+        protected override CodeFixProvider GetCSharpCodeFixProvider() => new IfAndElseMustHaveBracesCodeFixProvider();
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new IfAndElseMustHaveBracesAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new IfAndElseMustHaveBracesAnalyzer();
 
     }
 }

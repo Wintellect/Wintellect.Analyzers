@@ -230,15 +230,9 @@ namespace SomeTests
         //            expected);
         //        }
 
-        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return new AssemblyAttributeAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer() => new AssemblyAttributeAnalyzer();
 
-        protected override DiagnosticAnalyzer GetBasicDiagnosticAnalyzer()
-        {
-            return new AssemblyAttributeAnalyzer();
-        }
+        protected override DiagnosticAnalyzer GetBasicDiagnosticAnalyzer() => new AssemblyAttributeAnalyzer();
 
         private static DiagnosticResult CompanyAttributeResult = new DiagnosticResult
         {
