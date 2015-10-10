@@ -85,8 +85,8 @@
                         </div>
                         <div class="MTPS_CollapsibleSection" style="display: block;">
                             <p>
-                                One of the secrets to debugging is seeing the key information in an object quickly. The debugger 
-                                defaults to showing the type name, but if the class either overrides ToString, or has a 
+                                One of the secrets to debugging is seeing the key information in an object quickly. The debugger
+                                defaults to showing the type name, but if the class either overrides ToString, or has a
                                 <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>
                                 the debugger will evaluate those instead. Thus the consumer of the class will see the important
                                 information quickly in Data Tips or any of the Watch family of windows, instead of having to manually
@@ -108,21 +108,22 @@
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
                                 <p>
-                                    The accompanying code fix provider will insert a default <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a> 
+                                    <span style="color:red">There's a bug in Roslyn (ClassDeclarationSyntax.AddAttributes and friends) where adding an atrribute when there's an XML doc comment inserts the attribute above doc comment, not above the class. Until Roslyn is fixed I've disabled this code fix.</span>
+                                    The accompanying code fix provider will insert a default <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>
                                     on the class. The expression string will be made up of the first two properties found on the class. If there are no or only one property, the
-                                    rest of the expression will use the first fields found. If the class is derived from 
-                                    <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerable%28v=vs.110%29.aspx">IEnumerable</a>, 
+                                    rest of the expression will use the first fields found. If the class is derived from
+                                    <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerable%28v=vs.110%29.aspx">IEnumerable</a>,
                                     the inserted expression will be <span class="code">Count={Count()}</span> to show how many items are in the
                                     collection. You should update the expression to reflect the important information.
                                 </p>
                                 <p>
                                     In addition to adding the <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>, the code fix will add a the using for System.Diagnostics if
-                                    it is not already included. Lastly, it will put in a TODO comment to remind you to change the change the 
+                                    it is not already included. Lastly, it will put in a TODO comment to remind you to change the change the
                                     expression statement to exactly what it should be.
                                 </p>
                                 <p>
-                                    As when debugging, all fields and properties no matter their protection levels are available to use in the 
-                                    <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>. You can also access fields off of them so if you want to see deep information at 
+                                    As when debugging, all fields and properties no matter their protection levels are available to use in the
+                                    <a href="https://msdn.microsoft.com/en-us/library/system.diagnostics.debuggerdisplayattribute%28v=vs.110%29.aspx">DebuggerDisplayAttribute</a>. You can also access fields off of them so if you want to see deep information at
                                     a glance, feel free to use "x.y.z". Finally, you can even call methods in the expression, but ensure you only
                                     call methods that do not change state.
                                 </p>
@@ -133,8 +134,10 @@
                                 When to Suppress Warnings
                             </div>
                             <div class="MTPS_CollapsibleSection" style="display: block;">
-                                <p>In most cases you should not suppress this warning but it's reasonable there are a few classes that you would
-                                never look at in the debugger so those could be suppressed.</p>
+                                <p>
+                                    In most cases you should not suppress this warning but it's reasonable there are a few classes that you would
+                                    never look at in the debugger so those could be suppressed.
+                                </p>
                             </div>
                             <div class="MTPS_CollapsibleRegion">
                                 <div class="CollapseRegionLink">
@@ -144,7 +147,7 @@
                                     <p>
                                         The following example shows a class,
                                         <span class="code">BadExample</span>, that violates
-                                        the rule because there is no DebuggerDisplayAttribute. 
+                                        the rule because there is no DebuggerDisplayAttribute.
                                         In <span class="code">FixedExample</span> you see the result of running the code fix.
                                     </p>
                                     <div id="snippetGroup">
@@ -157,44 +160,38 @@
                                             <div dir="ltr" style="background-color: #ddd">
                                                 <pre id="ctl00_mainContentContainer_ctl15_ctl00_ctl01_code" class="libCScode" space="preserve" style="word-wrap: break-word; word-break: break-all">
 <span style="color: blue">using</span> System;
-
 <span style="color: blue">namespace</span> ExampleLibrary
 {
-    <span style="color: blue">public class</span> BadExample : IEnumerable
+                                                <span style="color: blue">public class</span> BadExample : IEnumerable
     {
         Int32 fakeData2;
-        <span style="color: blue">public</span> String FakeProperty2
+                                                <span style="color: blue">public</span> String FakeProperty2
         {
-            <span style="color: blue">get</span>;
-            <span style="color: blue">set</span>;
+                                                <span style="color: blue">get</span>;
+                                                <span style="color: blue">set</span>;
         }
-
-        <span style="color: blue">public</span> IEnumerator GetEnumerator()
+                                                <span style="color: blue">public</span> IEnumerator GetEnumerator()
         {
             throw new NotImplementedException();
         }
     }
 }
-
 <em>After the code fix is applied:</em>
-
 <span style="color: blue">using</span> System;
 <span style="color: blue">using</span> System.Diagnostic;
-
 <span style="color: blue">namespace</span> ExampleLibrary
 {
-    <span style="color: green">// TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers</span>
+                                                <span style="color: green">// TODO: Change the automatically inserted DebuggerDisplay string from Wintellect.Analyzers</span>
     [DebuggerDisplay("Count={Count()}")]
-    <span style="color: blue">public class</span> FixedExample : IEnumerable
+                                                <span style="color: blue">public class</span> FixedExample : IEnumerable
     {
         Int32 fakeData2;
-        <span style="color: blue">public</span> String FakeProperty2
+                                                <span style="color: blue">public</span> String FakeProperty2
         {
-            <span style="color: blue">get</span>;
-            <span style="color: blue">set</span>;
+                                                <span style="color: blue">get</span>;
+                                                <span style="color: blue">set</span>;
         }
-
-        <span style="color: blue">public</span> IEnumerator GetEnumerator()
+                                                <span style="color: blue">public</span> IEnumerator GetEnumerator()
         {
             throw new NotImplementedException();
         }
