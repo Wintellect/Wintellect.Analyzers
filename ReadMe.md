@@ -4,7 +4,7 @@ At [Wintellect](http://www.wintellect.com), we love anything that will help us w
 
 To add these analyzers to your project easily, use the NuGet package. In the Visual Studio Package Manager Console exeute the following:
 
-    Install-Package Wintellect.Analyzers -Prerelease
+    Install-Package Wintellect.Analyzers
 
 ## Design Analyzers ##
 #### [AssembliesHaveCompanyAtrribute](http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect006-AssembliesHaveCompanyAttribute.html) ####
