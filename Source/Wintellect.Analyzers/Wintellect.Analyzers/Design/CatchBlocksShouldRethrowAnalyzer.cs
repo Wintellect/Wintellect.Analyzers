@@ -26,7 +26,7 @@ namespace Wintellect.Analyzers
                                                                              (new LocalizableResourceString(nameof(Resources.CategoryDesign), Resources.ResourceManager, typeof(Resources))).ToString(),
                                                                              DiagnosticSeverity.Info,
                                                                              true,
-                                                                             new LocalizableResourceString(nameof(Resources.ClassesShouldBeSealedAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
+                                                                             new LocalizableResourceString(nameof(Resources.CatchBlocksShouldRethrowAnalyzerDescription), Resources.ResourceManager, typeof(Resources)),
                                                                              "http://code.wintellect.com/Wintellect.Analyzers/WebPages/Wintellect014-CatchBlocksShouldRethrow.html");
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
