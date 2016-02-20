@@ -223,7 +223,7 @@
     <value>Document this direct throw</value>
   </data>
   <data name="ExceptionDocumentationMissingAnalyzerDescription" xml:space="preserve">
-    <value>Alll direct throws must always be documented with &lt;exception&gt; tags</value>
+    <value>All direct throws must always be documented with &lt;exception&gt; tags</value>
   </data>
   <data name="ExceptionDocumentationMissingAnalyzerMessageFormat" xml:space="preserve">
     <value>Document the direct throw of type '{0}' with an &lt;exception&gt; tag</value>
