@@ -259,6 +259,56 @@ namespace SomeTests
 
         [TestMethod]
         [TestCategory("SuppressionMessageJustificationUnitTests")]
+        public void MethodTwoDifferentStylesMissingJustification()
+        {
+            var test = @"
+using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics.CodeAnalysis;
+
+namespace SomeTests
+{
+	public class BasicClass
+	{
+        [SuppressMessage(""Microsoft.Naming"",
+                            ""CA1709:IdentifiersShouldBeCasedCorrectly"",
+                            MessageId = ""Xo"")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage(""Microsoft.Naming"",
+                            ""CA1709: IdentifiersShouldBeCasedCorrectly"",
+                            MessageId = ""Yo"")]
+        public void XoXoX()
+        {
+        }
+    }
+}
+";
+            DiagnosticResult[] results = new DiagnosticResult[2];
+            results[0] = new DiagnosticResult
+            {
+                Id = SuppressionMessageJustificationId,
+                Message = String.Format(SuppressionMessageJustificationMessageFormat, "XoXoX"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 16, 21)
+                }
+            };
+            results[1] = new DiagnosticResult
+            {
+                Id = SuppressionMessageJustificationId,
+                Message = String.Format(SuppressionMessageJustificationMessageFormat, "XoXoX"),
+                Severity = DiagnosticSeverity.Warning,
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 16, 21)
+                }
+            };
+
+            VerifyCSharpDiagnostic(test, results);
+        }
+
+        [TestMethod]
+        [TestCategory("SuppressionMessageJustificationUnitTests")]
         public void MethodEmptyJustification()
         {
             var test = @"
